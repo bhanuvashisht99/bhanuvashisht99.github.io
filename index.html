@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <!-- SEO Meta Tags -->
 <title>Bhanu Vashisht - Expert Personal Trainer in Bangalore | Calisthenics & Chronic Pain Specialist</title>
 <meta name="description" content="Expert personal trainer in Bangalore specializing in calisthenics, handstand coaching, and chronic pain management. Transform your fitness with proven methodologies and personalized guidance.">
@@ -990,21 +989,30 @@ transform: translateY(-2px);
 box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
 }
 
-/* OPTIMIZED smart connect button */
+/* FIXED: Smart connect buttons container - TRULY FLOATING */
 .smart-connect {
 position: fixed;
 bottom: 20px;
 right: 20px;
-z-index: 1000;
+z-index: 9999; /* Much higher z-index to float above everything */
+display: flex;
+flex-direction: column;
+gap: 15px;
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
 transition: var(--transition-smooth);
+pointer-events: auto; /* Ensure buttons are clickable */
 }
 
+/* Remove hidden class functionality - buttons always show */
 .smart-connect.hidden {
-transform: translateY(100px);
-opacity: 0;
-visibility: hidden;
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
 }
 
+/* WhatsApp Button */
 .connect-button {
 display: flex;
 align-items: center;
@@ -1021,6 +1029,9 @@ transition: var(--transition-smooth);
 box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
 width: 60px;
 height: 60px;
+position: relative;
+z-index: 10001; /* Higher than container */
+pointer-events: auto;
 }
 
 .connect-button:hover {
@@ -1029,6 +1040,35 @@ transform: translateY(-2px);
 box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
+/* Instagram Button */
+.instagram-button {
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+color: white;
+padding: 16px;
+border: none;
+border-radius: 50%;
+font-size: 1.5rem;
+font-weight: 700;
+text-decoration: none;
+transition: var(--transition-smooth);
+box-shadow: 0 6px 20px rgba(220, 39, 67, 0.3);
+width: 60px;
+height: 60px;
+position: relative;
+z-index: 10001; /* Higher than container */
+pointer-events: auto;
+}
+
+.instagram-button:hover {
+background: linear-gradient(45deg, #e6683c 0%,#dc2743 25%,#cc2366 50%,#bc1888 75%,#8a3ab9 100%);
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(220, 39, 67, 0.4);
+}
+
+/* Pulse animations */
 .connect-pulse {
 position: absolute;
 top: 50%;
@@ -1040,6 +1080,21 @@ border-radius: 50%;
 background: rgba(37, 211, 102, 0.3);
 animation: pulse 2s infinite;
 z-index: -1;
+pointer-events: none; /* Don't interfere with button clicks */
+}
+
+.instagram-pulse {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+border-radius: 50%;
+background: rgba(220, 39, 67, 0.3);
+animation: pulse 2s infinite 1s;
+z-index: -1;
+pointer-events: none; /* Don't interfere with button clicks */
 }
 
 @keyframes pulse {
@@ -1246,7 +1301,8 @@ footer {
  right: 10px;
 }
 
-.connect-button {
+.connect-button,
+.instagram-button {
  width: 56px;
  height: 56px;
  padding: 14px;
@@ -1451,13 +1507,13 @@ animation-iteration-count: 1 !important;
 transition-duration: 0.01ms !important;
 }
 
-.connect-pulse {
+.connect-pulse,
+.instagram-pulse {
 animation: none;
 }
 }
 
 </style>
-</head>
 </head>
 <body>
 <!-- Schema.org markup for SEO -->
@@ -1886,24 +1942,33 @@ Bangalore, Karnataka, India
 </div>
 </footer>
 
-<!-- Smart Connect Button -->
+<!-- Fixed Smart Connect Buttons - MOVED OUTSIDE ALL CONTAINERS -->
 <div class="smart-connect" id="smartConnect">
-<div class="connect-pulse"></div>
+<!-- WhatsApp Button -->
 <a href="https://wa.me/918448222454?text=Hi%20Bhanu,%20I'm%20interested%20in%20learning%20more%20about%20your%20training%20approach%20and%20would%20like%20to%20schedule%20a%20consultation.%20When%20would%20be%20a%20good%20time%20to%20connect?" class="connect-button">
+<div class="connect-pulse"></div>
 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
 </svg>
 </a>
+
+<!-- Instagram Button -->
+<a href="https://instagram.com/bhanu_vashisht" target="_blank" rel="noopener noreferrer" class="instagram-button">
+<div class="instagram-pulse"></div>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+</svg>
+</a>
 </div>
 
-<!-- ULTRA OPTIMIZED JavaScript - NO JERKINESS -->
+<!-- ULTRA OPTIMIZED JavaScript - FIXED VERSION -->
 <script>
 // ULTRA OPTIMIZED Variables - Reduced scope and better caching
 let ticking = false;
 let cachedWindowHeight = window.innerHeight;
 let cachedDocumentHeight = document.documentElement.scrollHeight;
 let lastScrollTop = 0;
-let connectVisible = false;
+// Removed connectVisible variable since buttons are always visible now
 
 // Cache DOM elements once - Performance critical
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -1928,23 +1993,9 @@ const closeMobileMenu = () => {
   document.body.style.overflow = '';
 };
 
-// ULTRA OPTIMIZED Smart Connect Logic - Reduced calculations
+// FIXED: Smart Connect Logic - ALWAYS VISIBLE (removed problematic hide/show)
 const updateConnect = () => {
-  const scrollTop = window.pageYOffset;
-  const scrollPercentage = scrollTop / (cachedDocumentHeight - cachedWindowHeight);
-  
-  const shouldShow = scrollPercentage > 0.3 || (scrollTop < lastScrollTop && scrollTop > 200);
-  const nearFooter = scrollPercentage > 0.9;
-
-  if (shouldShow && !nearFooter && !connectVisible) {
-    smartConnect.classList.remove('hidden');
-    connectVisible = true;
-  } else if ((!shouldShow || nearFooter) && connectVisible) {
-    smartConnect.classList.add('hidden');
-    connectVisible = false;
-  }
-
-  lastScrollTop = scrollTop;
+  // Buttons are now always visible - no hiding logic
   ticking = false;
 };
 
@@ -2144,7 +2195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
   initializeEventListeners();
   updateSliderPosition();
-  updateConnect();
+  // Removed updateConnect() since buttons are always visible
   startAutoSlide();
 
   // Observe sections for fade-in animation - Lightweight
