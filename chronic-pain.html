@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Chronic Pain Recovery | Online Personal Training - Bhanu Vashisht</title>
+    <meta name="description" content="From months of chronic pain to pain-free in weeks. Biomechanics-based online coaching that fixes the root cause. Train from anywhere. $60/session.">
+    <meta name="keywords" content="chronic pain recovery, online pain management, biomechanics expert, fascia release, injury rehabilitation, online physical therapy">
+    <meta name="author" content="Bhanu Vashisht">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Chronic Pain Recovery | Online Personal Training">
+    <meta property="og:description" content="From months of chronic pain to pain-free in weeks. Biomechanics-based online coaching that actually works.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://youdeservewell.com/chronic-pain.html">
+    <meta property="og:image" content="https://youdeservewell.com/og-image.jpg">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chronic Pain Recovery | Online Personal Training">
+    <meta name="twitter:description" content="From months of chronic pain to pain-free in weeks. Biomechanics-based online coaching.">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Shared Design System */
+        :root {
+            --purple-primary: #667eea;
+            --purple-dark: #5a67d8;
+            --purple-light: #7c3aed;
+            --orange-primary: #ff6b35;
+            --orange-bright: #ff8c42;
+            --red-urgent: #dc2626;
+            --dark: #0f172a;
+            --dark-80: #1e293b;
+            --dark-60: #334155;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --green: #10b981;
+            --gradient-hero: linear-gradient(135deg, #ff6b35 0%, #dc2626 50%, #7c3aed 100%);
+            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
+            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation (shared) */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-60);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .nav-menu a:hover {
+            color: var(--orange-primary);
+        }
+
+        .nav-cta {
+            display: none;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-cta);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-base);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: var(--transition-base);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            transition: left var(--transition-base);
+            padding: 80px 2rem 2rem;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--dark-60);
+            font-weight: 600;
+            font-size: 1.25rem;
+            display: block;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-menu .mobile-cta {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-cta);
+            color: var(--white);
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 1rem 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .stat-highlight {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--white);
+            border-radius: 16px;
+            margin: 1rem 0.5rem;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 3rem 1rem;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: none;
+            display: block;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 3rem 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border-radius: 50px;
+            color: var(--orange-primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: var(--off-white);
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-60);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+            border-left: 4px solid var(--orange-primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        /* Method Section */
+        .method-section {
+            background: var(--gradient-dark);
+            color: var(--white);
+        }
+
+        .method-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .method-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-cta);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .method-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .method-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: var(--gradient-hero);
+            border-radius: 24px;
+            color: var(--white);
+        }
+
+        .cta-box h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--orange-primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 1rem 1.5rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--orange-bright);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .floating-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-base);
+            animation: pulse 2s infinite;
+        }
+
+        .floating-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+
+        /* Responsive - Tablet+ */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: inline-block;
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 2rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section {
+                padding: 5rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2.75rem;
+            }
+
+            .method-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .method-card {
+                flex: 0 0 calc(50% - 1rem);
+            }
+
+            .footer-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .footer-section {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .floating-buttons {
+                bottom: 2rem;
+                right: 2rem;
+            }
+
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .floating-btn svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Responsive - Desktop+ */
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .method-card {
+                flex: 0 0 calc(33.333% - 1.33rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Bhanu Vashisht</a>
+            <ul class="nav-menu">
+                <li><a href="/#paths">Services</a></li>
+                <li><a href="chronic-pain.html">Chronic Pain</a></li>
+                <li><a href="calisthenics.html">Calisthenics</a></li>
+                <li><a href="testimonials.html">Success Stories</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="https://wa.me/918448222454" class="nav-cta">Get Started</a>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="chronic-pain.html">Chronic Pain Recovery</a></li>
+            <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
+            <li><a href="testimonials.html">Success Stories</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <a href="https://wa.me/918448222454" class="mobile-cta">Get Started</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔥 Chronic Pain Recovery</div>
+            <h1>From Months of Agony<br>to Pain-Free in Weeks</h1>
+            <p class="hero-subtitle">Struggling with lower back pain, neck pain, or shoulder issues? Stop wasting time on treatments that don't work. Fix the root cause with biomechanics and fascia release.</p>
+            <div>
+                <span class="stat-highlight">Months of Pain → Weeks to Recovery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Sanjhi's Transformation</span>
+                <h2 class="section-title">Watch Her Complete Recovery</h2>
+                <p class="section-subtitle">See how biomechanics-based coaching transformed chronic pain into freedom of movement.</p>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/duWjrrhTgL8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section story-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Journey</span>
+                <h2 class="section-title">Sanjhi's Story</h2>
+            </div>
+            <div class="story-content">
+                <p><strong>The Problem:</strong> Sanjhi suffered for months with debilitating chronic pain. Every movement hurt. Daily activities became struggles. She tried everything—doctors, medications, traditional physical therapy—but nothing addressed the root cause.</p>
+
+                <div class="highlight-box">
+                    <p>"I was told it would take months, maybe years. I couldn't even imagine living like that."</p>
+                </div>
+
+                <p><strong>What Wasn't Working:</strong> Traditional approaches focused on symptoms, not causes. Pain medications only masked the problem. Generic exercises didn't account for her unique biomechanics. She was stuck in a cycle of temporary relief followed by setbacks.</p>
+
+                <p><strong>The Solution:</strong> Through online coaching, we conducted a complete biomechanical assessment. We identified the exact dysfunctions causing her pain—tight fascia, poor movement patterns, and structural imbalances.</p>
+
+                <p><strong>The Method:</strong> We used targeted fascia release techniques to address tissue restrictions. We corrected her movement patterns through specific exercises designed for her body. We rebuilt strength in the right areas to support proper mechanics.</p>
+
+                <div class="highlight-box">
+                    <p>Result: Pain-free and moving better than ever. Not in months—in weeks.</p>
+                </div>
+
+                <p><strong>Why It Worked:</strong> We didn't just treat symptoms. We fixed the root cause. Every session was tailored to Sanjhi's biomechanics, not a generic protocol. Real-time form correction via video ensured perfect execution. Between sessions, WhatsApp support kept her on track.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="section method-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">My Chronic Pain Recovery Method</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">The exact system that transforms chronic pain into freedom of movement.</p>
+            </div>
+            <div class="method-grid">
+                <div class="method-card">
+                    <div class="method-number">1</div>
+                    <h3>Biomechanical Assessment</h3>
+                    <p>Identify the root cause—not just where it hurts, but why. We analyze your movement patterns, structural imbalances, and fascial restrictions via video assessment.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">2</div>
+                    <h3>Fascia Release</h3>
+                    <p>Release tissue restrictions that are pulling your body out of alignment. Targeted techniques that actually address the problem, not generic stretching.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">3</div>
+                    <h3>Corrective Movement</h3>
+                    <p>Retrain your body to move correctly. Build strength in the right places. Reinforce proper patterns so pain doesn't return.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">4</div>
+                    <h3>Real-Time Coaching</h3>
+                    <p>Live 1-on-1 video sessions with immediate form correction. No guessing if you're doing it right—I watch, correct, and guide you in real-time.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">5</div>
+                    <h3>Ongoing Support</h3>
+                    <p>WhatsApp access between sessions. Questions answered. Adjustments made. You're never alone in this process.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">6</div>
+                    <h3>Progressive Results</h3>
+                    <p>Progress with every session. Measurable improvements week by week. From chronic pain to complete freedom of movement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to Fix Your Chronic Pain?</h2>
+                <p>Stop wasting time on treatments that don't work. Let's identify and fix the root cause—online, from anywhere in the world.</p>
+                <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem;">$60 per session</p>
+                <a href="https://wa.me/918448222454" class="btn btn-white">Message Me on WhatsApp →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>World-class online personal training specializing in chronic pain recovery, calisthenics mastery, and handstand coaching. Train from anywhere in the world.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="chronic-pain.html">Chronic Pain Recovery</a></li>
+                        <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
+                        <li><a href="testimonials.html">Success Stories</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://wa.me/918448222454">WhatsApp: +91 8448222454</a></li>
+                        <li><a href="mailto:bhanuvashisht99@gmail.com">Email: bhanuvashisht99@gmail.com</a></li>
+                        <li><a href="https://www.instagram.com/bhanu_vashisht">Instagram: @bhanu_vashisht</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bhanu Vashisht - Online Personal Training Worldwide | <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/918448222454" class="floating-btn whatsapp-btn" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        </a>
+        <a href="https://www.instagram.com/bhanu_vashisht" class="floating-btn instagram-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>
