@@ -12,100 +12,226 @@
     <meta name="twitter:title" content="Pricing - Online Personal Training">
     <meta name="twitter:description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results.">
 
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            /* Brand Colors */
+            --purple-primary: #667eea;
+            --purple-dark: #5a67d8;
+            --purple-light: #7c3aed;
+            --orange-primary: #ff6b35;
+            --orange-bright: #ff8c42;
+            --red-urgent: #dc2626;
+
+            /* Neutrals */
+            --dark: #0f172a;
+            --dark-80: #1e293b;
+            --dark-60: #334155;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+
+            /* Success */
+            --green: #10b981;
+
+            /* Gradients */
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
+            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
+            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+        }
+
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --purple-primary: #667eea;
-            --purple-dark: #5a67d8;
-            --purple-light: #7c3aed;
-            --orange-primary: #ff6b35;
-            --orange-dark: #dc2626;
-            --red-accent: #ef4444;
-            --bg-dark: #0f172a;
-            --bg-darker: #020617;
-            --text-light: #f8fafc;
-            --text-gray: #94a3b8;
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
-            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
-            --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-darker);
-            color: var(--text-light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Navigation */
-        nav {
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
             z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            transition: var(--transition-base);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
             background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
         }
 
-        .nav-links {
-            display: flex;
+        .nav-menu {
+            display: none;
             gap: 2rem;
+            align-items: center;
             list-style: none;
         }
 
-        .nav-links a {
-            color: var(--text-light);
+        .nav-menu a {
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: var(--dark-60);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
         }
 
-        .nav-links a:hover {
-            color: var(--purple-primary);
+        .nav-menu a:hover {
+            color: var(--orange-primary);
         }
 
-        .mobile-menu-btn {
+        .nav-cta {
             display: none;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-cta);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-base);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
             background: none;
             border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: var(--transition-base);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            transition: left var(--transition-base);
+            padding: 80px 2rem 2rem;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--dark-60);
+            font-weight: 600;
+            font-size: 1.25rem;
+            display: block;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-menu .mobile-cta {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-cta);
+            color: var(--white);
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
         }
 
         /* Hero Section */
         .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: var(--gradient-hero);
-            padding: 8rem 2rem 6rem;
-            text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 120px 1rem 60px;
         }
 
         .hero::before {
@@ -116,19 +242,21 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.2) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            text-align: center;
             position: relative;
             z-index: 1;
         }
@@ -139,105 +267,174 @@
             backdrop-filter: blur(10px);
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
+            color: var(--white);
             margin-bottom: 1.5rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.25rem;
-            opacity: 0.95;
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2rem;
         }
 
-        /* Pricing Calculator Section */
-        .calculator-section {
-            padding: 4rem 2rem;
+        /* Section */
+        .section {
+            padding: 4rem 1rem;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .calculator-container {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .price-display {
+        .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
 
-        .per-session {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .main-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .currency-toggle {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            color: var(--purple-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Currency Toggle */
+        .currency-toggle {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
         .currency-btn {
-            padding: 0.5rem 1rem;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 50px;
+            color: var(--dark-60);
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
         }
 
         .currency-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
+            border-color: var(--purple-primary);
+            transform: translateY(-2px);
         }
 
         .currency-btn.active {
             background: var(--gradient-hero);
             border-color: var(--purple-primary);
+            color: var(--white);
         }
 
-        .price-subtext {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-        }
-
-        /* Calculator Controls */
-        .calculator-controls {
-            margin-bottom: 3rem;
-        }
-
-        .calculator-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        /* Pricing Card */
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            border: 2px solid rgba(102, 126, 234, 0.2);
             text-align: center;
-            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .pricing-price {
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--gradient-cta);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+
+        .pricing-period {
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-recommend {
+            background: var(--gradient-hero);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-calc {
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-calc h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+
+        .calc-label {
+            font-weight: 600;
+            color: var(--dark-60);
+        }
+
+        .calc-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--orange-primary);
+        }
+
+        /* Frequency Selector */
+        .frequency-section {
+            background: var(--off-white);
+            padding: 4rem 1rem;
         }
 
         .frequency-selector {
@@ -245,136 +442,53 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin: 2rem 0;
         }
 
         .frequency-btn {
             padding: 1rem 2rem;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(102, 126, 234, 0.3);
+            background: var(--white);
+            border: 2px solid rgba(102, 126, 234, 0.2);
             border-radius: 12px;
-            color: var(--text-light);
+            color: var(--dark-60);
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
         }
 
         .frequency-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
             border-color: var(--purple-primary);
+            transform: translateY(-2px);
         }
 
         .frequency-btn.active {
             background: var(--gradient-hero);
             border-color: var(--purple-primary);
+            color: var(--white);
         }
 
-        /* Results Grid */
-        .pricing-results {
+        /* What's Included */
+        .included-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .pricing-card {
-            background: var(--gradient-card);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .pricing-card.recommended {
-            background: var(--gradient-hero);
-            border: 2px solid var(--orange-primary);
-            position: relative;
-        }
-
-        .recommended-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-cta);
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .pricing-period {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pricing-card.recommended .pricing-period {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .pricing-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-sessions {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .pricing-card.recommended .pricing-sessions {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* What's Included Section */
-        .included-section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-        }
-
-        .included-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
         .included-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            border-radius: 16px;
+            background: var(--white);
             padding: 2rem;
-            transition: transform 0.3s;
+            border-radius: 16px;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s;
         }
 
         .included-card:hover {
             transform: translateY(-5px);
             border-color: var(--purple-primary);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
         }
 
         .included-icon {
@@ -383,116 +497,62 @@
         }
 
         .included-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
         }
 
         .included-card p {
-            color: var(--text-gray);
+            color: var(--gray);
             line-height: 1.6;
         }
 
-        /* Value Section */
-        .value-section {
-            padding: 4rem 2rem;
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .value-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .value-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-        }
-
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .value-item {
-            padding: 1.5rem;
-        }
-
-        .value-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .value-label {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 4rem 2rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .cta-text {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
-
-        .cta-btn {
+        /* CTA Button */
+        .btn {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--gradient-cta);
-            color: white;
-            text-decoration: none;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .cta-btn:hover {
+        .btn-orange {
+            background: var(--gradient-cta);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-orange:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4);
         }
 
         /* Footer */
-        footer {
-            background: var(--bg-dark);
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 1rem 2rem;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h3 {
+            color: var(--orange-bright);
             margin-bottom: 1rem;
-            color: var(--purple-primary);
+            font-weight: 800;
+        }
+
+        .footer-section p {
+            color: var(--gray-light);
+            line-height: 1.6;
         }
 
         .footer-section ul {
@@ -504,50 +564,54 @@
         }
 
         .footer-section a {
-            color: var(--text-gray);
+            color: var(--gray-light);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--purple-primary);
+            color: var(--orange-bright);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
-            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
         }
 
         /* Floating Buttons */
-        .floating-btns {
+        .floating-buttons {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 1rem;
+            right: 1rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            z-index: 999;
+            z-index: 100;
         }
 
         .floating-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
         }
 
         .floating-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
         }
 
         .whatsapp-btn {
@@ -558,69 +622,45 @@
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
-        .floating-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(15, 23, 42, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-            }
-
-            .nav-links.active {
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-menu {
                 display: flex;
             }
 
-            .mobile-menu-btn {
+            .nav-cta {
                 display: block;
             }
 
+            .mobile-menu-toggle {
+                display: none;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 3.5rem;
             }
 
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .main-price {
+            .section-title {
                 font-size: 3rem;
             }
 
-            .calculator-container {
-                padding: 2rem 1.5rem;
+            .footer-container {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .section-title,
-            .value-title,
-            .cta-title {
-                font-size: 2rem;
-            }
-
-            .floating-btns {
-                bottom: 1rem;
-                right: 1rem;
+            .floating-buttons {
+                bottom: 2rem;
+                right: 2rem;
             }
 
             .floating-btn {
-                width: 50px;
-                height: 50px;
+                width: 60px;
+                height: 60px;
             }
 
             .floating-btn svg {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
             }
         }
 
@@ -645,19 +685,39 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="nav" id="nav">
         <div class="nav-container">
-            <div class="logo">Bhanu Vashisht</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
+            <a href="index.html" class="nav-logo">Bhanu Vashisht</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#paths">Services</a></li>
                 <li><a href="chronic-pain.html">Chronic Pain</a></li>
                 <li><a href="calisthenics.html">Calisthenics</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="testimonials.html">Success Stories</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <a href="https://wa.me/918448222454" class="nav-cta">Get Started</a>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html#paths">Services</a></li>
+            <li><a href="chronic-pain.html">Chronic Pain Recovery</a></li>
+            <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
+            <li><a href="testimonials.html">Success Stories</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+        <a href="https://wa.me/918448222454" class="mobile-cta">Get Started</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -668,190 +728,202 @@
         </div>
     </section>
 
-    <!-- Pricing Calculator -->
-    <section class="calculator-section">
-        <div class="calculator-container">
-            <div class="price-display">
-                <div class="per-session">Per Session</div>
-                <div class="currency-toggle">
-                    <button class="currency-btn active" data-currency="INR">INR (₹)</button>
-                    <button class="currency-btn" data-currency="USD">USD ($)</button>
-                </div>
-                <div class="main-price" id="mainPrice">₹4,000</div>
-                <div class="price-subtext">One-on-one personalized online training</div>
+    <!-- Main Pricing Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Simple, Transparent Pricing</span>
+                <h2 class="section-title">Choose Your Currency</h2>
+                <p class="section-subtitle">Premium online coaching that delivers real results.</p>
             </div>
 
-            <div class="calculator-controls">
-                <div class="calculator-label">Training Frequency</div>
-                <div class="frequency-selector">
-                    <button class="frequency-btn" data-sessions="1">1x Per Week</button>
-                    <button class="frequency-btn active" data-sessions="3">3x Per Week</button>
-                    <button class="frequency-btn" data-sessions="5">5x Per Week</button>
-                </div>
+            <!-- Currency Toggle -->
+            <div class="currency-toggle fade-in">
+                <button class="currency-btn active" data-currency="INR">INR (₹)</button>
+                <button class="currency-btn" data-currency="USD">USD ($)</button>
             </div>
 
-            <div class="pricing-results">
-                <div class="pricing-card">
-                    <div class="pricing-period">Weekly</div>
-                    <div class="pricing-amount" id="weeklyPrice">₹12,000</div>
-                    <div class="pricing-sessions" id="weeklySessions">3 sessions per week</div>
+            <!-- Pricing Card -->
+            <div class="pricing-card fade-in">
+                <div class="pricing-price" id="mainPrice">₹4,000</div>
+                <div class="pricing-period">Per Session</div>
+
+                <div class="pricing-recommend">
+                    ⭐ Recommended: 3 sessions per week for optimal progress
                 </div>
 
-                <div class="pricing-card recommended">
-                    <div class="recommended-badge">RECOMMENDED</div>
-                    <div class="pricing-period">Monthly</div>
-                    <div class="pricing-amount" id="monthlyPrice">₹48,000</div>
-                    <div class="pricing-sessions" id="monthlySessions">12 sessions per month</div>
+                <div class="pricing-calc">
+                    <h4>Your Investment:</h4>
+                    <div class="calc-row">
+                        <span class="calc-label">Weekly (3 sessions)</span>
+                        <span class="calc-value" id="weeklyPrice">₹12,000</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Monthly (12 sessions)</span>
+                        <span class="calc-value" id="monthlyPrice">₹48,000</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Yearly (156 sessions)</span>
+                        <span class="calc-value" id="yearlyPrice">₹6,24,000</span>
+                    </div>
                 </div>
 
-                <div class="pricing-card">
-                    <div class="pricing-period">Yearly</div>
-                    <div class="pricing-amount" id="yearlyPrice">₹6,24,000</div>
-                    <div class="pricing-sessions" id="yearlySessions">156 sessions per year</div>
-                </div>
+                <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Book Your First Session →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Frequency Options -->
+    <section class="section frequency-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Flexible Options</span>
+                <h2 class="section-title">Training Frequency</h2>
+                <p class="section-subtitle">Choose how many sessions per week works best for you</p>
+            </div>
+
+            <div class="frequency-selector">
+                <button class="frequency-btn" data-sessions="1">1x Per Week</button>
+                <button class="frequency-btn active" data-sessions="3">3x Per Week</button>
+                <button class="frequency-btn" data-sessions="5">5x Per Week</button>
             </div>
         </div>
     </section>
 
     <!-- What's Included -->
-    <section class="included-section">
-        <h2 class="section-title">What's Included In Every Session</h2>
-        <p class="section-subtitle">Premium training that goes beyond just exercise</p>
-
-        <div class="included-grid">
-            <div class="included-card fade-in">
-                <div class="included-icon">🎯</div>
-                <h3>Personalized Programming</h3>
-                <p>Custom training plans designed specifically for your goals, body type, and current fitness level.</p>
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Premium Features</span>
+                <h2 class="section-title">What's Included In Every Session</h2>
+                <p class="section-subtitle">Premium training that goes beyond just exercise</p>
             </div>
 
-            <div class="included-card fade-in">
-                <div class="included-icon">📹</div>
-                <h3>Live Video Coaching</h3>
-                <p>Real-time form correction and feedback during every session via video call.</p>
-            </div>
-
-            <div class="included-card fade-in">
-                <div class="included-icon">📊</div>
-                <h3>Progress Tracking</h3>
-                <p>Detailed tracking of your metrics, progress photos, and performance improvements.</p>
-            </div>
-
-            <div class="included-card fade-in">
-                <div class="included-icon">💬</div>
-                <h3>24/7 WhatsApp Support</h3>
-                <p>Direct access to me between sessions for questions, form checks, and motivation.</p>
-            </div>
-
-            <div class="included-card fade-in">
-                <div class="included-icon">🔄</div>
-                <h3>Weekly Programming Updates</h3>
-                <p>Your program evolves every week based on your progress and feedback.</p>
-            </div>
-
-            <div class="included-card fade-in">
-                <div class="included-icon">🎓</div>
-                <h3>Movement Education</h3>
-                <p>Learn the principles behind every exercise so you understand your body better.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Proposition -->
-    <section class="value-section">
-        <div class="value-container">
-            <h2 class="value-title">Why Choose Premium Training</h2>
-            <div class="value-grid">
-                <div class="value-item">
-                    <div class="value-number">50+</div>
-                    <div class="value-label">Lives Transformed</div>
+            <div class="included-grid">
+                <div class="included-card fade-in">
+                    <div class="included-icon">🎯</div>
+                    <h3>Personalized Programming</h3>
+                    <p>Custom training plans designed specifically for your goals, body type, and current fitness level.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-number">8+</div>
-                    <div class="value-label">Years Experience</div>
+
+                <div class="included-card fade-in">
+                    <div class="included-icon">📹</div>
+                    <h3>Live Video Coaching</h3>
+                    <p>Real-time form correction and feedback during every session via video call.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-number">100%</div>
-                    <div class="value-label">Results-Driven</div>
+
+                <div class="included-card fade-in">
+                    <div class="included-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Detailed tracking of your metrics, progress photos, and performance improvements.</p>
+                </div>
+
+                <div class="included-card fade-in">
+                    <div class="included-icon">💬</div>
+                    <h3>24/7 WhatsApp Support</h3>
+                    <p>Direct access to me between sessions for questions, form checks, and motivation.</p>
+                </div>
+
+                <div class="included-card fade-in">
+                    <div class="included-icon">🔄</div>
+                    <h3>Weekly Programming Updates</h3>
+                    <p>Your program evolves every week based on your progress and feedback.</p>
+                </div>
+
+                <div class="included-card fade-in">
+                    <div class="included-icon">🎓</div>
+                    <h3>Movement Education</h3>
+                    <p>Learn the principles behind every exercise so you understand your body better.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2 class="cta-title">Ready to Transform Your Life?</h2>
-        <p class="cta-text">Limited spots available each month. Book your first session and start your transformation journey today.</p>
-        <p class="cta-text" style="font-size: 1rem; color: var(--text-gray); margin-top: 1rem;">✓ No long-term contracts &nbsp;•&nbsp; ✓ Cancel anytime &nbsp;•&nbsp; ✓ Results-driven approach</p>
-        <a href="https://wa.me/918800389036?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="cta-btn" target="_blank">Book Your First Session</a>
+    <!-- Final CTA -->
+    <section class="section" style="background: var(--gradient-hero); color: var(--white); text-align: center;">
+        <div class="container">
+            <h2 style="color: var(--white); font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Ready to Transform Your Life?</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 1rem;">Limited spots available each month. Book your first session and start your transformation journey today.</p>
+            <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 2rem;">✓ No long-term contracts • ✓ Cancel anytime • ✓ Results-driven approach</p>
+            <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="btn" style="background: var(--white); color: var(--dark); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);">Message Me on WhatsApp →</a>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Bhanu Vashisht</h3>
-                <p style="color: var(--text-gray);">Premium online personal training for chronic pain recovery and calisthenics mastery.</p>
-            </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>World-class online personal training specializing in chronic pain recovery, calisthenics mastery, and handstand coaching. Train from anywhere in the world.</p>
+                </div>
 
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="chronic-pain.html">Chronic Pain Recovery</a></li>
-                    <li><a href="calisthenics.html">Calisthenics Training</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                </ul>
-            </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="chronic-pain.html">Chronic Pain Recovery</a></li>
+                        <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
+                        <li><a href="testimonials.html">Success Stories</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
 
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <ul>
-                    <li><a href="https://wa.me/918800389036" target="_blank">WhatsApp</a></li>
-                    <li><a href="https://instagram.com/himanshu.vashist" target="_blank">Instagram</a></li>
-                </ul>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://wa.me/918448222454">WhatsApp: +91 8448222454</a></li>
+                        <li><a href="mailto:bhanuvashisht99@gmail.com">Email: bhanuvashisht99@gmail.com</a></li>
+                        <li><a href="https://www.instagram.com/bhanu_vashisht">Instagram: @bhanu_vashisht</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Bhanu Vashisht. All rights reserved. | <a href="privacy-policy.html" style="color: var(--text-gray);">Privacy Policy</a></p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bhanu Vashisht - Online Personal Training Worldwide | <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.7);">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
-    <div class="floating-btns">
-        <a href="https://wa.me/918800389036?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="floating-btn whatsapp-btn" target="_blank" aria-label="Contact on WhatsApp">
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/918448222454" class="floating-btn whatsapp-btn" aria-label="WhatsApp">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
         </a>
-        <a href="https://instagram.com/himanshu.vashist" class="floating-btn instagram-btn" target="_blank" aria-label="Follow on Instagram">
+        <a href="https://www.instagram.com/bhanu_vashisht" class="floating-btn instagram-btn" aria-label="Instagram">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
         </a>
     </div>
 
+    <!-- JavaScript -->
     <script>
         // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
         });
 
         // Pricing calculator
-        const frequencyBtns = document.querySelectorAll('.frequency-btn');
         const currencyBtns = document.querySelectorAll('.currency-btn');
+        const frequencyBtns = document.querySelectorAll('.frequency-btn');
         const mainPrice = document.getElementById('mainPrice');
         const weeklyPrice = document.getElementById('weeklyPrice');
         const monthlyPrice = document.getElementById('monthlyPrice');
         const yearlyPrice = document.getElementById('yearlyPrice');
-        const weeklySessions = document.getElementById('weeklySessions');
-        const monthlySessions = document.getElementById('monthlySessions');
-        const yearlySessions = document.getElementById('yearlySessions');
 
         const prices = {
             INR: 4000,
@@ -876,10 +948,6 @@
             weeklyPrice.textContent = formatPrice(weekly, currency);
             monthlyPrice.textContent = formatPrice(monthly, currency);
             yearlyPrice.textContent = formatPrice(yearly, currency);
-
-            weeklySessions.textContent = `${sessionsPerWeek} session${sessionsPerWeek > 1 ? 's' : ''} per week`;
-            monthlySessions.textContent = `${sessionsPerWeek * 4} sessions per month`;
-            yearlySessions.textContent = `${sessionsPerWeek * 52} sessions per year`;
         }
 
         // Currency toggle
@@ -902,7 +970,7 @@
             });
         });
 
-        // Intersection Observer for fade-in animations
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
