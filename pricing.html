@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Online Personal Training | Himanshu Vashist</title>
-    <meta name="description" content="Premium online personal training at $60 per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
+    <title>Pricing - Online Personal Training | Bhanu Vashisht</title>
+    <meta name="description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
     <meta property="og:title" content="Pricing - Online Personal Training">
-    <meta property="og:description" content="Premium online personal training at $60 per session. Recommended 3x per week for optimal results.">
+    <meta property="og:description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pricing - Online Personal Training">
-    <meta name="twitter:description" content="Premium online personal training at $60 per session. Recommended 3x per week for optimal results.">
+    <meta name="twitter:description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results.">
 
     <style>
         * {
@@ -185,13 +185,41 @@
         }
 
         .main-price {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.5rem;
+        }
+
+        .currency-toggle {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .currency-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .currency-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .currency-btn.active {
+            background: var(--gradient-hero);
+            border-color: var(--purple-primary);
         }
 
         .price-subtext {
@@ -619,7 +647,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Himanshu Vashist</div>
+            <div class="logo">Bhanu Vashisht</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="chronic-pain.html">Chronic Pain</a></li>
@@ -645,7 +673,11 @@
         <div class="calculator-container">
             <div class="price-display">
                 <div class="per-session">Per Session</div>
-                <div class="main-price">$60</div>
+                <div class="currency-toggle">
+                    <button class="currency-btn active" data-currency="INR">INR (₹)</button>
+                    <button class="currency-btn" data-currency="USD">USD ($)</button>
+                </div>
+                <div class="main-price" id="mainPrice">₹4,000</div>
                 <div class="price-subtext">One-on-one personalized online training</div>
             </div>
 
@@ -661,20 +693,20 @@
             <div class="pricing-results">
                 <div class="pricing-card">
                     <div class="pricing-period">Weekly</div>
-                    <div class="pricing-amount" id="weeklyPrice">$180</div>
+                    <div class="pricing-amount" id="weeklyPrice">₹12,000</div>
                     <div class="pricing-sessions" id="weeklySessions">3 sessions per week</div>
                 </div>
 
                 <div class="pricing-card recommended">
                     <div class="recommended-badge">RECOMMENDED</div>
                     <div class="pricing-period">Monthly</div>
-                    <div class="pricing-amount" id="monthlyPrice">$720</div>
+                    <div class="pricing-amount" id="monthlyPrice">₹48,000</div>
                     <div class="pricing-sessions" id="monthlySessions">12 sessions per month</div>
                 </div>
 
                 <div class="pricing-card">
                     <div class="pricing-period">Yearly</div>
-                    <div class="pricing-amount" id="yearlyPrice">$8,640</div>
+                    <div class="pricing-amount" id="yearlyPrice">₹6,24,000</div>
                     <div class="pricing-sessions" id="yearlySessions">156 sessions per year</div>
                 </div>
             </div>
@@ -758,7 +790,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Himanshu Vashist</h3>
+                <h3>Bhanu Vashisht</h3>
                 <p style="color: var(--text-gray);">Premium online personal training for chronic pain recovery and calisthenics mastery.</p>
             </div>
 
@@ -783,7 +815,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Himanshu Vashist. All rights reserved. | <a href="privacy-policy.html" style="color: var(--text-gray);">Privacy Policy</a></p>
+            <p>&copy; 2024 Bhanu Vashisht. All rights reserved. | <a href="privacy-policy.html" style="color: var(--text-gray);">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -812,6 +844,8 @@
 
         // Pricing calculator
         const frequencyBtns = document.querySelectorAll('.frequency-btn');
+        const currencyBtns = document.querySelectorAll('.currency-btn');
+        const mainPrice = document.getElementById('mainPrice');
         const weeklyPrice = document.getElementById('weeklyPrice');
         const monthlyPrice = document.getElementById('monthlyPrice');
         const yearlyPrice = document.getElementById('yearlyPrice');
@@ -819,28 +853,52 @@
         const monthlySessions = document.getElementById('monthlySessions');
         const yearlySessions = document.getElementById('yearlySessions');
 
-        const pricePerSession = 60;
+        const prices = {
+            INR: 4000,
+            USD: 47
+        };
 
-        function updatePricing(sessionsPerWeek) {
+        let currentCurrency = 'INR';
+        let currentSessions = 3;
+
+        function formatPrice(amount, currency) {
+            const symbol = currency === 'INR' ? '₹' : '$';
+            return `${symbol}${amount.toLocaleString()}`;
+        }
+
+        function updatePricing(sessionsPerWeek, currency) {
+            const pricePerSession = prices[currency];
             const weekly = sessionsPerWeek * pricePerSession;
             const monthly = sessionsPerWeek * 4 * pricePerSession;
             const yearly = sessionsPerWeek * 52 * pricePerSession;
 
-            weeklyPrice.textContent = `$${weekly.toLocaleString()}`;
-            monthlyPrice.textContent = `$${monthly.toLocaleString()}`;
-            yearlyPrice.textContent = `$${yearly.toLocaleString()}`;
+            mainPrice.textContent = formatPrice(pricePerSession, currency);
+            weeklyPrice.textContent = formatPrice(weekly, currency);
+            monthlyPrice.textContent = formatPrice(monthly, currency);
+            yearlyPrice.textContent = formatPrice(yearly, currency);
 
             weeklySessions.textContent = `${sessionsPerWeek} session${sessionsPerWeek > 1 ? 's' : ''} per week`;
             monthlySessions.textContent = `${sessionsPerWeek * 4} sessions per month`;
             yearlySessions.textContent = `${sessionsPerWeek * 52} sessions per year`;
         }
 
+        // Currency toggle
+        currencyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currencyBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCurrency = btn.dataset.currency;
+                updatePricing(currentSessions, currentCurrency);
+            });
+        });
+
+        // Frequency selector
         frequencyBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 frequencyBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const sessions = parseInt(btn.dataset.sessions);
-                updatePricing(sessions);
+                currentSessions = parseInt(btn.dataset.sessions);
+                updatePricing(currentSessions, currentCurrency);
             });
         });
 
