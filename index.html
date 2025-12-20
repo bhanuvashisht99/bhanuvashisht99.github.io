@@ -1417,7 +1417,8 @@
 
         function formatHomePrice(amount, currency) {
             const symbol = currency === 'INR' ? '₹' : '$';
-            return `${symbol}${amount.toLocaleString()}`;
+            const locale = currency === 'INR' ? 'en-IN' : 'en-US';
+            return `${symbol}${amount.toLocaleString(locale)}`;
         }
 
         function updateHomePricing(sessionsPerWeek, currency) {
