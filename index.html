@@ -6,7 +6,7 @@
 
     <!-- SEO Meta Tags -->
     <title>Online Personal Trainer | Transform From Anywhere - Bhanu Vashisht</title>
-    <meta name="description" content="World-class online coaching for chronic pain recovery and calisthenics mastery. $60/session. Train from anywhere in the world. Progress with every session.">
+    <meta name="description" content="World-class online coaching for chronic pain recovery and calisthenics mastery. ₹4,000 INR / $47 USD per session. Train from anywhere in the world. Progress with every session.">
     <meta name="keywords" content="online personal trainer, chronic pain recovery, calisthenics coaching, handstand training, online fitness coaching, biomechanics expert">
     <meta name="author" content="Bhanu Vashisht">
     <meta name="robots" content="index, follow">
@@ -44,7 +44,7 @@
       "knowsAbout": ["Online Personal Training", "Calisthenics", "Handstand Training", "Chronic Pain Recovery", "Biomechanics", "Fascia Release", "Injury Rehabilitation"],
       "offers": {
         "@type": "Offer",
-        "price": "60",
+        "price": "47",
         "priceCurrency": "USD",
         "description": "1-on-1 Online Personal Training Session",
         "availability": "https://schema.org/InStock"
@@ -1239,9 +1239,27 @@
                 <p class="section-subtitle">Premium online coaching that delivers real results.</p>
             </div>
 
+            <!-- Currency Toggle -->
+            <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem;" class="fade-in">
+                <button class="currency-toggle-btn active" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
+                <button class="currency-toggle-btn" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
+            </div>
+
             <div class="pricing-card fade-in">
-                <div class="pricing-price">$60</div>
+                <div class="pricing-price" id="homeMainPrice">₹4,000</div>
                 <div class="pricing-period">Per Session</div>
+
+                <!-- Training Frequency Options -->
+                <div style="margin: 1.5rem 0;">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <p style="font-size: 0.95rem; font-weight: 600; color: var(--gray); margin-bottom: 0.75rem;">Select Training Frequency</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="frequency-toggle-btn" data-sessions="1" style="padding: 1rem 2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x Per Week</button>
+                        <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 1rem 2rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x Per Week</button>
+                        <button class="frequency-toggle-btn" data-sessions="5" style="padding: 1rem 2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x Per Week</button>
+                    </div>
+                </div>
 
                 <div class="pricing-recommend">
                     ⭐ Recommended: 3 sessions per week for optimal progress
@@ -1251,15 +1269,15 @@
                     <h4>Your Investment:</h4>
                     <div class="calc-row">
                         <span class="calc-label">Weekly (3 sessions)</span>
-                        <span class="calc-value">$180</span>
+                        <span class="calc-value" id="homeWeeklyPrice">₹12,000</span>
                     </div>
                     <div class="calc-row">
                         <span class="calc-label">Monthly (12 sessions)</span>
-                        <span class="calc-value">$720</span>
+                        <span class="calc-value" id="homeMonthlyPrice">₹48,000</span>
                     </div>
                     <div class="calc-row">
-                        <span class="calc-label">Yearly (144 sessions)</span>
-                        <span class="calc-value">$8,640</span>
+                        <span class="calc-label">Yearly (156 sessions)</span>
+                        <span class="calc-value" id="homeYearlyPrice">₹6,24,000</span>
                     </div>
                 </div>
 
@@ -1378,6 +1396,75 @@
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Pricing calculator for home page
+        const currencyToggleBtns = document.querySelectorAll('.currency-toggle-btn');
+        const frequencyToggleBtns = document.querySelectorAll('.frequency-toggle-btn');
+        const homeMainPrice = document.getElementById('homeMainPrice');
+        const homeWeeklyPrice = document.getElementById('homeWeeklyPrice');
+        const homeMonthlyPrice = document.getElementById('homeMonthlyPrice');
+        const homeYearlyPrice = document.getElementById('homeYearlyPrice');
+
+        const homePrices = {
+            INR: 4000,
+            USD: 47
+        };
+
+        let homeCurrentCurrency = 'INR';
+        let homeCurrentSessions = 3;
+
+        function formatHomePrice(amount, currency) {
+            const symbol = currency === 'INR' ? '₹' : '$';
+            return `${symbol}${amount.toLocaleString()}`;
+        }
+
+        function updateHomePricing(sessionsPerWeek, currency) {
+            const pricePerSession = homePrices[currency];
+            const weekly = sessionsPerWeek * pricePerSession;
+            const monthly = sessionsPerWeek * 4 * pricePerSession;
+            const yearly = sessionsPerWeek * 52 * pricePerSession;
+
+            homeMainPrice.textContent = formatHomePrice(pricePerSession, currency);
+            homeWeeklyPrice.textContent = formatHomePrice(weekly, currency);
+            homeMonthlyPrice.textContent = formatHomePrice(monthly, currency);
+            homeYearlyPrice.textContent = formatHomePrice(yearly, currency);
+        }
+
+        // Currency toggle
+        currencyToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currencyToggleBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'var(--white)';
+                    b.style.color = 'var(--dark-60)';
+                    b.style.borderColor = 'rgba(102, 126, 234, 0.2)';
+                });
+                btn.classList.add('active');
+                btn.style.background = 'var(--gradient-hero)';
+                btn.style.color = 'var(--white)';
+                btn.style.borderColor = 'var(--purple-primary)';
+                homeCurrentCurrency = btn.dataset.currency;
+                updateHomePricing(homeCurrentSessions, homeCurrentCurrency);
+            });
+        });
+
+        // Frequency selector
+        frequencyToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                frequencyToggleBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'var(--white)';
+                    b.style.color = 'var(--dark-60)';
+                    b.style.borderColor = 'rgba(102, 126, 234, 0.2)';
+                });
+                btn.classList.add('active');
+                btn.style.background = 'var(--gradient-hero)';
+                btn.style.color = 'var(--white)';
+                btn.style.borderColor = 'var(--purple-primary)';
+                homeCurrentSessions = parseInt(btn.dataset.sessions);
+                updateHomePricing(homeCurrentSessions, homeCurrentCurrency);
             });
         });
 
