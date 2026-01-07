@@ -160,7 +160,7 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
           <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
 
           <h3>Need More Personalized Help?</h3>
-          <p>If you want 1-on-1 coaching to address your specific situation, book a personal training session for ₹4,000.</p>
+          <p>If you want 1-on-1 coaching to address your specific situation, book a personal training session for $75 USD / €65 EUR / ₹6,750 INR.</p>
           <p><a href="https://wa.me/918448222454">Contact me on WhatsApp</a></p>
         </div>
         <div class="footer">
