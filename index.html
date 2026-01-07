@@ -6,7 +6,7 @@
 
     <!-- SEO Meta Tags -->
     <title>Online Personal Trainer | Transform From Anywhere - Bhanu Vashisht</title>
-    <meta name="description" content="World-class online coaching for chronic pain recovery and calisthenics mastery. ₹4,000 INR / $47 USD per session. Train from anywhere in the world. Progress with every session.">
+    <meta name="description" content="World-class online coaching for chronic pain recovery and calisthenics mastery. $75 USD / €65 EUR per session. Train from anywhere in the world. Progress with every session.">
     <meta name="keywords" content="online personal trainer, chronic pain recovery, calisthenics coaching, handstand training, online fitness coaching, biomechanics expert">
     <meta name="author" content="Bhanu Vashisht">
     <meta name="robots" content="index, follow">
@@ -1179,8 +1179,8 @@
 
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
                         <div style="flex: 1; min-width: 200px; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px;">
-                            <div style="font-size: 2rem; font-weight: 900;">₹1,499</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9;">One-time payment</div>
+                            <div style="font-size: 1.75rem; font-weight: 900;">$25 / €21 / ₹2,299</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">Starting price</div>
                         </div>
                         <div style="flex: 1; min-width: 200px; background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px;">
                             <div style="font-size: 2rem; font-weight: 900;">∞</div>
@@ -1278,12 +1278,12 @@
 
             <!-- Currency Toggle -->
             <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem;" class="fade-in">
-                <button class="currency-toggle-btn active" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
-                <button class="currency-toggle-btn" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
+                <button class="currency-toggle-btn active" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
+                <button class="currency-toggle-btn" data-currency="EUR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">EUR (€)</button>
             </div>
 
             <div class="pricing-card fade-in">
-                <div class="pricing-price" id="homeMainPrice">₹4,000</div>
+                <div class="pricing-price" id="homeMainPrice">$75</div>
                 <div class="pricing-period">Per Session</div>
 
                 <!-- Training Frequency Options -->
@@ -1306,15 +1306,15 @@
                     <h4>Your Investment:</h4>
                     <div class="calc-row">
                         <span class="calc-label">Weekly (3 sessions)</span>
-                        <span class="calc-value" id="homeWeeklyPrice">₹12,000</span>
+                        <span class="calc-value" id="homeWeeklyPrice">$225</span>
                     </div>
                     <div class="calc-row">
                         <span class="calc-label">Monthly (12 sessions)</span>
-                        <span class="calc-value" id="homeMonthlyPrice">₹48,000</span>
+                        <span class="calc-value" id="homeMonthlyPrice">$900</span>
                     </div>
                     <div class="calc-row">
                         <span class="calc-label">Yearly (156 sessions)</span>
-                        <span class="calc-value" id="homeYearlyPrice">₹6,24,000</span>
+                        <span class="calc-value" id="homeYearlyPrice">$11,700</span>
                     </div>
                 </div>
 
@@ -1445,16 +1445,16 @@
         const homeYearlyPrice = document.getElementById('homeYearlyPrice');
 
         const homePrices = {
-            INR: 4000,
-            USD: 47
+            USD: 75,
+            EUR: 65
         };
 
-        let homeCurrentCurrency = 'INR';
+        let homeCurrentCurrency = 'USD';
         let homeCurrentSessions = 3;
 
         function formatHomePrice(amount, currency) {
-            const symbol = currency === 'INR' ? '₹' : '$';
-            const locale = currency === 'INR' ? 'en-IN' : 'en-US';
+            const symbol = currency === 'USD' ? '$' : '€';
+            const locale = currency === 'USD' ? 'en-US' : 'de-DE';
             return `${symbol}${amount.toLocaleString(locale)}`;
         }
 
