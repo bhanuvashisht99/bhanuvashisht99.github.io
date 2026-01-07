@@ -6,7 +6,7 @@
 
     <!-- SEO Meta Tags -->
     <title>Take Control of Your Lower Back Pain - PDF Guide | Bhanu Vashisht</title>
-    <meta name="description" content="Science-based guide to resolve chronic lower back pain. Choose from PDF only ($25/€21), PDF + consultation ($42/€36), or PDF + 2 sessions ($155/€134). Instant digital access.">
+    <meta name="description" content="Science-based guide to resolve chronic lower back pain. Choose from PDF only ($25/€21/₹2,299), PDF + consultation ($42/€36/₹3,799), or PDF + 2 sessions ($155/€134/₹13,999). Instant digital access.">
     <meta name="keywords" content="lower back pain guide, chronic pain recovery, biomechanics, fascia release, lower back pain PDF">
     <meta name="author" content="Bhanu Vashisht">
     <meta name="robots" content="index, follow">
@@ -618,9 +618,10 @@
                     </ul>
 
                     <!-- Currency Toggle -->
-                    <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1.5rem;">
+                    <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
                         <button class="currency-toggle-btn active" data-currency="USD" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s;">USD ($)</button>
                         <button class="currency-toggle-btn" data-currency="EUR" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: rgba(255,255,255,0.7); font-weight: 600; cursor: pointer; transition: all 0.2s;">EUR (€)</button>
+                        <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: rgba(255,255,255,0.7); font-weight: 600; cursor: pointer; transition: all 0.2s;">INR (₹)</button>
                     </div>
 
                     <!-- Pricing Options -->
@@ -633,7 +634,7 @@
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF Guide Only</div>
                                     <div style="font-size: 0.85rem; opacity: 0.8;">Instant digital access • Lifetime access</div>
                                 </div>
-                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="25" data-eur="21">$25</div>
+                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="25" data-eur="21" data-inr="2299">$25</div>
                             </div>
                         </div>
 
@@ -644,7 +645,7 @@
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF + 30min Consultation</div>
                                     <div style="font-size: 0.85rem; opacity: 0.8;">PDF guide + 1-on-1 video call to discuss your case</div>
                                 </div>
-                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="42" data-eur="36">$42</div>
+                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="42" data-eur="36" data-inr="3799">$42</div>
                             </div>
                         </div>
 
@@ -655,7 +656,7 @@
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF + 2 Training Sessions <span style="background: #ff6b35; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem;">BEST VALUE</span></div>
                                     <div style="font-size: 0.85rem; opacity: 0.8;">PDF guide + 2 full 1-on-1 training sessions</div>
                                 </div>
-                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="155" data-eur="134">$155</div>
+                                <div style="font-size: 1.5rem; font-weight: 900;" class="option-price" data-usd="155" data-eur="134" data-inr="13999">$155</div>
                             </div>
                         </div>
                     </div>
@@ -734,7 +735,7 @@
         <div class="content-container">
             <h2>Ready to Take Control of Your Pain?</h2>
             <p>Get instant access to the complete guide and start your recovery journey today.</p>
-            <button class="btn btn-primary" onclick="document.getElementById('buyNowBtn').click()">Buy Now - Starting at $25/€21</button>
+            <button class="btn btn-primary" onclick="document.getElementById('buyNowBtn').click()">Buy Now - Starting at $25/€21/₹2,299</button>
         </div>
     </section>
 
@@ -769,9 +770,9 @@
         let selectedOption = 'pdf-only';
 
         const pricingData = {
-            'pdf-only': { USD: 25, EUR: 21 },
-            'pdf-consultation': { USD: 42, EUR: 36 },
-            'pdf-sessions': { USD: 155, EUR: 134 }
+            'pdf-only': { USD: 25, EUR: 21, INR: 2299 },
+            'pdf-consultation': { USD: 42, EUR: 36, INR: 3799 },
+            'pdf-sessions': { USD: 155, EUR: 134, INR: 13999 }
         };
 
         // Currency Toggle
@@ -827,9 +828,27 @@
             document.querySelectorAll('.option-price').forEach(priceEl => {
                 const usd = priceEl.dataset.usd;
                 const eur = priceEl.dataset.eur;
-                const price = selectedCurrency === 'USD' ? usd : eur;
-                const symbol = selectedCurrency === 'USD' ? '$' : '€';
-                priceEl.textContent = `${symbol}${price}`;
+                const inr = priceEl.dataset.inr;
+
+                let price, symbol;
+                if (selectedCurrency === 'USD') {
+                    price = usd;
+                    symbol = '$';
+                } else if (selectedCurrency === 'EUR') {
+                    price = eur;
+                    symbol = '€';
+                } else {
+                    price = inr;
+                    symbol = '₹';
+                }
+
+                // Format INR with comma (e.g., ₹2,299)
+                if (selectedCurrency === 'INR') {
+                    const formattedPrice = parseInt(price).toLocaleString('en-IN');
+                    priceEl.textContent = `${symbol}${formattedPrice}`;
+                } else {
+                    priceEl.textContent = `${symbol}${price}`;
+                }
             });
         }
 
