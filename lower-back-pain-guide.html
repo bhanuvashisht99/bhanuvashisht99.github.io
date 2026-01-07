@@ -740,13 +740,13 @@
 
             try {
                 // Step 1: Create Razorpay order
-                const orderResponse = await fetch('/api/create-order', {
+                const orderResponse = await fetch('/api/create-order.js', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        amount: 149900, // ₹1,499 in paise
+                        amount: 29900, // ₹299 in paise
                         currency: 'INR',
                         customerEmail: customerEmail
                     })
@@ -771,7 +771,7 @@
                     handler: async function (response) {
                         // Step 3: Verify payment
                         try {
-                            const verifyResponse = await fetch('/api/verify-payment', {
+                            const verifyResponse = await fetch('/api/verify-payment.js', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
