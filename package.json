@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "razorpay": "^2.9.2",
-    "nodemailer": "^6.9.7",
-    "crypto": "^1.0.1"
+    "nodemailer": "^6.9.7"
   },
   "devDependencies": {
     "@vercel/node": "^3.0.7"
