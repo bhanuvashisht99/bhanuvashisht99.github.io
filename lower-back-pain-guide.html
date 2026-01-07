@@ -625,7 +625,8 @@
                     <!-- Pricing Options -->
                     <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
                         <!-- Option 1: PDF Only -->
-                        <div class="pricing-option active" data-option="pdf-only" style="background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s;">
+                        <div class="pricing-option active" data-option="pdf-only" style="position: relative; background: rgba(255, 107, 53, 0.3); border: 3px solid #ff6b35; border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); transform: scale(1.02);">
+                            <div class="selection-badge" style="position: absolute; top: -10px; right: -10px; background: #10b981; color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">✓ SELECTED</div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF Guide Only</div>
@@ -636,7 +637,7 @@
                         </div>
 
                         <!-- Option 2: PDF + 30min Consultation -->
-                        <div class="pricing-option" data-option="pdf-consultation" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s;">
+                        <div class="pricing-option" data-option="pdf-consultation" style="position: relative; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF + 30min Consultation</div>
@@ -647,8 +648,8 @@
                         </div>
 
                         <!-- Option 3: PDF + 2 Sessions -->
-                        <div class="pricing-option" data-option="pdf-sessions" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div class="pricing-option" data-option="pdf-sessions" style="position: relative; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.3s;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">📖 PDF + 2 Training Sessions <span style="background: #ff6b35; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem;">BEST VALUE</span></div>
                                     <div style="font-size: 0.85rem; opacity: 0.8;">PDF guide + 2 full 1-on-1 training sessions</div>
@@ -795,10 +796,27 @@
                     opt.classList.remove('active');
                     opt.style.background = 'rgba(255,255,255,0.1)';
                     opt.style.borderColor = 'rgba(255,255,255,0.2)';
+                    opt.style.boxShadow = 'none';
+                    opt.style.transform = 'scale(1)';
+                    // Remove checkmark if exists
+                    const existingCheck = opt.querySelector('.selection-badge');
+                    if (existingCheck) existingCheck.remove();
                 });
                 option.classList.add('active');
-                option.style.background = 'rgba(255,255,255,0.15)';
-                option.style.borderColor = 'rgba(255,255,255,0.3)';
+                option.style.background = 'rgba(255, 107, 53, 0.3)';
+                option.style.borderColor = '#ff6b35';
+                option.style.borderWidth = '3px';
+                option.style.boxShadow = '0 0 20px rgba(255, 107, 53, 0.5)';
+                option.style.transform = 'scale(1.02)';
+
+                // Add "SELECTED" badge
+                const badge = document.createElement('div');
+                badge.className = 'selection-badge';
+                badge.innerHTML = '✓ SELECTED';
+                badge.style.cssText = 'position: absolute; top: -10px; right: -10px; background: #10b981; color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);';
+                option.style.position = 'relative';
+                option.appendChild(badge);
+
                 selectedOption = option.dataset.option;
             });
         });
