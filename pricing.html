@@ -742,6 +742,7 @@
             <div class="currency-toggle fade-in">
                 <button class="currency-btn active" data-currency="USD">USD ($)</button>
                 <button class="currency-btn" data-currency="EUR">EUR (€)</button>
+                <button class="currency-btn" data-currency="INR">INR (₹)</button>
             </div>
 
             <!-- Pricing Card -->
@@ -926,15 +927,25 @@
 
         const prices = {
             USD: 75,
-            EUR: 65
+            EUR: 65,
+            INR: 6750
         };
 
         let currentCurrency = 'USD';
         let currentSessions = 3;
 
         function formatPrice(amount, currency) {
-            const symbol = currency === 'USD' ? '$' : '€';
-            const locale = currency === 'USD' ? 'en-US' : 'de-DE';
+            let symbol, locale;
+            if (currency === 'USD') {
+                symbol = '$';
+                locale = 'en-US';
+            } else if (currency === 'EUR') {
+                symbol = '€';
+                locale = 'de-DE';
+            } else {
+                symbol = '₹';
+                locale = 'en-IN';
+            }
             return `${symbol}${amount.toLocaleString(locale)}`;
         }
 
