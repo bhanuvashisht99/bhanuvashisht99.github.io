@@ -1,0 +1,19 @@
+{
+  "name": "bhanu-vashisht-website",
+  "version": "1.0.0",
+  "description": "Personal training website with digital product sales",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "razorpay": "^2.9.2",
+    "nodemailer": "^6.9.7",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.7"
+  }
+}
