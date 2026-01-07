@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Take Control of Your Lower Back Pain - PDF Guide | Bhanu Vashisht</title>
+    <meta name="description" content="Science-based guide to resolve chronic lower back pain. Built on biomechanics, fascia release, and progressive loading. ₹1,499. Instant digital access.">
+    <meta name="keywords" content="lower back pain guide, chronic pain recovery, biomechanics, fascia release, lower back pain PDF">
+    <meta name="author" content="Bhanu Vashisht">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Take Control of Your Lower Back Pain - PDF Guide">
+    <meta property="og:description" content="Science-based guide to resolve chronic lower back pain. Built on biomechanics, not motivation.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://youdeservewell.com/lower-back-pain-guide.html">
+    <meta property="og:image" content="https://youdeservewell.com/images/pdf-cover.jpg">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        :root {
+            /* Brand Colors */
+            --purple-primary: #667eea;
+            --purple-dark: #5a67d8;
+            --purple-light: #7c3aed;
+            --orange-primary: #ff6b35;
+            --orange-bright: #ff8c42;
+            --red-urgent: #dc2626;
+
+            /* Neutrals */
+            --dark: #0f172a;
+            --dark-80: #1e293b;
+            --dark-60: #334155;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+
+            /* Success */
+            --green: #10b981;
+
+            /* Gradients */
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
+            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
+            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        /* Product Hero */
+        .product-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 1.5rem 80px;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .product-image {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .pdf-cover {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-cover:hover {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            color: var(--white);
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            padding: 0.75rem 0;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            flex-shrink: 0;
+        }
+
+        .price-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--purple-primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .trust-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 5rem 1.5rem;
+            background: var(--white);
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-card {
+            background: var(--off-white);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--orange-primary);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .content-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 1.5rem;
+            background: var(--off-white);
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            margin-top: 1rem;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 5rem 1.5rem;
+            background: var(--gradient-dark);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .product-title {
+                font-size: 3.5rem;
+            }
+
+            .btn {
+                width: auto;
+            }
+
+            .trust-indicators {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Bhanu Vashisht</a>
+        </div>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="product-hero">
+        <div class="product-container">
+            <div class="product-grid">
+                <div class="product-image">
+                    <img src="images/pdf-cover.jpg" alt="Take Control of Your Lower Back Pain PDF Cover" class="pdf-cover">
+                </div>
+
+                <div class="product-info">
+                    <div class="product-badge">📖 Digital PDF Guide</div>
+                    <h1 class="product-title">Take Control of Your Lower Back Pain</h1>
+                    <p class="product-subtitle">This guide is for people who have tried rest, exercises, and advice — yet lower back pain keeps returning.</p>
+
+                    <ul class="product-features">
+                        <li>Understand why scans look "normal" but pain persists</li>
+                        <li>Learn how fascia and movement patterns cause chronic pain</li>
+                        <li>Science-based progression to rebuild strength and capacity</li>
+                        <li>No random exercises or quick fixes — just clear progression</li>
+                        <li>Built on biomechanics, not motivation</li>
+                    </ul>
+
+                    <div class="price-box">
+                        <div class="price-label">One-time payment</div>
+                        <div class="price">₹1,499</div>
+                        <div class="price-note">Instant digital access • Lifetime access • No subscription</div>
+                    </div>
+
+                    <button class="btn btn-primary" id="buyNowBtn">Buy Now - Get Instant Access</button>
+
+                    <div class="trust-indicators">
+                        <div class="trust-item">🔒 Secure payment via Razorpay</div>
+                        <div class="trust-item">📧 Instant email delivery</div>
+                        <div class="trust-item">💯 Built by expert coach</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Inside Section -->
+    <section class="content-section">
+        <div class="content-container">
+            <h2 class="section-title">What's Inside This Guide</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Why Your Back Hurts</h3>
+                    <p>Understand the real reasons behind persistent lower back pain - it's rarely about damage. Learn how your hips, ribs, and fascia create compensation patterns.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Fascia & Movement</h3>
+                    <p>Discover how fascia redistributes stress throughout your body and why releasing it is critical for lasting relief.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Progressive Loading</h3>
+                    <p>Learn how to rebuild strength through proper range of motion, not working around pain. A clear system that restores capacity safely.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Avoid Common Mistakes</h3>
+                    <p>Find out why avoiding bending and rotation makes pain persist, and how to reintroduce movements the right way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="content-container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Is this just another generic exercise PDF?</div>
+                <div class="faq-answer">No. This guide explains the biomechanics of why lower back pain persists and provides a progressive framework to rebuild capacity. It's based on years of coaching experience with chronic pain clients.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Will this work for my specific condition?</div>
+                <div class="faq-answer">If you've tried rest, exercises, and treatments but pain keeps returning - and scans show nothing wrong - this guide addresses the root cause: how your body distributes load and manages movement.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Do I need any equipment?</div>
+                <div class="faq-answer">The guide focuses on principles and progressions. Many exercises require minimal or no equipment. The emphasis is on understanding your body and rebuilding capacity progressively.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ How do I access the PDF after purchase?</div>
+                <div class="faq-answer">Immediately after payment confirmation, you'll receive an email with a secure download link to access your PDF guide.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ What if I need more personalized help?</div>
+                <div class="faq-answer">This guide provides the framework, but if you want 1-on-1 coaching to address your specific situation, you can book a personal training session for ₹4,000.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="content-container">
+            <h2>Ready to Take Control of Your Pain?</h2>
+            <p>Get instant access to the complete guide and start your recovery journey today.</p>
+            <button class="btn btn-primary" onclick="document.getElementById('buyNowBtn').click()">Buy Now - ₹1,499</button>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Razorpay Payment Integration
+        document.getElementById('buyNowBtn').addEventListener('click', async function() {
+            // Prompt for email
+            const customerEmail = prompt('Please enter your email address to receive the download link:');
+
+            if (!customerEmail || !customerEmail.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const customerPhone = prompt('Please enter your phone number (optional):', '');
+
+            try {
+                // Step 1: Create Razorpay order
+                const orderResponse = await fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: 149900, // ₹1,499 in paise
+                        currency: 'INR',
+                        customerEmail: customerEmail
+                    })
+                });
+
+                const orderData = await orderResponse.json();
+
+                if (!orderData.success) {
+                    alert('Failed to create order. Please try again.');
+                    return;
+                }
+
+                // Step 2: Open Razorpay checkout
+                const options = {
+                    key: 'rzp_test_XXXXXXXXXXXXXXXX', // Will be replaced with your actual key
+                    amount: orderData.amount,
+                    currency: orderData.currency,
+                    order_id: orderData.orderId,
+                    name: 'Bhanu Vashisht',
+                    description: 'Take Control of Your Lower Back Pain - PDF Guide',
+                    image: 'https://youdeservewell.com/images/pdf-cover.jpg',
+                    handler: async function (response) {
+                        // Step 3: Verify payment
+                        try {
+                            const verifyResponse = await fetch('/api/verify-payment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                    customer_email: customerEmail
+                                })
+                            });
+
+                            const verifyData = await verifyResponse.json();
+
+                            if (verifyData.success) {
+                                // Payment successful
+                                window.location.href = '/thank-you.html';
+                            } else {
+                                alert('Payment verification failed. Please contact support at bhanuvashisht99@gmail.com');
+                            }
+                        } catch (error) {
+                            console.error('Verification error:', error);
+                            alert('An error occurred during verification. Please contact support.');
+                        }
+                    },
+                    prefill: {
+                        email: customerEmail,
+                        contact: customerPhone
+                    },
+                    notes: {
+                        product: 'lower-back-pain-guide',
+                        customer_email: customerEmail
+                    },
+                    theme: {
+                        color: '#667eea'
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            console.log('Payment cancelled by user');
+                        }
+                    }
+                };
+
+                const razorpay = new Razorpay(options);
+                razorpay.open();
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('An error occurred. Please try again or contact support.');
+            }
+        });
+    </script>
+</body>
+</html>

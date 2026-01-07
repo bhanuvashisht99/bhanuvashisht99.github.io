@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! - Bhanu Vashisht</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --purple-primary: #667eea;
+            --orange-primary: #ff6b35;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gradient-hero);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .thank-you-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box {
+            background: var(--off-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .info-box li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-hero);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .support-text {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .support-text a {
+            color: var(--purple-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon">✓</div>
+        <h1>Thank You!</h1>
+        <p>Your payment was successful and your guide is ready.</p>
+
+        <div class="info-box">
+            <h3>📧 Check Your Email</h3>
+            <ul>
+                <li>We've sent a download link to your email address</li>
+                <li>The link is valid for 7 days</li>
+                <li>Download and save the PDF for lifetime access</li>
+                <li>Check your spam folder if you don't see it</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>💪 What's Next?</h3>
+            <ul>
+                <li>Read through the guide carefully</li>
+                <li>Start implementing the principles gradually</li>
+                <li>Focus on understanding your movement patterns</li>
+                <li>Be patient with the progressive loading approach</li>
+            </ul>
+        </div>
+
+        <a href="/" class="btn">Back to Home</a>
+
+        <p class="support-text">
+            Need personalized 1-on-1 coaching?<br>
+            <a href="https://wa.me/918448222454">Contact me on WhatsApp</a>
+        </p>
+    </div>
+</body>
+</html>
