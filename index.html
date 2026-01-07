@@ -1283,7 +1283,7 @@
                 <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
             </div>
 
-            <div class="pricing-card fade-in">
+            <div class="pricing-card fade-in" style="max-width: 600px; margin: 0 auto;">
                 <div class="pricing-price" id="homeMainPrice">$75</div>
                 <div class="pricing-period">Per Session</div>
 
@@ -1292,10 +1292,10 @@
                     <div style="text-align: center; margin-bottom: 1rem;">
                         <p style="font-size: 0.95rem; font-weight: 600; color: var(--gray); margin-bottom: 0.75rem;">Select Training Frequency</p>
                     </div>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <button class="frequency-toggle-btn" data-sessions="1" style="padding: 1rem 2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x Per Week</button>
-                        <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 1rem 2rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x Per Week</button>
-                        <button class="frequency-toggle-btn" data-sessions="5" style="padding: 1rem 2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x Per Week</button>
+                    <div class="frequency-selector" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="frequency-toggle-btn" data-sessions="1" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x Per Week</button>
+                        <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x Per Week</button>
+                        <button class="frequency-toggle-btn" data-sessions="5" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x Per Week</button>
                     </div>
                 </div>
 
@@ -1306,15 +1306,15 @@
                 <div class="pricing-calc">
                     <h4>Your Investment:</h4>
                     <div class="calc-row">
-                        <span class="calc-label">Weekly (3 sessions)</span>
+                        <span class="calc-label" id="homeWeeklyLabel">Weekly (3 sessions)</span>
                         <span class="calc-value" id="homeWeeklyPrice">$225</span>
                     </div>
                     <div class="calc-row">
-                        <span class="calc-label">Monthly (12 sessions)</span>
+                        <span class="calc-label" id="homeMonthlyLabel">Monthly (12 sessions)</span>
                         <span class="calc-value" id="homeMonthlyPrice">$900</span>
                     </div>
                     <div class="calc-row">
-                        <span class="calc-label">Yearly (156 sessions)</span>
+                        <span class="calc-label" id="homeYearlyLabel">Yearly (156 sessions)</span>
                         <span class="calc-value" id="homeYearlyPrice">$11,700</span>
                     </div>
                 </div>
@@ -1444,6 +1444,9 @@
         const homeWeeklyPrice = document.getElementById('homeWeeklyPrice');
         const homeMonthlyPrice = document.getElementById('homeMonthlyPrice');
         const homeYearlyPrice = document.getElementById('homeYearlyPrice');
+        const homeWeeklyLabel = document.getElementById('homeWeeklyLabel');
+        const homeMonthlyLabel = document.getElementById('homeMonthlyLabel');
+        const homeYearlyLabel = document.getElementById('homeYearlyLabel');
 
         const homePrices = {
             USD: 75,
@@ -1475,10 +1478,17 @@
             const monthly = sessionsPerWeek * 4 * pricePerSession;
             const yearly = sessionsPerWeek * 52 * pricePerSession;
 
+            // Update prices
             homeMainPrice.textContent = formatHomePrice(pricePerSession, currency);
             homeWeeklyPrice.textContent = formatHomePrice(weekly, currency);
             homeMonthlyPrice.textContent = formatHomePrice(monthly, currency);
             homeYearlyPrice.textContent = formatHomePrice(yearly, currency);
+
+            // Update session count labels
+            const sessionWord = sessionsPerWeek === 1 ? 'session' : 'sessions';
+            homeWeeklyLabel.textContent = `Weekly (${sessionsPerWeek} ${sessionWord})`;
+            homeMonthlyLabel.textContent = `Monthly (${sessionsPerWeek * 4} sessions)`;
+            homeYearlyLabel.textContent = `Yearly (${sessionsPerWeek * 52} sessions)`;
         }
 
         // Currency toggle
