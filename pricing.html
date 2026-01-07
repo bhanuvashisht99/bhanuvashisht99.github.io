@@ -768,15 +768,15 @@
                 <div class="pricing-calc">
                     <h4>Your Investment:</h4>
                     <div class="calc-row">
-                        <span class="calc-label">Weekly (3 sessions)</span>
+                        <span class="calc-label" id="weeklyLabel">Weekly (3 sessions)</span>
                         <span class="calc-value" id="weeklyPrice">$225</span>
                     </div>
                     <div class="calc-row">
-                        <span class="calc-label">Monthly (12 sessions)</span>
+                        <span class="calc-label" id="monthlyLabel">Monthly (12 sessions)</span>
                         <span class="calc-value" id="monthlyPrice">$900</span>
                     </div>
                     <div class="calc-row">
-                        <span class="calc-label">Yearly (156 sessions)</span>
+                        <span class="calc-label" id="yearlyLabel">Yearly (156 sessions)</span>
                         <span class="calc-value" id="yearlyPrice">$11,700</span>
                     </div>
                 </div>
@@ -920,6 +920,9 @@
         const weeklyPrice = document.getElementById('weeklyPrice');
         const monthlyPrice = document.getElementById('monthlyPrice');
         const yearlyPrice = document.getElementById('yearlyPrice');
+        const weeklyLabel = document.getElementById('weeklyLabel');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const yearlyLabel = document.getElementById('yearlyLabel');
 
         const prices = {
             USD: 75,
@@ -941,10 +944,17 @@
             const monthly = sessionsPerWeek * 4 * pricePerSession;
             const yearly = sessionsPerWeek * 52 * pricePerSession;
 
+            // Update prices
             mainPrice.textContent = formatPrice(pricePerSession, currency);
             weeklyPrice.textContent = formatPrice(weekly, currency);
             monthlyPrice.textContent = formatPrice(monthly, currency);
             yearlyPrice.textContent = formatPrice(yearly, currency);
+
+            // Update session count labels
+            const sessionWord = sessionsPerWeek === 1 ? 'session' : 'sessions';
+            weeklyLabel.textContent = `Weekly (${sessionsPerWeek} ${sessionWord})`;
+            monthlyLabel.textContent = `Monthly (${sessionsPerWeek * 4} sessions)`;
+            yearlyLabel.textContent = `Yearly (${sessionsPerWeek * 52} sessions)`;
         }
 
         // Currency toggle
