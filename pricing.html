@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - Online Personal Training | Bhanu Vashisht</title>
-    <meta name="description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
+    <meta name="description" content="Premium online personal training at $75 USD / €65 EUR per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
     <meta property="og:title" content="Pricing - Online Personal Training">
-    <meta property="og:description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results.">
+    <meta property="og:description" content="Premium online personal training at $75 USD / €65 EUR per session. Recommended 3x per week for optimal results.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pricing - Online Personal Training">
-    <meta name="twitter:description" content="Premium online personal training at ₹4,000 INR ($47 USD) per session. Recommended 3x per week for optimal results.">
+    <meta name="twitter:description" content="Premium online personal training at $75 USD / €65 EUR per session. Recommended 3x per week for optimal results.">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -740,13 +740,13 @@
 
             <!-- Currency Toggle -->
             <div class="currency-toggle fade-in">
-                <button class="currency-btn active" data-currency="INR">INR (₹)</button>
-                <button class="currency-btn" data-currency="USD">USD ($)</button>
+                <button class="currency-btn active" data-currency="USD">USD ($)</button>
+                <button class="currency-btn" data-currency="EUR">EUR (€)</button>
             </div>
 
             <!-- Pricing Card -->
             <div class="pricing-card fade-in">
-                <div class="pricing-price" id="mainPrice">₹4,000</div>
+                <div class="pricing-price" id="mainPrice">$75</div>
                 <div class="pricing-period">Per Session</div>
 
                 <!-- Training Frequency Options -->
@@ -769,15 +769,15 @@
                     <h4>Your Investment:</h4>
                     <div class="calc-row">
                         <span class="calc-label">Weekly (3 sessions)</span>
-                        <span class="calc-value" id="weeklyPrice">₹12,000</span>
+                        <span class="calc-value" id="weeklyPrice">$225</span>
                     </div>
                     <div class="calc-row">
                         <span class="calc-label">Monthly (12 sessions)</span>
-                        <span class="calc-value" id="monthlyPrice">₹48,000</span>
+                        <span class="calc-value" id="monthlyPrice">$900</span>
                     </div>
                     <div class="calc-row">
                         <span class="calc-label">Yearly (156 sessions)</span>
-                        <span class="calc-value" id="yearlyPrice">₹6,24,000</span>
+                        <span class="calc-value" id="yearlyPrice">$11,700</span>
                     </div>
                 </div>
 
@@ -922,16 +922,16 @@
         const yearlyPrice = document.getElementById('yearlyPrice');
 
         const prices = {
-            INR: 4000,
-            USD: 47
+            USD: 75,
+            EUR: 65
         };
 
-        let currentCurrency = 'INR';
+        let currentCurrency = 'USD';
         let currentSessions = 3;
 
         function formatPrice(amount, currency) {
-            const symbol = currency === 'INR' ? '₹' : '$';
-            const locale = currency === 'INR' ? 'en-IN' : 'en-US';
+            const symbol = currency === 'USD' ? '$' : '€';
+            const locale = currency === 'USD' ? 'en-US' : 'de-DE';
             return `${symbol}${amount.toLocaleString(locale)}`;
         }
 
