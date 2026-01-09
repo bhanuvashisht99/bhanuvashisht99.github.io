@@ -51,12 +51,10 @@ export default async function handler(req, res) {
       });
     }
 
-    // Generate unique download token (valid for 7 days)
-    const downloadToken = crypto.randomBytes(32).toString('hex');
-    const expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
-
-    // Create download link (always use production domain)
-    const downloadLink = `https://youdeservewell.com/api/download-pdf?token=${downloadToken}`;
+    // Direct Google Drive download link (simpler, more reliable)
+    const googleDriveFileId = '1MpqzbYwT2ymiAAo6ifInehRN1mhG4KwQ';
+    const downloadLink = `https://drive.google.com/uc?export=download&id=${googleDriveFileId}`;
+    const expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days (informational)
 
     // Send email with download link
     await sendDownloadEmail(customer_email, downloadLink, expiryDate);
@@ -158,9 +156,9 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
 
           <p><strong>Important:</strong></p>
           <ul>
-            <li>This link is valid until ${expiryDate.toLocaleDateString()}</li>
-            <li>Save the PDF to your device for lifetime access</li>
-            <li>If you have any issues, reply to this email</li>
+            <li>Download and save the PDF to your device for lifetime access</li>
+            <li>The PDF is password-protected against editing to preserve the content</li>
+            <li>If you have any issues downloading, reply to this email</li>
           </ul>
 
           <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
