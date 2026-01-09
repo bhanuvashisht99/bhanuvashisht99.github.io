@@ -94,7 +94,13 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
   const mailOptions = {
     from: `"Bhanu Vashisht" <${process.env.EMAIL_USER}>`,
     to: email,
+    replyTo: process.env.EMAIL_USER,
     subject: 'Your Lower Back Pain Guide - Download Link',
+    headers: {
+      'X-Priority': '1',
+      'X-MSMail-Priority': 'High',
+      'Importance': 'high'
+    },
     html: `
       <!DOCTYPE html>
       <html>
