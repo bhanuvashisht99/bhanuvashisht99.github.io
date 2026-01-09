@@ -55,8 +55,8 @@ export default async function handler(req, res) {
     const downloadToken = crypto.randomBytes(32).toString('hex');
     const expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-    // Create download link
-    const downloadLink = `${process.env.VERCEL_URL || 'https://youdeservewell.com'}/api/download-pdf?token=${downloadToken}`;
+    // Create download link (always use production domain)
+    const downloadLink = `https://youdeservewell.com/api/download-pdf?token=${downloadToken}`;
 
     // Send email with download link
     await sendDownloadEmail(customer_email, downloadLink, expiryDate);
