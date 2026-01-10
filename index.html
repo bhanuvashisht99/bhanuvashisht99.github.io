@@ -72,37 +72,55 @@
 
     <style>
         /* ========================================
-           PREMIUM DESIGN SYSTEM
-           Color Psychology: Purple (trust/expertise) + Orange/Red (urgency/action)
+           ZEN BIOMECHANICS - PREMIUM DESIGN SYSTEM
+           Easy Color Management System
+
+           TO CHANGE COLORS: Simply update the values in the "Core Brand Colors" section below
+           All colors throughout the site will update automatically!
         ======================================== */
 
         :root {
-            /* Brand Colors */
-            --purple-primary: #667eea;
-            --purple-dark: #5a67d8;
-            --purple-light: #7c3aed;
-            --orange-primary: #ff6b35;
-            --orange-bright: #ff8c42;
-            --red-urgent: #dc2626;
+            /* ============================================
+               CORE BRAND COLORS - Change these to update entire site!
+               ============================================ */
 
-            /* Neutrals */
-            --dark: #0f172a;
-            --dark-80: #1e293b;
-            --dark-60: #334155;
-            --gray: #64748b;
-            --gray-light: #94a3b8;
-            --white: #ffffff;
-            --off-white: #f8fafc;
+            /* Primary Brand Color (Main headers, navigation, primary elements) */
+            --color-primary: #2C3E50;           /* Slate Blue-Gray */
+            --color-primary-dark: #1C2833;      /* Darker slate for depth */
+            --color-primary-light: #34495E;     /* Lighter slate for hover */
 
-            /* Success */
-            --green: #10b981;
+            /* Secondary/Accent Color (CTAs, highlights, accents) */
+            --color-accent: #768D87;            /* Sage/Eucalyptus */
+            --color-accent-light: #A8BFB8;      /* Light sage for hover */
+            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
 
-            /* Gradients */
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
-            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
-            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            /* Background Colors */
+            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
+            --color-bg-card: #FFFFFF;           /* Pure white for cards */
+            --color-bg-secondary: #D5DBDB;      /* Subtle gray for variety */
 
-            /* Spacing */
+            /* Text Colors */
+            --color-text-primary: #121212;      /* Ink - main text */
+            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
+            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
+
+            /* Utility Colors (these rarely need changing) */
+            --color-success: #27AE60;           /* Green for success states */
+            --color-error: #E74C3C;             /* Red for errors */
+            --color-warning: #F39C12;           /* Orange for warnings */
+
+            /* ============================================
+               GRADIENTS - Built from brand colors above
+               ============================================ */
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-cta: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-bg-dark) 100%);
+
+            /* ============================================
+               SPACING & ANIMATIONS (No need to change these)
+               ============================================ */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
@@ -110,9 +128,19 @@
             --space-xl: 3rem;
             --space-2xl: 4rem;
 
-            /* Transitions */
             --transition-fast: 0.2s ease;
             --transition-base: 0.3s ease;
+
+            /* ============================================
+               LEGACY VARIABLES (for backwards compatibility)
+               These map to the new system - you can ignore these
+               ============================================ */
+            --purple-primary: var(--color-primary);
+            --orange-primary: var(--color-accent);
+            --dark: var(--color-text-primary);
+            --white: var(--color-text-light);
+            --off-white: var(--color-bg-light);
+            --gray-light: var(--color-text-muted);
         }
 
         /* Reset & Base */
@@ -129,8 +157,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--dark);
-            background: var(--white);
+            color: var(--color-text-primary);
+            background: var(--color-bg-light);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -144,9 +172,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
             transition: var(--transition-base);
         }
 
@@ -166,7 +194,7 @@
         .nav-logo {
             font-size: 1.25rem;
             font-weight: 800;
-            background: var(--gradient-hero);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -201,12 +229,12 @@
             font-weight: 700;
             text-decoration: none;
             transition: var(--transition-base);
-            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 4px 16px rgba(118, 141, 135, 0.3);
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 6px 20px rgba(118, 141, 135, 0.3);
         }
 
         .mobile-menu-toggle {
@@ -290,7 +318,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gradient-hero);
+            background: var(--color-bg-dark);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -304,7 +332,7 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
@@ -358,7 +386,7 @@
 
         .hero-subtitle {
             font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(255, 255, 255, 0.98);
             margin-bottom: 2rem;
             line-height: 1.6;
             animation: fadeInUp 0.8s ease 0.4s both;
@@ -477,7 +505,7 @@
         .section-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.1) 0%, rgba(118, 141, 135, 0.3) 100%);
             border-radius: 50px;
             color: var(--purple-primary);
             font-weight: 700;
@@ -541,7 +569,7 @@
         }
 
         .path-card.strength::before {
-            background: var(--gradient-hero);
+            background: var(--color-bg-dark);
         }
 
         .path-icon {
@@ -567,16 +595,16 @@
         .btn-orange {
             background: var(--gradient-cta);
             color: var(--white);
-            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 4px 16px rgba(118, 141, 135, 0.3);
         }
 
         .btn-orange:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 6px 20px rgba(118, 141, 135, 0.3);
         }
 
         .btn-purple {
-            background: var(--gradient-hero);
+            background: var(--color-bg-dark);
             color: var(--white);
             box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
         }
@@ -691,7 +719,7 @@
         }
 
         .pricing-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 141, 135, 0.3) 100%);
             border-radius: 24px;
             padding: 2rem;
             border: 2px solid rgba(102, 126, 234, 0.2);
@@ -717,7 +745,7 @@
         }
 
         .pricing-recommend {
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(118, 141, 135, 0.3);
             padding: 1rem;
             border-radius: 12px;
             margin: 1.5rem 0;
@@ -812,7 +840,7 @@
 
         /* Final CTA */
         .final-cta {
-            background: var(--gradient-hero);
+            background: var(--color-bg-dark);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -1182,12 +1210,12 @@
     </section>
 
     <!-- Digital Product Section -->
-    <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%); color: white;">
+    <section class="section" style="background: var(--gradient-primary); color: white;">
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: white;">📖 New Digital Guide</span>
                 <h2 class="section-title" style="color: white;">Take Control of Your Lower Back Pain</h2>
-                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.95);">Can't commit to 1-on-1 sessions yet? Start with our comprehensive PDF guide.</p>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.98);">Can't commit to 1-on-1 sessions yet? Start with our comprehensive PDF guide.</p>
             </div>
 
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -1296,7 +1324,7 @@
 
             <!-- Currency Toggle -->
             <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;" class="fade-in">
-                <button class="currency-toggle-btn active" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
+                <button class="currency-toggle-btn active" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--color-bg-dark); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
                 <button class="currency-toggle-btn" data-currency="EUR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">EUR (€)</button>
                 <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
             </div>
@@ -1312,7 +1340,7 @@
                     </div>
                     <div class="frequency-selector" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                         <button class="frequency-toggle-btn" data-sessions="1" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x Per Week</button>
-                        <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 0.75rem 1.5rem; background: var(--gradient-hero); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x Per Week</button>
+                        <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 0.75rem 1.5rem; background: var(--color-bg-dark); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x Per Week</button>
                         <button class="frequency-toggle-btn" data-sessions="5" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x Per Week</button>
                     </div>
                 </div>
