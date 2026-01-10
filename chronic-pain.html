@@ -47,25 +47,49 @@
     <!-- End Meta Pixel Code -->
 
     <style>
-        /* Shared Design System */
+        /* ============================================
+           ZEN BIOMECHANICS COLOR SYSTEM
+           Change these core colors to update entire site!
+           ============================================ */
         :root {
-            --purple-primary: #667eea;
-            --purple-dark: #5a67d8;
-            --purple-light: #7c3aed;
-            --orange-primary: #ff6b35;
-            --orange-bright: #ff8c42;
-            --red-urgent: #dc2626;
-            --dark: #0f172a;
-            --dark-80: #1e293b;
-            --dark-60: #334155;
-            --gray: #64748b;
-            --gray-light: #94a3b8;
-            --white: #ffffff;
-            --off-white: #f8fafc;
-            --green: #10b981;
-            --gradient-hero: linear-gradient(135deg, #ff6b35 0%, #dc2626 50%, #7c3aed 100%);
-            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
-            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            /* Primary Brand Color (Main headers, navigation, primary elements) */
+            --color-primary: #2C3E50;           /* Slate Blue-Gray */
+            --color-primary-dark: #1C2833;      /* Darker slate for depth */
+            --color-primary-light: #34495E;     /* Lighter slate for hover */
+
+            /* Secondary/Accent Color (CTAs, highlights, accents) */
+            --color-accent: #768D87;            /* Sage/Eucalyptus */
+            --color-accent-light: #A8BFB8;      /* Light sage for hover */
+            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
+
+            /* Background Colors */
+            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
+            --color-bg-card: #FFFFFF;           /* Pure white for cards */
+
+            /* Text Colors */
+            --color-text-primary: #121212;      /* Ink - main text */
+            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
+            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-cta: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+
+            /* Legacy Variables (backwards compatibility) */
+            --purple-primary: var(--color-primary);
+            --orange-primary: var(--color-accent);
+            --orange-bright: var(--color-accent-light);
+            --dark: var(--color-text-primary);
+            --dark-60: var(--color-text-secondary);
+            --gray: var(--color-text-secondary);
+            --gray-light: var(--color-text-muted);
+            --white: var(--color-text-light);
+            --off-white: var(--color-bg-light);
+            --gradient-hero: var(--gradient-primary);
+            --gradient-dark: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-bg-dark) 100%);
+            --green: #27AE60;
             --transition-fast: 0.2s ease;
             --transition-base: 0.3s ease;
         }
@@ -83,7 +107,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--dark);
+            color: var(--color-text-primary);
             background: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
@@ -120,7 +144,7 @@
         .nav-logo {
             font-size: 1.25rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -176,7 +200,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--dark);
+            background: var(--color-primary);
             border-radius: 2px;
             transition: var(--transition-base);
         }
@@ -370,7 +394,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--dark);
+            color: var(--color-text-primary);
             margin-bottom: 0.75rem;
             line-height: 1.2;
         }
@@ -399,7 +423,7 @@
         }
 
         .story-content strong {
-            color: var(--dark);
+            color: var(--color-text-primary);
             font-weight: 700;
         }
 
@@ -414,7 +438,7 @@
         .highlight-box p {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--color-text-primary);
             margin: 0;
         }
 
@@ -519,8 +543,8 @@
 
         /* Footer */
         .footer {
-            background: var(--dark);
-            color: rgba(255, 255, 255, 0.8);
+            background: var(--color-primary);
+            color: var(--color-text-light);
             padding: 3rem 1rem 1.5rem;
         }
 

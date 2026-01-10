@@ -37,26 +37,46 @@
             box-sizing: border-box;
         }
 
+        /* ZEN BIOMECHANICS - Change colors here to update entire site! */
         :root {
-            --purple-primary: #667eea;
-            --purple-dark: #5a67d8;
-            --purple-light: #7c3aed;
-            --orange-primary: #ff6b35;
-            --orange-dark: #dc2626;
-            --red-accent: #ef4444;
-            --bg-dark: #0f172a;
-            --bg-darker: #020617;
-            --text-light: #f8fafc;
-            --text-gray: #94a3b8;
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
-            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
-            --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            /* PRIMARY COLORS */
+            --color-primary: #2C3E50;
+            --color-primary-dark: #1C2833;
+            --color-primary-light: #34495E;
+
+            /* ACCENT COLORS */
+            --color-accent: #768D87;
+            --color-accent-light: #A8BFB8;
+            --color-accent-dark: #5A6F6A;
+
+            /* BACKGROUNDS */
+            --color-bg-dark: #121212;
+            --color-bg-light: #ECF0F1;
+            --color-bg-card: #FFFFFF;
+
+            /* TEXT */
+            --color-text-primary: #121212;
+            --color-text-secondary: #566573;
+            --color-text-light: #FFFFFF;
+            --color-text-muted: #95A5A6;
+
+            /* GRADIENTS */
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-cta: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+
+            /* LEGACY (backwards compatibility) */
+            --purple-primary: var(--color-primary);
+            --orange-primary: var(--color-accent);
+            --bg-dark: var(--color-bg-dark);
+            --text-light: var(--color-text-light);
+            --text-gray: var(--color-text-muted);
+            --gradient-hero: var(--gradient-primary);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-darker);
-            color: var(--text-light);
+            background: var(--color-bg-light);
+            color: var(--color-text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -86,7 +106,7 @@
         .nav-logo {
             font-size: 1.25rem;
             font-weight: 800;
-            background: var(--gradient-hero);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;

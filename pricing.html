@@ -36,31 +36,48 @@
     <!-- End Meta Pixel Code -->
 
     <style>
+        /* ============================================
+           ZEN BIOMECHANICS COLOR SYSTEM
+           Change these core colors to update entire site!
+           ============================================ */
         :root {
-            /* Brand Colors */
-            --purple-primary: #667eea;
-            --purple-dark: #5a67d8;
-            --purple-light: #7c3aed;
-            --orange-primary: #ff6b35;
-            --orange-bright: #ff8c42;
-            --red-urgent: #dc2626;
+            /* Primary Brand Color (Main headers, navigation, primary elements) */
+            --color-primary: #2C3E50;           /* Slate Blue-Gray */
+            --color-primary-dark: #1C2833;      /* Darker slate for depth */
+            --color-primary-light: #34495E;     /* Lighter slate for hover */
 
-            /* Neutrals */
-            --dark: #0f172a;
-            --dark-80: #1e293b;
-            --dark-60: #334155;
-            --gray: #64748b;
-            --gray-light: #94a3b8;
-            --white: #ffffff;
-            --off-white: #f8fafc;
+            /* Secondary/Accent Color (CTAs, highlights, accents) */
+            --color-accent: #768D87;            /* Sage/Eucalyptus */
+            --color-accent-light: #A8BFB8;      /* Light sage for hover */
+            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
 
-            /* Success */
-            --green: #10b981;
+            /* Background Colors */
+            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
+            --color-bg-card: #FFFFFF;           /* Pure white for cards */
+
+            /* Text Colors */
+            --color-text-primary: #121212;      /* Ink - main text */
+            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
+            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
 
             /* Gradients */
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #7c3aed 50%, #ff6b35 100%);
-            --gradient-cta: linear-gradient(135deg, #ff6b35 0%, #dc2626 100%);
-            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-cta: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+
+            /* Legacy Variables (backwards compatibility) */
+            --purple-primary: var(--color-primary);
+            --orange-primary: var(--color-accent);
+            --orange-bright: var(--color-accent-light);
+            --dark: var(--color-text-primary);
+            --dark-60: var(--color-text-secondary);
+            --gray: var(--color-text-secondary);
+            --gray-light: var(--color-text-muted);
+            --white: var(--color-text-light);
+            --off-white: var(--color-bg-light);
+            --gradient-hero: var(--gradient-primary);
+            --green: #27AE60;
 
             /* Spacing */
             --space-xs: 0.5rem;
@@ -89,7 +106,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--dark);
+            color: var(--color-text-primary);
             background: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
@@ -122,7 +139,7 @@
         .nav-logo {
             font-size: 1.25rem;
             font-weight: 800;
-            background: var(--gradient-hero);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -178,7 +195,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--dark);
+            background: var(--color-primary);
             border-radius: 2px;
             transition: var(--transition-base);
         }
@@ -334,7 +351,7 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 900;
-            color: var(--dark);
+            color: var(--color-text-primary);
             line-height: 1.2;
             margin-bottom: 1rem;
         }
@@ -424,7 +441,7 @@
         .pricing-calc h4 {
             font-size: 1.25rem;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--color-text-primary);
             margin-bottom: 1rem;
         }
 
@@ -517,7 +534,7 @@
         .included-card h3 {
             font-size: 1.25rem;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--color-text-primary);
             margin-bottom: 0.75rem;
         }
 
@@ -550,8 +567,8 @@
 
         /* Footer */
         .footer {
-            background: var(--dark);
-            color: var(--white);
+            background: var(--color-primary);
+            color: var(--color-text-light);
             padding: 3rem 1rem 2rem;
         }
 
@@ -861,7 +878,7 @@
             <h2 style="color: var(--white); font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">Ready to Transform Your Life?</h2>
             <p style="font-size: 1.25rem; margin-bottom: 1rem;">Limited spots available each month. Book your first session and start your transformation journey today.</p>
             <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 2rem;">✓ No long-term contracts • ✓ Cancel anytime • ✓ Results-driven approach</p>
-            <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="btn" style="background: var(--white); color: var(--dark); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);">Message Me on WhatsApp →</a>
+            <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="btn" style="background: var(--white); color: var(--color-text-primary); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);">Message Me on WhatsApp →</a>
         </div>
     </section>
 
