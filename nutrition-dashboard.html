@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Dashboard - Your Comprehensive Nutrition System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-name {
+            font-weight: 500;
+        }
+
+        .btn-logout {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Action Cards */
+        .action-card {
+            text-align: center;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .action-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .action-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .action-card p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        /* Coming Soon Badge */
+        .coming-soon {
+            display: inline-block;
+            background: #ffc107;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Status Message */
+        .status-message {
+            background: #e8f4fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .status-message h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .status-message p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">🥗 Nutrition System</div>
+        <div class="navbar-user">
+            <span class="user-name" id="user-name">Loading...</span>
+            <button class="btn-logout" onclick="handleLogout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Loading State -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading your dashboard...</p>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" style="display: none;">
+            <div class="dashboard-header">
+                <h1>Welcome to Your Nutrition Dashboard! 🎉</h1>
+                <p>Your comprehensive nutrition tracking system is ready</p>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message">
+                <h3>🚀 System Successfully Set Up!</h3>
+                <p>
+                    <strong>✅ Supabase Database:</strong> 17 tables created with Row-Level Security<br>
+                    <strong>✅ Authentication:</strong> Working perfectly<br>
+                    <strong>✅ Your Account:</strong> Active and ready<br>
+                    <strong>⏳ Next Steps:</strong> Food database import, meal planning, and tracking features coming soon!
+                </p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-title">Today's Calories</div>
+                    <div class="card-value">0</div>
+                    <div class="card-subtitle">of 2000 kcal goal</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Meals Logged</div>
+                    <div class="card-value">0</div>
+                    <div class="card-subtitle">Log your first meal!</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Streak</div>
+                    <div class="card-value">1</div>
+                    <div class="card-subtitle">day active 🔥</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Subscription</div>
+                    <div class="card-value" style="font-size: 24px;">FREE</div>
+                    <div class="card-subtitle">Upgrade for more features</div>
+                </div>
+            </div>
+
+            <!-- Action Cards -->
+            <h2 style="margin-bottom: 20px; font-size: 24px;">Quick Actions</h2>
+            <div class="dashboard-grid">
+                <div class="card action-card">
+                    <h3>📊 Log Food</h3>
+                    <p>Track your daily meals and nutrition</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+
+                <div class="card action-card">
+                    <h3>🍽️ Meal Plans</h3>
+                    <p>Generate personalized meal plans</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+
+                <div class="card action-card">
+                    <h3>📖 Browse Recipes</h3>
+                    <p>Explore 1000+ healthy recipes</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+
+                <div class="card action-card">
+                    <h3>⚙️ Profile Settings</h3>
+                    <p>Update your goals and preferences</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+
+            <!-- Development Status -->
+            <div class="card" style="margin-top: 40px; background: #f8f9fa;">
+                <h3 style="margin-bottom: 15px;">🛠️ Development Progress</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; color: #28a745;">✅ Supabase setup complete</li>
+                    <li style="padding: 8px 0; color: #28a745;">✅ Database schema created (17 tables)</li>
+                    <li style="padding: 8px 0; color: #28a745;">✅ Authentication system working</li>
+                    <li style="padding: 8px 0; color: #28a745;">✅ Dashboard UI ready</li>
+                    <li style="padding: 8px 0; color: #ffc107;">⏳ Next: Import USDA food database (1,000 foods)</li>
+                    <li style="padding: 8px 0; color: #ffc107;">⏳ Next: Build food logging interface</li>
+                    <li style="padding: 8px 0; color: #ffc107;">⏳ Next: Meal plan generation algorithm</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module">
+        import { getCurrentUser, signOut, getProfile } from './js/modules/supabase-client.js';
+
+        // Check authentication
+        async function initDashboard() {
+            const { user, error } = await getCurrentUser();
+
+            if (error || !user) {
+                // Not authenticated, redirect to login
+                window.location.href = '/auth.html';
+                return;
+            }
+
+            // Get user profile
+            const { profile } = await getProfile(user.id);
+
+            // Display user name
+            const userName = profile?.name || user.email || 'User';
+            document.getElementById('user-name').textContent = userName;
+
+            // Hide loading, show content
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboard-content').style.display = 'block';
+        }
+
+        // Handle logout
+        window.handleLogout = async function() {
+            const confirmed = confirm('Are you sure you want to log out?');
+            if (!confirmed) return;
+
+            await signOut();
+            window.location.href = '/auth.html';
+        };
+
+        // Initialize
+        initDashboard();
+    </script>
+</body>
+</html>
