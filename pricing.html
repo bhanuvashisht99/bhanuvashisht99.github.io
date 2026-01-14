@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - Online Personal Training | Bhanu Vashisht</title>
-    <meta name="description" content="Premium online personal training at $75 USD / €65 EUR per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
+    <meta name="description" content="Premium online personal training at $75 USD / €65 EUR / د.إ275 AED per session. Recommended 3x per week for optimal results. Flexible weekly, monthly, and yearly packages available.">
     <meta property="og:title" content="Pricing - Online Personal Training">
-    <meta property="og:description" content="Premium online personal training at $75 USD / €65 EUR per session. Recommended 3x per week for optimal results.">
+    <meta property="og:description" content="Premium online personal training at $75 USD / €65 EUR / د.إ275 AED per session. Recommended 3x per week for optimal results.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pricing - Online Personal Training">
@@ -779,6 +779,7 @@
                 <button class="currency-btn active" data-currency="USD">USD ($)</button>
                 <button class="currency-btn" data-currency="EUR">EUR (€)</button>
                 <button class="currency-btn" data-currency="INR">INR (₹)</button>
+                <button class="currency-btn" data-currency="AED">AED (د.إ)</button>
             </div>
 
             <!-- Pricing Card -->
@@ -964,7 +965,8 @@
         const prices = {
             USD: 75,
             EUR: 65,
-            INR: 6750
+            INR: 6750,
+            AED: 275
         };
 
         let currentCurrency = 'USD';
@@ -978,9 +980,12 @@
             } else if (currency === 'EUR') {
                 symbol = '€';
                 locale = 'de-DE';
-            } else {
+            } else if (currency === 'INR') {
                 symbol = '₹';
                 locale = 'en-IN';
+            } else if (currency === 'AED') {
+                symbol = 'د.إ';
+                locale = 'ar-AE';
             }
             return `${symbol}${amount.toLocaleString(locale)}`;
         }
