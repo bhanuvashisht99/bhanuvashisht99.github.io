@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /js/auth.js
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://youdeservewell.com/sitemap.xml
