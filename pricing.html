@@ -865,11 +865,11 @@
                 <button class="training-type-btn" data-training-type="group">Group Training</button>
             </div>
 
-            <!-- Currency Toggle (for 1-on-1 only) -->
+            <!-- Currency Toggle -->
             <div class="currency-toggle fade-in" id="currencyToggle">
-                <button class="currency-btn active" data-currency="USD">USD ($)</button>
+                <button class="currency-btn" data-currency="USD">USD ($)</button>
                 <button class="currency-btn" data-currency="EUR">EUR (€)</button>
-                <button class="currency-btn" data-currency="INR">INR (₹)</button>
+                <button class="currency-btn active" data-currency="INR">INR (₹)</button>
                 <button class="currency-btn" data-currency="AED">AED (د.إ)</button>
             </div>
 
@@ -917,7 +917,7 @@
             <div class="pricing-card fade-in hidden" id="groupCard">
                 <div class="group-badge">🔥 Limited Spots - Only 3 Left!</div>
 
-                <div class="pricing-price">₹12,000</div>
+                <div class="pricing-price" id="groupPrice">₹12,000</div>
                 <div class="pricing-period">Per Month</div>
 
                 <div class="pricing-recommend">
@@ -954,8 +954,8 @@
 
                 <div style="background: rgba(102, 126, 234, 0.05); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="color: var(--purple-primary); margin-bottom: 0.75rem;">💰 Your Investment:</h4>
-                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--dark-60); margin: 0;">12 Sessions/Month: ₹12,000 INR</p>
-                    <p style="font-size: 0.95rem; color: var(--gray); margin: 0.5rem 0 0 0;">That's only ₹1,000 per session - 87% cheaper than 1-on-1!</p>
+                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--dark-60); margin: 0;" id="groupInvestment">12 Sessions/Month: ₹12,000 INR</p>
+                    <p style="font-size: 0.95rem; color: var(--gray); margin: 0.5rem 0 0 0;" id="groupSavings">That's only ₹1,000 per session - 87% cheaper than 1-on-1!</p>
                 </div>
 
                 <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20joining%20the%20Group%20Training%20program.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Secure Your Spot Now →</a>
@@ -1114,11 +1114,9 @@
                 if (trainingType === 'one-on-one') {
                     oneOnOneCard.classList.remove('hidden');
                     groupCard.classList.add('hidden');
-                    currencyToggle.style.display = 'flex';
                 } else {
                     oneOnOneCard.classList.add('hidden');
                     groupCard.classList.remove('hidden');
-                    currencyToggle.style.display = 'none';
                 }
             });
         });
@@ -1134,6 +1132,10 @@
         const monthlyLabel = document.getElementById('monthlyLabel');
         const yearlyLabel = document.getElementById('yearlyLabel');
 
+        const groupPrice = document.getElementById('groupPrice');
+        const groupInvestment = document.getElementById('groupInvestment');
+        const groupSavings = document.getElementById('groupSavings');
+
         const prices = {
             USD: 75,
             EUR: 65,
@@ -1141,7 +1143,14 @@
             AED: 275
         };
 
-        let currentCurrency = 'USD';
+        const groupPrices = {
+            USD: 150,
+            EUR: 140,
+            INR: 12000,
+            AED: 550
+        };
+
+        let currentCurrency = 'INR';
         let currentSessions = 3;
 
         function formatPrice(amount, currency) {
@@ -1181,6 +1190,25 @@
             yearlyLabel.textContent = `Yearly (${sessionsPerWeek * 52} sessions)`;
         }
 
+        function updateGroupPricing(currency) {
+            const monthlyPrice = groupPrices[currency];
+            const perSession = Math.round(monthlyPrice / 12);
+            const oneOnOnePerSession = prices[currency];
+            const savingsPercent = Math.round(((oneOnOnePerSession - perSession) / oneOnOnePerSession) * 100);
+
+            // Update group pricing display
+            groupPrice.textContent = formatPrice(monthlyPrice, currency);
+
+            let currencyName;
+            if (currency === 'USD') currencyName = 'USD';
+            else if (currency === 'EUR') currencyName = 'EUR';
+            else if (currency === 'INR') currencyName = 'INR';
+            else if (currency === 'AED') currencyName = 'AED';
+
+            groupInvestment.textContent = `12 Sessions/Month: ${formatPrice(monthlyPrice, currency)} ${currencyName}`;
+            groupSavings.textContent = `That's only ${formatPrice(perSession, currency)} per session - ${savingsPercent}% cheaper than 1-on-1!`;
+        }
+
         // Currency toggle
         currencyBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1188,8 +1216,13 @@
                 btn.classList.add('active');
                 currentCurrency = btn.dataset.currency;
                 updatePricing(currentSessions, currentCurrency);
+                updateGroupPricing(currentCurrency);
             });
         });
+
+        // Initialize pricing on page load
+        updatePricing(currentSessions, currentCurrency);
+        updateGroupPricing(currentCurrency);
 
         // Frequency selector
         frequencyBtns.forEach(btn => {
