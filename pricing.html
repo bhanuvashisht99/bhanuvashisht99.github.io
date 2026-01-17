@@ -364,6 +364,39 @@
             margin: 0 auto;
         }
 
+        /* Training Type Toggle */
+        .training-type-toggle {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .training-type-btn {
+            padding: 1rem 2rem;
+            background: var(--white);
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50px;
+            color: var(--dark-60);
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .training-type-btn:hover {
+            border-color: var(--purple-primary);
+            transform: translateY(-2px);
+        }
+
+        .training-type-btn.active {
+            background: var(--gradient-hero);
+            border-color: var(--purple-primary);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+        }
+
         /* Currency Toggle */
         .currency-toggle {
             display: flex;
@@ -423,6 +456,56 @@
             color: var(--gray);
             font-weight: 600;
             margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.hidden {
+            display: none;
+        }
+
+        .group-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-box {
+            background: white;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .schedule-box h4 {
+            color: var(--purple-primary);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .schedule-box p {
+            margin: 0.5rem 0;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .spots-alert {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 140, 66, 0.1) 100%);
+            border-left: 4px solid var(--orange-bright);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .spots-alert p {
+            margin: 0;
+            color: var(--dark-60);
+            font-weight: 600;
         }
 
         .pricing-recommend {
@@ -776,16 +859,22 @@
                 <p class="section-subtitle">Premium online coaching that delivers real results.</p>
             </div>
 
-            <!-- Currency Toggle -->
-            <div class="currency-toggle fade-in">
+            <!-- Training Type Toggle -->
+            <div class="training-type-toggle fade-in">
+                <button class="training-type-btn active" data-training-type="one-on-one">1-on-1 Training</button>
+                <button class="training-type-btn" data-training-type="group">Group Training</button>
+            </div>
+
+            <!-- Currency Toggle (for 1-on-1 only) -->
+            <div class="currency-toggle fade-in" id="currencyToggle">
                 <button class="currency-btn active" data-currency="USD">USD ($)</button>
                 <button class="currency-btn" data-currency="EUR">EUR (€)</button>
                 <button class="currency-btn" data-currency="INR">INR (₹)</button>
                 <button class="currency-btn" data-currency="AED">AED (د.إ)</button>
             </div>
 
-            <!-- Pricing Card -->
-            <div class="pricing-card fade-in">
+            <!-- 1-on-1 Pricing Card -->
+            <div class="pricing-card fade-in" id="oneOnOneCard">
                 <div class="pricing-price" id="mainPrice">$75</div>
                 <div class="pricing-period">Per Session</div>
 
@@ -822,6 +911,54 @@
                 </div>
 
                 <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20starting%20training%20with%20you.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Book Your First Session →</a>
+            </div>
+
+            <!-- Group Training Pricing Card -->
+            <div class="pricing-card fade-in hidden" id="groupCard">
+                <div class="group-badge">🔥 Limited Spots - Only 3 Left!</div>
+
+                <div class="pricing-price">₹12,000</div>
+                <div class="pricing-period">Per Month</div>
+
+                <div class="pricing-recommend">
+                    ⭐ Fully Personalized Group Training - Not Generic Workouts!
+                </div>
+
+                <div class="schedule-box">
+                    <h4>📅 Training Schedule</h4>
+                    <p><strong>Days:</strong> Monday, Wednesday, Friday</p>
+                    <p><strong>Time:</strong> 7:00 AM - 8:00 AM (IST)</p>
+                    <p><strong>Frequency:</strong> 3 sessions per week = 12 sessions per month</p>
+                </div>
+
+                <div class="spots-alert">
+                    <p>🎯 <strong>Maximum 5 People Per Group</strong><br>
+                    ⚡ 2 Slots Already Booked - Only 3 Spots Remaining!</p>
+                </div>
+
+                <div class="pricing-calc">
+                    <h4>What Makes This Different:</h4>
+                    <div class="calc-row" style="display: block; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <p style="margin: 0.5rem 0; color: var(--dark-60); line-height: 1.6;"><strong>✓ Fully Personalized:</strong> Unlike typical group classes where everyone does the same workout, each person gets a program tailored to their specific goals, body type, and fitness level.</p>
+                    </div>
+                    <div class="calc-row" style="display: block; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <p style="margin: 0.5rem 0; color: var(--dark-60); line-height: 1.6;"><strong>✓ Individual Attention:</strong> Real-time form correction and coaching for YOUR exercises and YOUR goals.</p>
+                    </div>
+                    <div class="calc-row" style="display: block; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <p style="margin: 0.5rem 0; color: var(--dark-60); line-height: 1.6;"><strong>✓ Custom Programming:</strong> Whether you're recovering from chronic pain, building strength, or mastering calisthenics - your workout is designed for YOU.</p>
+                    </div>
+                    <div class="calc-row" style="display: block; text-align: left; margin-bottom: 1rem;">
+                        <p style="margin: 0.5rem 0; color: var(--dark-60); line-height: 1.6;"><strong>✓ Live Coaching:</strong> 1-hour live video sessions with biomechanics expertise and movement education.</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(102, 126, 234, 0.05); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 style="color: var(--purple-primary); margin-bottom: 0.75rem;">💰 Your Investment:</h4>
+                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--dark-60); margin: 0;">12 Sessions/Month: ₹12,000 INR</p>
+                    <p style="font-size: 0.95rem; color: var(--gray); margin: 0.5rem 0 0 0;">That's only ₹1,000 per session - 87% cheaper than 1-on-1!</p>
+                </div>
+
+                <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27m%20interested%20in%20joining%20the%20Group%20Training%20program.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Secure Your Spot Now →</a>
             </div>
         </div>
     </section>
@@ -956,6 +1093,33 @@
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Training Type Toggle
+        const trainingTypeBtns = document.querySelectorAll('.training-type-btn');
+        const oneOnOneCard = document.getElementById('oneOnOneCard');
+        const groupCard = document.getElementById('groupCard');
+        const currencyToggle = document.getElementById('currencyToggle');
+
+        trainingTypeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const trainingType = btn.getAttribute('data-training-type');
+
+                // Update active state
+                trainingTypeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Show/hide appropriate card
+                if (trainingType === 'one-on-one') {
+                    oneOnOneCard.classList.remove('hidden');
+                    groupCard.classList.add('hidden');
+                    currencyToggle.style.display = 'flex';
+                } else {
+                    oneOnOneCard.classList.add('hidden');
+                    groupCard.classList.remove('hidden');
+                    currencyToggle.style.display = 'none';
+                }
             });
         });
 
