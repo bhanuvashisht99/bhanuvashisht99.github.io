@@ -534,7 +534,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--color-bg-dark);
+            background: linear-gradient(135deg, #A8BFB8 0%, #D5E1DD 50%, #ECF0F1 100%);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -548,8 +548,8 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -569,11 +569,11 @@
         .hero-badge {
             display: inline-block;
             padding: 0.5rem 1.25rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(44, 62, 80, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(44, 62, 80, 0.2);
             border-radius: 50px;
-            color: var(--white);
+            color: var(--color-primary);
             font-weight: 600;
             font-size: 0.85rem;
             margin-bottom: 1.5rem;
@@ -588,11 +588,10 @@
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            color: var(--white);
+            color: var(--color-text-primary);
             line-height: 1.1;
             margin-bottom: 1rem;
             animation: fadeInUp 0.8s ease 0.2s both;
-            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes fadeInUp {
@@ -602,7 +601,7 @@
 
         .hero-subtitle {
             font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.98);
+            color: var(--color-text-secondary);
             margin-bottom: 2rem;
             line-height: 1.6;
             animation: fadeInUp 0.8s ease 0.4s both;
@@ -660,24 +659,24 @@
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            border: 2px solid var(--white);
+            background: rgba(44, 62, 80, 0.1);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
             backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: var(--white);
-            color: var(--purple-primary);
+            background: var(--color-primary);
+            color: var(--white);
         }
 
         .trust-bar {
             margin-top: 3rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(44, 62, 80, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(44, 62, 80, 0.2);
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -691,14 +690,14 @@
         .trust-number {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--white);
+            color: var(--color-text-primary);
             display: block;
             line-height: 1;
         }
 
         .trust-label {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-secondary);
             font-weight: 600;
             margin-top: 0.5rem;
         }
@@ -1417,7 +1416,7 @@
             <div class="hero-badge">🌍 Train From Anywhere - India • UAE • US • Europe</div>
             <h1>Online Personal Trainer & Fitness Coach for Chronic Pain Recovery & Calisthenics Mastery</h1>
             <p class="hero-subtitle" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Progress with every session. Results in weeks, not years.</p>
-            <p class="hero-features" style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem;">
+            <p class="hero-features" style="font-size: 1rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
                 Specializing in: Chronic Pain Recovery • Calisthenics Training • Flexibility & Mobility • Biomechanics-Based Coaching • Yoga-Inspired Movement
             </p>
             <p class="hero-subtitle">World-class online personal training and fitness coaching that fixes chronic pain and masters advanced skills—without trial and error. You're one session away from real progress.</p>
