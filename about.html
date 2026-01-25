@@ -132,6 +132,97 @@
             color: var(--purple-primary);
         }
 
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-dropdown > a::after {
+            content: '';
+            border: solid var(--color-text-secondary);
+            border-width: 0 2px 2px 0;
+            padding: 2px;
+            transform: rotate(45deg);
+            margin-top: -2px;
+            transition: 0.2s ease;
+        }
+
+        .nav-dropdown:hover > a::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 340px;
+        }
+
+        .nav-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .dropdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: var(--color-bg-light);
+        }
+
+        .dropdown-item:hover {
+            background: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-item:hover .dropdown-item-title {
+            color: white;
+        }
+
+        .dropdown-item img {
+            width: 80px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.75rem;
+        }
+
+        .dropdown-item-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            text-align: center;
+            line-height: 1.3;
+        }
+
         .nav-cta {
             display: none;
             padding: 0.75rem 1.5rem;
@@ -224,6 +315,61 @@
             font-weight: 700;
         }
 
+        /* Mobile Guides Section */
+        .mobile-guides-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .mobile-guides-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            transition: 0.2s ease;
+        }
+
+        .mobile-guides-header.active::after {
+            content: '−';
+        }
+
+        .mobile-guides-content {
+            display: none;
+            padding: 1rem 0;
+        }
+
+        .mobile-guides-content.active {
+            display: block;
+        }
+
+        .mobile-guide-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-guide-card img {
+            width: 50px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-guide-card span {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 1rem;
+        }
+
         @media (min-width: 768px) {
             .nav-menu {
                 display: flex;
@@ -312,23 +458,23 @@
 
         .section-subtitle {
             text-align: center;
-            color: var(--text-gray);
+            color: var(--color-text-secondary);
             font-size: 1.1rem;
             margin-bottom: 3rem;
         }
 
         .story-content {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 20px;
             padding: 3rem;
             margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .story-content p {
             font-size: 1.1rem;
-            color: var(--text-light);
+            color: var(--color-text-primary);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
@@ -338,7 +484,7 @@
         }
 
         .highlight {
-            color: var(--orange-primary);
+            color: var(--color-primary);
             font-weight: 600;
         }
 
@@ -361,17 +507,17 @@
         }
 
         .expertise-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 16px;
             padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .expertise-card:hover {
             transform: translateY(-5px);
-            border-color: var(--purple-primary);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
 
         .expertise-icon {
@@ -395,11 +541,11 @@
         .expertise-card h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: var(--text-light);
+            color: var(--color-text-primary);
         }
 
         .expertise-card p {
-            color: var(--text-gray);
+            color: var(--color-text-secondary);
             line-height: 1.6;
         }
 
@@ -418,11 +564,12 @@
         }
 
         .approach-card {
-            background: var(--gradient-card);
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 16px;
             padding: 2rem;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .approach-number {
@@ -436,16 +583,18 @@
             justify-content: center;
             font-size: 1.5rem;
             font-weight: 800;
+            color: white;
             margin: 0 auto 1rem;
         }
 
         .approach-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
+            color: var(--color-text-primary);
         }
 
         .approach-card p {
-            color: var(--text-gray);
+            color: var(--color-text-secondary);
             line-height: 1.6;
         }
 
@@ -487,7 +636,7 @@
         }
 
         .value-card p {
-            color: var(--text-gray);
+            color: var(--color-text-secondary);
             line-height: 1.6;
         }
 
@@ -507,7 +656,7 @@
 
         .cta-text {
             font-size: 1.2rem;
-            color: var(--text-gray);
+            color: var(--color-text-secondary);
             margin-bottom: 2rem;
         }
 
@@ -679,7 +828,21 @@
             <a href="/" class="nav-logo">Bhanu Vashisht</a>
             <ul class="nav-menu">
                 <li><a href="/#paths">Services</a></li>
-                <li><a href="/lower-back-pain-guide.html">📖 PDF Guide</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">PDF Guides</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-grid">
+                            <a href="/lower-back-pain-guide.html" class="dropdown-item">
+                                <img src="/images/pdf-cover.png" alt="Lower Back Pain Guide">
+                                <span class="dropdown-item-title">Lower Back Pain</span>
+                            </a>
+                            <a href="/handstand-guide.html" class="dropdown-item">
+                                <img src="/images/handstand-cover.png" alt="Handstand Guide">
+                                <span class="dropdown-item-title">Handstand Guide</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="/chronic-pain.html">Chronic Pain</a></li>
                 <li><a href="/calisthenics.html">Calisthenics</a></li>
                 <li><a href="/testimonials.html">Success Stories</a></li>
@@ -699,7 +862,21 @@
     <div class="mobile-menu" id="mobileMenu">
         <ul>
             <li><a href="/#paths">Services</a></li>
-            <li><a href="/lower-back-pain-guide.html">📖 PDF Guide</a></li>
+            <li>
+                <div class="mobile-guides-header" id="mobileGuidesToggle">
+                    <span style="color: var(--color-text-secondary); font-weight: 600; font-size: 1.25rem;">PDF Guides</span>
+                </div>
+                <div class="mobile-guides-content" id="mobileGuidesContent">
+                    <a href="/lower-back-pain-guide.html" class="mobile-guide-card">
+                        <img src="/images/pdf-cover.png" alt="Lower Back Pain Guide">
+                        <span>Lower Back Pain Guide</span>
+                    </a>
+                    <a href="/handstand-guide.html" class="mobile-guide-card">
+                        <img src="/images/handstand-cover.png" alt="Handstand Guide">
+                        <span>Handstand Guide</span>
+                    </a>
+                </div>
+            </li>
             <li><a href="/chronic-pain.html">Chronic Pain Recovery</a></li>
             <li><a href="/calisthenics.html">Calisthenics Mastery</a></li>
             <li><a href="/testimonials.html">Success Stories</a></li>
@@ -923,6 +1100,16 @@
                 mobileMenu.classList.remove('active');
             });
         });
+
+        // Mobile guides toggle
+        const mobileGuidesToggle = document.getElementById('mobileGuidesToggle');
+        const mobileGuidesContent = document.getElementById('mobileGuidesContent');
+        if (mobileGuidesToggle && mobileGuidesContent) {
+            mobileGuidesToggle.addEventListener('click', () => {
+                mobileGuidesToggle.classList.toggle('active');
+                mobileGuidesContent.classList.toggle('active');
+            });
+        }
 
         // Intersection Observer for fade-in animations
         const observerOptions = {
