@@ -25,7 +25,8 @@ export default async function handler(req, res) {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      customer_email
+      customer_email,
+      product
     } = req.body;
 
     // Validate input
@@ -34,6 +35,9 @@ export default async function handler(req, res) {
         error: 'Missing required payment details'
       });
     }
+
+    // Determine which product was purchased (default to lower-back-pain for backwards compatibility)
+    const productType = product || 'lower-back-pain-guide';
 
     // Verify payment signature
     const body = razorpay_order_id + '|' + razorpay_payment_id;
@@ -51,13 +55,18 @@ export default async function handler(req, res) {
       });
     }
 
-    // Direct Google Drive download link (simpler, more reliable)
-    const googleDriveFileId = '1MpqzbYwT2ymiAAo6ifInehRN1mhG4KwQ';
+    // Google Drive file IDs for each product
+    const productFiles = {
+      'lower-back-pain-guide': '1MpqzbYwT2ymiAAo6ifInehRN1mhG4KwQ',
+      'handstand-guide': '18SH5M3Ok-pxtVcu1hm4gloPl1xpdcUQB'
+    };
+
+    const googleDriveFileId = productFiles[productType] || productFiles['lower-back-pain-guide'];
     const downloadLink = `https://drive.google.com/uc?export=download&id=${googleDriveFileId}`;
     const expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days (informational)
 
     // Send email with download link
-    await sendDownloadEmail(customer_email, downloadLink, expiryDate);
+    await sendDownloadEmail(customer_email, downloadLink, expiryDate, productType);
 
     // In a real implementation, you would store the order details in a database
     // For now, we'll just return success
@@ -76,7 +85,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function sendDownloadEmail(email, downloadLink, expiryDate) {
+async function sendDownloadEmail(email, downloadLink, expiryDate, productType) {
   // Create email transporter
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -88,12 +97,30 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
     },
   });
 
+  // Product-specific content
+  const productContent = {
+    'lower-back-pain-guide': {
+      subject: 'Your Lower Back Pain Guide - Download Link',
+      title: 'Your Lower Back Pain Guide is Ready',
+      description: 'Thank you for investing in your health and recovery. Your PDF guide is ready to download.',
+      helpText: 'If you want 1-on-1 coaching to address your specific situation, book a personal training session for $75 USD / €65 EUR / ₹6,750 INR.'
+    },
+    'handstand-guide': {
+      subject: 'Your Handstand Guide - Download Link',
+      title: 'Your Handstand Guide is Ready',
+      description: 'Thank you for your purchase! Your step-by-step handstand guide is ready to download.',
+      helpText: 'If you want 1-on-1 coaching to review your form and accelerate your progress, book a training session for $75 USD / €65 EUR / ₹6,750 INR.'
+    }
+  };
+
+  const content = productContent[productType] || productContent['lower-back-pain-guide'];
+
   // Email content
   const mailOptions = {
     from: `"Bhanu Vashisht" <${process.env.EMAIL_USER}>`,
     to: email,
     replyTo: process.env.EMAIL_USER,
-    subject: 'Your Lower Back Pain Guide - Download Link',
+    subject: content.subject,
     headers: {
       'X-Priority': '1',
       'X-MSMail-Priority': 'High',
@@ -147,8 +174,8 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
           <h1>Thank You for Your Purchase!</h1>
         </div>
         <div class="content">
-          <h2>Your Lower Back Pain Guide is Ready</h2>
-          <p>Thank you for investing in your health and recovery. Your PDF guide is ready to download.</p>
+          <h2>${content.title}</h2>
+          <p>${content.description}</p>
 
           <p style="text-align: center;">
             <a href="${downloadLink}" class="button">Download Your PDF Guide</a>
@@ -164,7 +191,7 @@ async function sendDownloadEmail(email, downloadLink, expiryDate) {
           <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
 
           <h3>Need More Personalized Help?</h3>
-          <p>If you want 1-on-1 coaching to address your specific situation, book a personal training session for $75 USD / €65 EUR / ₹6,750 INR.</p>
+          <p>${content.helpText}</p>
           <p><a href="https://wa.me/918448222454">Contact me on WhatsApp</a></p>
         </div>
         <div class="footer">
