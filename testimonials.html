@@ -269,7 +269,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gradient-hero);
+            background: linear-gradient(135deg, #A8BFB8 0%, #D5E1DD 50%, #ECF0F1 100%);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -283,8 +283,8 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -304,15 +304,14 @@
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            color: var(--white);
+            color: var(--color-text-primary);
             line-height: 1.1;
             margin-bottom: 1rem;
-            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
         }
 
         .hero-subtitle {
             font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.95);
+            color: var(--color-text-secondary);
             line-height: 1.6;
         }
 
