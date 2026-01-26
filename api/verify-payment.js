@@ -58,7 +58,7 @@ export default async function handler(req, res) {
     // Google Drive file IDs for each product
     const productFiles = {
       'lower-back-pain-guide': '1MpqzbYwT2ymiAAo6ifInehRN1mhG4KwQ',
-      'handstand-guide': '18SH5M3Ok-pxtVcu1hm4gloPl1xpdcUQB'
+      'handstand-guide': '1f5XfaSx2EZyHioYHM4Z31lBfuh-IKLcK'
     };
 
     const googleDriveFileId = productFiles[productType] || productFiles['lower-back-pain-guide'];
