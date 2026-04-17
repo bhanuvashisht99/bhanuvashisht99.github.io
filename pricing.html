@@ -868,7 +868,7 @@
             <div class="pricing-card fade-in" style="margin-top: 2rem;">
                 <div style="display: inline-block; background: var(--gradient-primary); color: var(--color-text-light); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">One-Time</div>
 
-                <div class="pricing-price" id="consultPrice">₹6,750</div>
+                <div class="pricing-price" id="consultPrice">$120</div>
                 <div class="pricing-period">Per Consultation</div>
 
                 <div class="pricing-recommend">
@@ -1047,6 +1047,13 @@
             AED: 275
         };
 
+        const consultPrices = {
+            USD: 120,
+            EUR: 105,
+            INR: 10000,
+            AED: 440
+        };
+
         let currentCurrency = 'INR';
         let currentSessions = 3;
 
@@ -1094,7 +1101,7 @@
                 btn.classList.add('active');
                 currentCurrency = btn.dataset.currency;
                 updatePricing(currentSessions, currentCurrency);
-                document.getElementById('consultPrice').textContent = formatPrice(prices[currentCurrency], currentCurrency);
+                document.getElementById('consultPrice').textContent = formatPrice(consultPrices[currentCurrency], currentCurrency);
             });
         });
 

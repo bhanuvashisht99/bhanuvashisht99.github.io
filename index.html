@@ -1654,7 +1654,7 @@
                 <!-- Consultation Card -->
                 <div class="pricing-card fade-in">
                     <div style="display: inline-block; background: var(--gradient-cta); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">One-Time</div>
-                    <div class="pricing-price" id="homeConsultPrice">$75</div>
+                    <div class="pricing-price" id="homeConsultPrice">$120</div>
                     <div class="pricing-period">Consultation Call</div>
 
                     <div class="pricing-recommend">🗣️ Not sure where to start? Begin here.</div>
@@ -1822,6 +1822,12 @@
             INR: 6750
         };
 
+        const homeConsultPrices = {
+            USD: 120,
+            EUR: 105,
+            INR: 10000
+        };
+
         let homeCurrentCurrency = 'USD';
         let homeCurrentSessions = 3;
 
@@ -1851,7 +1857,7 @@
             homeWeeklyPrice.textContent = formatHomePrice(weekly, currency);
             homeMonthlyPrice.textContent = formatHomePrice(monthly, currency);
             homeYearlyPrice.textContent = formatHomePrice(yearly, currency);
-            document.getElementById('homeConsultPrice').textContent = formatHomePrice(pricePerSession, currency);
+            document.getElementById('homeConsultPrice').textContent = formatHomePrice(homeConsultPrices[currency], currency);
 
             // Update session count labels
             const sessionWord = sessionsPerWeek === 1 ? 'session' : 'sessions';
