@@ -1109,16 +1109,42 @@
             });
         }
 
-        // Razorpay Payment Integration
+        // Payment Integration (Stripe for USD/EUR, Razorpay for INR)
         document.getElementById('buyNowBtn').addEventListener('click', async function() {
             const selectedPrice = pricingData[selectedOption][selectedCurrency];
             const currencyCode = selectedCurrency;
             const amountInSmallestUnit = selectedPrice * 100;
 
             const customerEmail = prompt('Please enter your email address to receive the download link:');
-
             if (!customerEmail || !customerEmail.includes('@')) {
                 alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Route INR to Razorpay, all other currencies to Stripe
+            if (currencyCode !== 'INR') {
+                try {
+                    const sessionResponse = await fetch('/api/create-stripe-session.js', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            amount: amountInSmallestUnit,
+                            currency: currencyCode,
+                            customerEmail: customerEmail,
+                            productOption: selectedOption,
+                            product: 'handstand-guide'
+                        })
+                    });
+                    const sessionData = await sessionResponse.json();
+                    if (!sessionData.success) {
+                        alert('Failed to initiate checkout. Please try again.');
+                        return;
+                    }
+                    window.location.href = sessionData.url;
+                } catch (error) {
+                    console.error('Stripe checkout error:', error);
+                    alert('An error occurred. Please try again or contact support.');
+                }
                 return;
             }
 
@@ -1127,9 +1153,7 @@
             try {
                 const orderResponse = await fetch('/api/create-order.js', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         amount: amountInSmallestUnit,
                         currency: currencyCode,
@@ -1140,7 +1164,6 @@
                 });
 
                 const orderData = await orderResponse.json();
-
                 if (!orderData.success) {
                     alert('Failed to create order. Please try again.');
                     return;
@@ -1164,9 +1187,7 @@
                         try {
                             const verifyResponse = await fetch('/api/verify-payment.js', {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
+                                headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_order_id: response.razorpay_order_id,
@@ -1175,9 +1196,7 @@
                                     product: 'handstand-guide'
                                 })
                             });
-
                             const verifyData = await verifyResponse.json();
-
                             if (verifyData.success) {
                                 window.location.href = '/thank-you.html';
                             } else {
@@ -1188,22 +1207,10 @@
                             alert('An error occurred during verification. Please contact support.');
                         }
                     },
-                    prefill: {
-                        email: customerEmail,
-                        contact: customerPhone
-                    },
-                    notes: {
-                        product: 'handstand-guide',
-                        customer_email: customerEmail
-                    },
-                    theme: {
-                        color: '#667eea'
-                    },
-                    modal: {
-                        ondismiss: function() {
-                            console.log('Payment cancelled by user');
-                        }
-                    }
+                    prefill: { email: customerEmail, contact: customerPhone },
+                    notes: { product: 'handstand-guide', customer_email: customerEmail },
+                    theme: { color: '#667eea' },
+                    modal: { ondismiss: function() {} }
                 };
 
                 const razorpay = new Razorpay(options);

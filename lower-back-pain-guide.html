@@ -1144,30 +1144,49 @@
 
         // Razorpay Payment Integration
         document.getElementById('buyNowBtn').addEventListener('click', async function() {
-            // Get selected price
             const selectedPrice = pricingData[selectedOption][selectedCurrency];
             const currencyCode = selectedCurrency;
-
-            // Convert to smallest currency unit (cents/paise)
             const amountInSmallestUnit = selectedPrice * 100;
 
-            // Prompt for email
             const customerEmail = prompt('Please enter your email address to receive the download link:');
-
             if (!customerEmail || !customerEmail.includes('@')) {
                 alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Route INR to Razorpay, all other currencies to Stripe
+            if (currencyCode !== 'INR') {
+                try {
+                    const sessionResponse = await fetch('/api/create-stripe-session.js', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            amount: amountInSmallestUnit,
+                            currency: currencyCode,
+                            customerEmail: customerEmail,
+                            productOption: selectedOption,
+                            product: 'lower-back-pain-guide'
+                        })
+                    });
+                    const sessionData = await sessionResponse.json();
+                    if (!sessionData.success) {
+                        alert('Failed to initiate checkout. Please try again.');
+                        return;
+                    }
+                    window.location.href = sessionData.url;
+                } catch (error) {
+                    console.error('Stripe checkout error:', error);
+                    alert('An error occurred. Please try again or contact support.');
+                }
                 return;
             }
 
             const customerPhone = prompt('Please enter your phone number (optional):', '');
 
             try {
-                // Step 1: Create Razorpay order
                 const orderResponse = await fetch('/api/create-order.js', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         amount: amountInSmallestUnit,
                         currency: currencyCode,
@@ -1177,14 +1196,11 @@
                 });
 
                 const orderData = await orderResponse.json();
-
                 if (!orderData.success) {
                     alert('Failed to create order. Please try again.');
                     return;
                 }
 
-                // Step 2: Open Razorpay checkout
-                // Product descriptions
                 const productDescriptions = {
                     'pdf-only': 'Lower Back Pain PDF Guide',
                     'pdf-consultation': 'PDF Guide + 30min Consultation',
@@ -1192,7 +1208,7 @@
                 };
 
                 const options = {
-                    key: 'rzp_live_S0s7ouWWnDinu9', // Live Razorpay key
+                    key: 'rzp_live_S0s7ouWWnDinu9',
                     amount: orderData.amount,
                     currency: orderData.currency,
                     order_id: orderData.orderId,
@@ -1200,13 +1216,10 @@
                     description: productDescriptions[selectedOption],
                     image: 'https://youdeservewell.com/images/pdf-cover.png',
                     handler: async function (response) {
-                        // Step 3: Verify payment
                         try {
                             const verifyResponse = await fetch('/api/verify-payment.js', {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
+                                headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_order_id: response.razorpay_order_id,
@@ -1214,11 +1227,8 @@
                                     customer_email: customerEmail
                                 })
                             });
-
                             const verifyData = await verifyResponse.json();
-
                             if (verifyData.success) {
-                                // Payment successful
                                 window.location.href = '/thank-you.html';
                             } else {
                                 alert('Payment verification failed. Please contact support at bhanuvashisht99@gmail.com');
@@ -1228,22 +1238,10 @@
                             alert('An error occurred during verification. Please contact support.');
                         }
                     },
-                    prefill: {
-                        email: customerEmail,
-                        contact: customerPhone
-                    },
-                    notes: {
-                        product: 'lower-back-pain-guide',
-                        customer_email: customerEmail
-                    },
-                    theme: {
-                        color: '#667eea'
-                    },
-                    modal: {
-                        ondismiss: function() {
-                            console.log('Payment cancelled by user');
-                        }
-                    }
+                    prefill: { email: customerEmail, contact: customerPhone },
+                    notes: { product: 'lower-back-pain-guide', customer_email: customerEmail },
+                    theme: { color: '#667eea' },
+                    modal: { ondismiss: function() {} }
                 };
 
                 const razorpay = new Razorpay(options);

@@ -1613,69 +1613,80 @@
                 <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+            <div style="max-width: 520px; margin: 0 auto;">
 
-                <!-- 1-on-1 Training Card -->
+                <!-- Combined Pricing Card -->
                 <div class="pricing-card fade-in">
-                    <div style="display: inline-block; background: var(--gradient-primary); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">1-on-1 Training</div>
-                    <div class="pricing-price" id="homeMainPrice">$75</div>
-                    <div class="pricing-period">Per Session</div>
 
-                    <div style="margin: 1.5rem 0;">
-                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--gray); margin-bottom: 0.75rem; text-align: center;">Select Training Frequency</p>
-                        <div class="frequency-selector" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-                            <button class="frequency-toggle-btn" data-sessions="1" style="padding: 0.6rem 1.2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x</button>
-                            <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 0.6rem 1.2rem; background: var(--color-bg-dark); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x</button>
-                            <button class="frequency-toggle-btn" data-sessions="5" style="padding: 0.6rem 1.2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x</button>
-                        </div>
+                    <!-- Consultation / Coaching Toggle -->
+                    <div style="display: flex; background: rgba(102,126,234,0.08); border-radius: 50px; padding: 4px; margin-bottom: 1.75rem;">
+                        <button id="consultToggleBtn" style="flex: 1; padding: 0.65rem 1rem; background: var(--gradient-primary); border: none; border-radius: 50px; color: white; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">Consultation</button>
+                        <button id="coachingToggleBtn" style="flex: 1; padding: 0.65rem 1rem; background: transparent; border: none; border-radius: 50px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">Coaching</button>
                     </div>
 
-                    <div class="pricing-recommend">⭐ Recommended: 3x per week</div>
+                    <!-- Consultation Panel -->
+                    <div id="consultPanel">
+                        <div style="display: inline-block; background: var(--gradient-cta); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">One-Time</div>
+                        <div class="pricing-price" id="homeConsultPrice">$120</div>
+                        <div class="pricing-period">Consultation Call</div>
 
-                    <div class="pricing-calc">
-                        <h4>Your Investment:</h4>
-                        <div class="calc-row">
-                            <span class="calc-label" id="homeWeeklyLabel">Weekly (3 sessions)</span>
-                            <span class="calc-value" id="homeWeeklyPrice">$225</span>
+                        <div class="pricing-recommend">🗣️ Not sure where to start? Begin here.</div>
+
+                        <div class="pricing-calc">
+                            <h4>What's Included:</h4>
+                            <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <span>✓</span><span class="calc-label">60-min video assessment</span>
+                            </div>
+                            <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <span>✓</span><span class="calc-label">Movement & posture analysis</span>
+                            </div>
+                            <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <span>✓</span><span class="calc-label">Personalised recommendations</span>
+                            </div>
+                            <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem;">
+                                <span>✓</span><span class="calc-label">No obligation to continue</span>
+                            </div>
                         </div>
-                        <div class="calc-row">
-                            <span class="calc-label" id="homeMonthlyLabel">Monthly (12 sessions)</span>
-                            <span class="calc-value" id="homeMonthlyPrice">$900</span>
-                        </div>
-                        <div class="calc-row">
-                            <span class="calc-label" id="homeYearlyLabel">Yearly (156 sessions)</span>
-                            <span class="calc-value" id="homeYearlyPrice">$11,700</span>
-                        </div>
+
+                        <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27d%20like%20to%20book%20a%20consultation%20call%2Fassessment.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Book a Consultation →</a>
                     </div>
 
-                    <a href="pricing.html" class="btn btn-orange">View Full Pricing →</a>
-                </div>
+                    <!-- Coaching Panel -->
+                    <div id="coachingPanel" style="display: none;">
+                        <div style="display: inline-block; background: var(--gradient-primary); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">1-on-1 Training</div>
+                        <div class="pricing-price" id="homeMainPrice">$75</div>
+                        <div class="pricing-period">Per Session</div>
 
-                <!-- Consultation Card -->
-                <div class="pricing-card fade-in">
-                    <div style="display: inline-block; background: var(--gradient-cta); color: white; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">One-Time</div>
-                    <div class="pricing-price" id="homeConsultPrice">$120</div>
-                    <div class="pricing-period">Consultation Call</div>
+                        <div style="margin: 1.5rem 0;">
+                            <p style="font-size: 0.9rem; font-weight: 600; color: var(--gray); margin-bottom: 0.75rem; text-align: center;">Select Training Frequency</p>
+                            <div class="frequency-selector" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+                                <button class="frequency-toggle-btn" data-sessions="1" style="padding: 0.6rem 1.2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">1x</button>
+                                <button class="frequency-toggle-btn active" data-sessions="3" style="padding: 0.6rem 1.2rem; background: var(--color-bg-dark); border: 2px solid var(--purple-primary); border-radius: 12px; color: var(--white); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">3x</button>
+                                <button class="frequency-toggle-btn" data-sessions="5" style="padding: 0.6rem 1.2rem; background: var(--white); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 12px; color: var(--dark-60); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">5x</button>
+                            </div>
+                        </div>
 
-                    <div class="pricing-recommend">🗣️ Not sure where to start? Begin here.</div>
+                        <div class="pricing-recommend">⭐ Recommended: 3x per week</div>
 
-                    <div class="pricing-calc">
-                        <h4>What's Included:</h4>
-                        <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                            <span>✓</span><span class="calc-label">60-min video assessment</span>
+                        <div class="pricing-calc">
+                            <h4>Your Investment:</h4>
+                            <div class="calc-row">
+                                <span class="calc-label" id="homeWeeklyLabel">Weekly (3 sessions)</span>
+                                <span class="calc-value" id="homeWeeklyPrice">$225</span>
+                            </div>
+                            <div class="calc-row">
+                                <span class="calc-label" id="homeMonthlyLabel">Monthly (12 sessions)</span>
+                                <span class="calc-value" id="homeMonthlyPrice">$900</span>
+                            </div>
+                            <div class="calc-row">
+                                <span class="calc-label" id="homeYearlyLabel">Yearly (156 sessions)</span>
+                                <span class="calc-value" id="homeYearlyPrice">$11,700</span>
+                            </div>
                         </div>
-                        <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                            <span>✓</span><span class="calc-label">Movement & posture analysis</span>
-                        </div>
-                        <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                            <span>✓</span><span class="calc-label">Personalised recommendations</span>
-                        </div>
-                        <div class="calc-row" style="justify-content: flex-start; gap: 0.75rem;">
-                            <span>✓</span><span class="calc-label">No obligation to continue</span>
-                        </div>
+
+                        <a href="pricing.html" class="btn btn-orange">View Full Pricing →</a>
                     </div>
 
-                    <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27d%20like%20to%20book%20a%20consultation%20call%2Fassessment.%20Can%20we%20discuss%20the%20details%3F" class="btn btn-orange">Book a Consultation →</a>
                 </div>
 
             </div>
@@ -1900,6 +1911,30 @@
                 homeCurrentSessions = parseInt(btn.dataset.sessions);
                 updateHomePricing(homeCurrentSessions, homeCurrentCurrency);
             });
+        });
+
+        // Consultation / Coaching toggle
+        const consultToggleBtn = document.getElementById('consultToggleBtn');
+        const coachingToggleBtn = document.getElementById('coachingToggleBtn');
+        const consultPanel = document.getElementById('consultPanel');
+        const coachingPanel = document.getElementById('coachingPanel');
+
+        consultToggleBtn.addEventListener('click', () => {
+            consultPanel.style.display = 'block';
+            coachingPanel.style.display = 'none';
+            consultToggleBtn.style.background = 'var(--gradient-primary)';
+            consultToggleBtn.style.color = 'white';
+            coachingToggleBtn.style.background = 'transparent';
+            coachingToggleBtn.style.color = 'var(--dark-60)';
+        });
+
+        coachingToggleBtn.addEventListener('click', () => {
+            coachingPanel.style.display = 'block';
+            consultPanel.style.display = 'none';
+            coachingToggleBtn.style.background = 'var(--gradient-primary)';
+            coachingToggleBtn.style.color = 'white';
+            consultToggleBtn.style.background = 'transparent';
+            consultToggleBtn.style.color = 'var(--dark-60)';
         });
 
         // Scroll animations
