@@ -1937,6 +1937,14 @@
             consultToggleBtn.style.color = 'var(--dark-60)';
         });
 
+        // Initialize active button styles on page load
+        document.querySelectorAll('.currency-toggle-btn.active, .frequency-toggle-btn.active').forEach(btn => {
+            btn.style.background = 'var(--gradient-primary)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'var(--purple-primary)';
+        });
+        updateHomePricing(homeCurrentSessions, homeCurrentCurrency);
+
         // Scroll animations
         const observerOptions = {
             threshold: 0.1,
