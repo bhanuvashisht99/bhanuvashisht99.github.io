@@ -1100,12 +1100,12 @@
             yearlyLabel.textContent = `Yearly (${sessionsPerWeek * 52} sessions)`;
         }
 
-        const ACTIVE_BG = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        const ACTIVE_BG = 'var(--gradient-primary)';
         const ACTIVE_COLOR = 'white';
-        const ACTIVE_BORDER = '#667eea';
+        const ACTIVE_BORDER = 'var(--color-primary)';
         const INACTIVE_BG = 'white';
-        const INACTIVE_COLOR = '#566573';
-        const INACTIVE_BORDER = 'rgba(102, 126, 234, 0.2)';
+        const INACTIVE_COLOR = 'var(--color-text-secondary)';
+        const INACTIVE_BORDER = 'rgba(44, 62, 80, 0.2)';
 
         function setActive(group, activeBtn) {
             group.forEach(b => {
@@ -1166,9 +1166,9 @@
         // Initialize pricing display and active button styles
         updatePricing(currentSessions, currentCurrency);
         document.querySelectorAll('.currency-btn.active, .frequency-btn.active').forEach(btn => {
-            btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            btn.style.background = 'var(--gradient-primary)';
             btn.style.color = 'white';
-            btn.style.borderColor = '#667eea';
+            btn.style.borderColor = 'var(--color-primary)';
         });
 
         // Scroll animations
