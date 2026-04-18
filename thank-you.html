@@ -136,11 +136,11 @@
 </head>
 <body>
     <div class="thank-you-container">
-        <div class="success-icon">✓</div>
-        <h1>Thank You!</h1>
-        <p>Your payment was successful and your guide is ready.</p>
+        <div class="success-icon" id="statusIcon">✓</div>
+        <h1 id="statusTitle">Thank You!</h1>
+        <p id="statusMessage">Your payment was successful and your guide is ready.</p>
 
-        <div class="info-box">
+        <div class="info-box" id="emailBox">
             <h3>📧 Check Your Email</h3>
             <ul>
                 <li>We've sent a download link to your email address</li>
@@ -167,5 +167,53 @@
             <a href="https://wa.me/918448222454">Contact me on WhatsApp</a>
         </p>
     </div>
+
+    <script>
+        (async function() {
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session_id');
+            const product = params.get('product');
+
+            if (!sessionId) return;
+
+            const icon = document.getElementById('statusIcon');
+            const title = document.getElementById('statusTitle');
+            const message = document.getElementById('statusMessage');
+            const emailBox = document.getElementById('emailBox');
+
+            icon.textContent = '⏳';
+            icon.style.background = '#667eea';
+            title.textContent = 'Processing...';
+            message.textContent = 'Sending your download link, please wait a moment.';
+            emailBox.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/verify-stripe-session.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId, product: product })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    icon.textContent = '✓';
+                    icon.style.background = '#10b981';
+                    title.textContent = 'Thank You!';
+                    message.textContent = 'Your payment was successful and your guide is ready.';
+                    emailBox.style.display = 'block';
+                } else {
+                    icon.textContent = '!';
+                    icon.style.background = '#ef4444';
+                    title.textContent = 'Payment Received';
+                    message.textContent = 'Your payment was processed but we had trouble sending the email. Please contact bhanuvashisht99@gmail.com and we\'ll send your guide right away.';
+                }
+            } catch (error) {
+                icon.textContent = '!';
+                icon.style.background = '#ef4444';
+                title.textContent = 'Payment Received';
+                message.textContent = 'Your payment was processed. Please contact bhanuvashisht99@gmail.com with your order details to receive your download link.';
+            }
+        })();
+    </script>
 </body>
 </html>
