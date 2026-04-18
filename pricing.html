@@ -1090,11 +1090,30 @@
             yearlyLabel.textContent = `Yearly (${sessionsPerWeek * 52} sessions)`;
         }
 
+        const ACTIVE_BG = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        const ACTIVE_COLOR = 'white';
+        const ACTIVE_BORDER = '#667eea';
+        const INACTIVE_BG = 'white';
+        const INACTIVE_COLOR = '#566573';
+        const INACTIVE_BORDER = 'rgba(102, 126, 234, 0.2)';
+
+        function setActive(group, activeBtn) {
+            group.forEach(b => {
+                b.classList.remove('active');
+                b.style.background = INACTIVE_BG;
+                b.style.color = INACTIVE_COLOR;
+                b.style.borderColor = INACTIVE_BORDER;
+            });
+            activeBtn.classList.add('active');
+            activeBtn.style.background = ACTIVE_BG;
+            activeBtn.style.color = ACTIVE_COLOR;
+            activeBtn.style.borderColor = ACTIVE_BORDER;
+        }
+
         // Currency toggle
         currencyBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                currencyBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                setActive(currencyBtns, btn);
                 currentCurrency = btn.dataset.currency;
                 updatePricing(currentSessions, currentCurrency);
                 document.getElementById('consultPrice').textContent = formatPrice(consultPrices[currentCurrency], currentCurrency);
@@ -1104,8 +1123,7 @@
         // Frequency selector
         frequencyBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                frequencyBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                setActive(frequencyBtns, btn);
                 currentSessions = parseInt(btn.dataset.sessions);
                 updatePricing(currentSessions, currentCurrency);
             });
@@ -1135,8 +1153,13 @@
             consultToggleBtn.style.color = 'var(--dark-60)';
         });
 
-        // Initialize
+        // Initialize pricing display and active button styles
         updatePricing(currentSessions, currentCurrency);
+        document.querySelectorAll('.currency-btn.active, .frequency-btn.active').forEach(btn => {
+            btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#667eea';
+        });
 
         // Scroll animations
         const observerOptions = {
