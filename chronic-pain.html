@@ -456,8 +456,8 @@
         }
 
         .method-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -685,12 +685,7 @@
             }
 
             .method-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .method-card {
-                flex: 0 0 calc(50% - 1rem);
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-container {
@@ -725,8 +720,8 @@
                 font-size: 4rem;
             }
 
-            .method-card {
-                flex: 0 0 calc(33.333% - 1.33rem);
+            .method-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
