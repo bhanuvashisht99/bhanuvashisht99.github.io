@@ -1152,7 +1152,7 @@
             });
         }
 
-        // Razorpay Payment Integration
+        // Payment Integration (Razorpay for all currencies)
         document.getElementById('buyNowBtn').addEventListener('click', async function() {
             const selectedPrice = pricingData[selectedOption][selectedCurrency];
             const currencyCode = selectedCurrency;
@@ -1161,33 +1161,6 @@
             const customerEmail = prompt('Please enter your email address to receive the download link:');
             if (!customerEmail || !customerEmail.includes('@')) {
                 alert('Please enter a valid email address.');
-                return;
-            }
-
-            // Route INR to Razorpay, all other currencies to Stripe
-            if (currencyCode !== 'INR') {
-                try {
-                    const sessionResponse = await fetch('/api/create-stripe-session.js', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            amount: amountInSmallestUnit,
-                            currency: currencyCode,
-                            customerEmail: customerEmail,
-                            productOption: selectedOption,
-                            product: 'lower-back-pain-guide'
-                        })
-                    });
-                    const sessionData = await sessionResponse.json();
-                    if (!sessionData.success) {
-                        alert('Failed to initiate checkout. Please try again.');
-                        return;
-                    }
-                    window.location.href = sessionData.url;
-                } catch (error) {
-                    console.error('Stripe checkout error:', error);
-                    alert('An error occurred. Please try again or contact support.');
-                }
                 return;
             }
 
