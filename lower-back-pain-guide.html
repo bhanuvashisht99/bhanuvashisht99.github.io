@@ -1218,7 +1218,7 @@
                 };
 
                 const options = {
-                    key: 'rzp_live_S0s7ouWWnDinu9',
+                    key: 'rzp_live_Siz7n8Q7HMaQBj',
                     amount: orderData.amount,
                     currency: orderData.currency,
                     order_id: orderData.orderId,
@@ -1234,7 +1234,8 @@
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_order_id: response.razorpay_order_id,
                                     razorpay_signature: response.razorpay_signature,
-                                    customer_email: customerEmail
+                                    customer_email: customerEmail,
+                                    product: 'lower-back-pain-guide'
                                 })
                             });
                             const verifyData = await verifyResponse.json();
