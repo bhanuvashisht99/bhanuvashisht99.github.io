@@ -815,6 +815,7 @@
                 <li><a href="/calisthenics.html">Calisthenics</a></li>
                 <li><a href="/testimonials.html">Success Stories</a></li>
                 <li><a href="/pricing.html">Pricing</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
                 <li><a href="/about.html">About</a></li>
             </ul>
             <a href="https://wa.me/918448222454" class="nav-cta">Get Started</a>
@@ -834,6 +835,7 @@
             <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
             <li><a href="testimonials.html">Success Stories</a></li>
             <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="faq.html">FAQ</a></li>
             <li><a href="about.html">About</a></li>
         </ul>
         <a href="https://wa.me/918448222454" class="mobile-cta">Get Started</a>
@@ -987,6 +989,77 @@
         </div>
     </section>
 
+    <!-- Topic FAQ: Calisthenics -->
+    <style>
+        .topic-faq-list { display: flex; flex-direction: column; gap: 1rem; max-width: 820px; margin: 0 auto; }
+        .topic-faq-item { background: white; border: 1px solid rgba(44, 62, 80, 0.12); border-radius: 16px; overflow: hidden; transition: 0.3s ease; }
+        .topic-faq-item[open] { border-color: var(--purple-primary); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07); }
+        .topic-faq-item summary { list-style: none; cursor: pointer; padding: 1.25rem 3rem 1.25rem 1.5rem; font-size: 1.05rem; font-weight: 700; color: var(--color-text-primary); position: relative; line-height: 1.45; transition: color 0.2s; }
+        .topic-faq-item summary::-webkit-details-marker { display: none; }
+        .topic-faq-item summary:hover { color: var(--purple-primary); }
+        .topic-faq-item summary::after { content: ''; position: absolute; right: 1.5rem; top: 1.55rem; width: 12px; height: 12px; border-right: 2.5px solid var(--color-accent-dark); border-bottom: 2.5px solid var(--color-accent-dark); transform: rotate(45deg); transition: transform 0.3s ease; }
+        .topic-faq-item[open] summary::after { transform: rotate(-135deg); top: 1.8rem; }
+        .topic-faq-answer { padding: 0 1.5rem 1.5rem; color: var(--color-text-secondary); font-size: 1rem; line-height: 1.7; }
+        .topic-faq-answer p { margin-bottom: 0.75rem; }
+        .topic-faq-answer p:last-child { margin-bottom: 0; }
+        .topic-faq-more { text-align: center; margin-top: 2rem; font-size: 0.95rem; color: var(--color-text-secondary); }
+        .topic-faq-more a { color: var(--purple-primary); font-weight: 700; text-decoration: none; }
+        .topic-faq-more a:hover { text-decoration: underline; }
+    </style>
+    <section class="section" style="background: white;">
+        <div class="container" style="max-width: 880px;">
+            <div class="section-header">
+                <span class="section-tag">Common Questions</span>
+                <h2 class="section-title">Calisthenics FAQ</h2>
+                <p class="section-subtitle">Questions every beginner — and every aspiring planche athlete — eventually asks.</p>
+            </div>
+            <div class="topic-faq-list">
+                <details class="topic-faq-item">
+                    <summary>What is calisthenics, and is it better than weight training?</summary>
+                    <div class="topic-faq-answer">
+                        <p>Calisthenics is strength training using your own bodyweight—push-ups, pull-ups, dips, and progressions toward advanced skills like the handstand, planche, and front lever. It isn't inherently better or worse than weights; it's different.</p>
+                        <p>Calisthenics builds exceptional relative strength, body control, and joint health, needs almost no equipment, and can be done anywhere. For most people who want to be strong, mobile, and capable, it's an outstanding foundation.</p>
+                    </div>
+                </details>
+                <details class="topic-faq-item">
+                    <summary>Can a complete beginner start calisthenics?</summary>
+                    <div class="topic-faq-answer">
+                        <p>Absolutely. Every advanced skill breaks down into accessible progressions, so you start exactly where you are. Can't do a single pull-up yet? There are clear stepping stones that build you up to it.</p>
+                        <p>The key is starting with the right regression and progressing patiently—which is where coaching prevents the frustration and injuries that come from jumping ahead.</p>
+                    </div>
+                </details>
+                <details class="topic-faq-item">
+                    <summary>How long does it take to learn a handstand?</summary>
+                    <div class="topic-faq-answer">
+                        <p>For most people training consistently with proper coaching, a solid wall handstand comes within a few weeks, and a freestanding hold typically takes a few months of regular practice.</p>
+                        <p>The handstand is as much a skill as a strength feat—short daily practice and precise technique matter more than brute effort. There's a free <a href="handstand-guide.html">handstand guide</a> if you'd like to start now.</p>
+                    </div>
+                </details>
+                <details class="topic-faq-item">
+                    <summary>Do I need any equipment to start calisthenics?</summary>
+                    <div class="topic-faq-answer">
+                        <p>Very little. A floor and a sturdy bar to hang from covers the vast majority of training. A pull-up bar, and eventually parallettes or rings, expand what you can do, but you can make real progress with bodyweight alone.</p>
+                        <p>That's exactly why calisthenics is ideal for training at home or while traveling.</p>
+                    </div>
+                </details>
+            </div>
+            <p class="topic-faq-more">Read more questions on the <a href="faq.html">full FAQ page</a> →</p>
+        </div>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is calisthenics, and is it better than weight training?", "acceptedAnswer": { "@type": "Answer", "text": "Calisthenics is strength training using your own bodyweight: push-ups, pull-ups, dips, and progressions toward advanced skills like the handstand, planche, and front lever. It is not inherently better or worse than weights, just different. Calisthenics builds exceptional relative strength, body control, and joint health, needs almost no equipment, and can be done anywhere. For most people who want to be strong, mobile, and capable, it is an outstanding foundation." } },
+        { "@type": "Question", "name": "Can a complete beginner start calisthenics?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Every advanced skill breaks down into accessible progressions, so you start exactly where you are. If you cannot do a single pull-up yet, there are clear stepping stones that build you up to it. The key is starting with the right regression and progressing patiently, which is where coaching prevents the frustration and injuries that come from jumping ahead." } },
+        { "@type": "Question", "name": "How long does it take to learn a handstand?", "acceptedAnswer": { "@type": "Answer", "text": "For most people training consistently with proper coaching, a solid wall handstand comes within a few weeks, and a freestanding hold typically takes a few months of regular practice. The handstand is as much a skill as a strength feat, so short daily practice and precise technique matter more than brute effort." } },
+        { "@type": "Question", "name": "Do I need any equipment to start calisthenics?", "acceptedAnswer": { "@type": "Answer", "text": "Very little. A floor and a sturdy bar to hang from covers the vast majority of training. A pull-up bar, and eventually parallettes or rings, expand what you can do, but you can make real progress with bodyweight alone. That is exactly why calisthenics is ideal for training at home or while traveling." } }
+      ]
+    }
+    </script>
+
     <!-- CTA Section -->
     <section class="section cta-section">
         <div class="container">
@@ -1015,6 +1088,7 @@
                         <li><a href="calisthenics.html">Calisthenics Mastery</a></li>
                         <li><a href="testimonials.html">Success Stories</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
