@@ -1666,6 +1666,7 @@
             <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;" class="fade-in">
                 <button class="currency-toggle-btn active" data-currency="USD" style="padding: 0.75rem 1.5rem; background: var(--color-bg-dark); border: 2px solid var(--purple-primary); border-radius: 50px; color: var(--white); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">USD ($)</button>
                 <button class="currency-toggle-btn" data-currency="EUR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">EUR (€)</button>
+                <button class="currency-toggle-btn" data-currency="GBP" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">GBP (£)</button>
                 <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
             </div>
 
@@ -1888,12 +1889,14 @@
         const homePrices = {
             USD: 85,
             EUR: 75,
+            GBP: 65,
             INR: 7500
         };
 
         const homeConsultPrices = {
             USD: 120,
             EUR: 105,
+            GBP: 90,
             INR: 10000
         };
 
@@ -1908,6 +1911,9 @@
             } else if (currency === 'EUR') {
                 symbol = '€';
                 locale = 'de-DE';
+            } else if (currency === 'GBP') {
+                symbol = '£';
+                locale = 'en-GB';
             } else {
                 symbol = '₹';
                 locale = 'en-IN';

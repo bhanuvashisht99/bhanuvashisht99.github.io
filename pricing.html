@@ -860,6 +860,7 @@
             <div class="currency-toggle fade-in" id="currencyToggle">
                 <button class="currency-btn" data-currency="USD">USD ($)</button>
                 <button class="currency-btn" data-currency="EUR">EUR (€)</button>
+                <button class="currency-btn" data-currency="GBP">GBP (£)</button>
                 <button class="currency-btn active" data-currency="INR">INR (₹)</button>
                 <button class="currency-btn" data-currency="AED">AED (د.إ)</button>
             </div>
@@ -1144,6 +1145,7 @@
         const prices = {
             USD: 85,
             EUR: 75,
+            GBP: 65,
             INR: 7500,
             AED: 320
         };
@@ -1151,6 +1153,7 @@
         const consultPrices = {
             USD: 120,
             EUR: 105,
+            GBP: 90,
             INR: 10000,
             AED: 440
         };
@@ -1166,6 +1169,9 @@
             } else if (currency === 'EUR') {
                 symbol = '€';
                 locale = 'de-DE';
+            } else if (currency === 'GBP') {
+                symbol = '£';
+                locale = 'en-GB';
             } else if (currency === 'INR') {
                 symbol = '₹';
                 locale = 'en-IN';
