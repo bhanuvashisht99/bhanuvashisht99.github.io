@@ -103,13 +103,13 @@ async function sendDownloadEmail(email, downloadLink, expiryDate, productType) {
       subject: 'Your Lower Back Pain Guide - Download Link',
       title: 'Your Lower Back Pain Guide is Ready',
       description: 'Thank you for investing in your health and recovery. Your PDF guide is ready to download.',
-      helpText: 'If you want 1-on-1 coaching to address your specific situation, book a personal training session for $75 USD / €65 EUR / ₹6,750 INR.'
+      helpText: 'If you want 1-on-1 coaching to address your specific situation, book a personal training session for $85 USD / €75 EUR / ₹7,500 INR.'
     },
     'handstand-guide': {
       subject: 'Your Handstand Guide - Download Link',
       title: 'Your Handstand Guide is Ready',
       description: 'Thank you for your purchase! Your step-by-step handstand guide is ready to download.',
-      helpText: 'If you want 1-on-1 coaching to review your form and accelerate your progress, book a training session for $75 USD / €65 EUR / ₹6,750 INR.'
+      helpText: 'If you want 1-on-1 coaching to review your form and accelerate your progress, book a training session for $85 USD / €75 EUR / ₹7,500 INR.'
     }
   };
 
