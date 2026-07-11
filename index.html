@@ -1668,6 +1668,7 @@
                 <button class="currency-toggle-btn" data-currency="EUR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">EUR (€)</button>
                 <button class="currency-toggle-btn" data-currency="GBP" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">GBP (£)</button>
                 <button class="currency-toggle-btn" data-currency="INR" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">INR (₹)</button>
+                <button class="currency-toggle-btn" data-currency="AED" style="padding: 0.75rem 1.5rem; background: var(--white); border: 2px solid rgba(44, 62, 80, 0.15); border-radius: 50px; color: var(--dark-60); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">AED (د.إ)</button>
             </div>
 
             <div style="max-width: 520px; margin: 0 auto;">
@@ -1890,14 +1891,16 @@
             USD: 85,
             EUR: 75,
             GBP: 65,
-            INR: 7500
+            INR: 7500,
+            AED: 320
         };
 
         const homeConsultPrices = {
             USD: 120,
             EUR: 105,
             GBP: 90,
-            INR: 10000
+            INR: 10000,
+            AED: 440
         };
 
         let homeCurrentCurrency = 'USD';
@@ -1914,6 +1917,9 @@
             } else if (currency === 'GBP') {
                 symbol = '£';
                 locale = 'en-GB';
+            } else if (currency === 'AED') {
+                symbol = 'د.إ';
+                locale = 'ar-AE';
             } else {
                 symbol = '₹';
                 locale = 'en-IN';
