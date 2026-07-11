@@ -1,0 +1,6 @@
+# Never commit secrets or creative assets
+.env
+*.jpg
+*.jpeg
+*.png
+*.mp4
