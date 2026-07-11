@@ -1221,6 +1221,25 @@
             activeBtn.style.borderColor = ACTIVE_BORDER;
         }
 
+        // Auto-detect visitor's currency from timezone (with language fallback).
+        // Returns one of the 5 supported currencies; defaults to USD.
+        function detectCurrency() {
+            try {
+                const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                if (/Kolkata|Calcutta/i.test(tz)) return 'INR';
+                if (/Dubai|Abu_Dhabi|Muscat/i.test(tz)) return 'AED';
+                if (['Europe/London', 'Europe/Belfast', 'Europe/Isle_of_Man', 'Europe/Guernsey', 'Europe/Jersey'].includes(tz)) return 'GBP';
+                if (tz.indexOf('Europe/') === 0) return 'EUR';
+                if (tz.indexOf('America/') === 0) return 'USD';
+            } catch (e) { /* fall through to language */ }
+            const lang = (navigator.language || '').toLowerCase();
+            if (lang === 'en-gb') return 'GBP';
+            if (lang === 'hi' || lang.indexOf('-in') > -1) return 'INR';
+            if (lang.indexOf('-ae') > -1 || lang === 'ar') return 'AED';
+            if (/^(de|fr|es|it|nl|pt|el|fi|sv|da|pl|cs|hu|ro|sk)/.test(lang) || /^en-(ie|mt)/.test(lang)) return 'EUR';
+            return 'USD';
+        }
+
         // Currency toggle
         currencyBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1264,9 +1283,18 @@
             consultToggleBtn.style.color = 'var(--dark-60)';
         });
 
-        // Initialize pricing display and active button styles
+        // Auto-select currency by visitor region on load (still overridable by clicking)
+        const detectedCurrency = detectCurrency();
+        const detectedBtn = Array.from(currencyBtns).find(b => b.dataset.currency === detectedCurrency);
+        if (detectedBtn) {
+            currentCurrency = detectedCurrency;
+            setActive(currencyBtns, detectedBtn);
+        }
+
+        // Initialize pricing display and frequency active button styles
         updatePricing(currentSessions, currentCurrency);
-        document.querySelectorAll('.currency-btn.active, .frequency-btn.active').forEach(btn => {
+        document.getElementById('consultPrice').textContent = formatPrice(consultPrices[currentCurrency], currentCurrency);
+        document.querySelectorAll('.frequency-btn.active').forEach(btn => {
             btn.style.background = 'var(--gradient-primary)';
             btn.style.color = 'white';
             btn.style.borderColor = 'var(--color-primary)';
