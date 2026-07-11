@@ -115,27 +115,35 @@ async function main() {
     objective: 'OUTCOME_ENGAGEMENT',
     status: 'PAUSED',
     special_ad_categories: [],
+    is_adset_budget_sharing_enabled: false, // required when not using campaign budget
   });
   console.log(`  ✓ campaign ${campaign.id}\n`);
 
-  // 3. Ad set — optimise for WhatsApp conversations
+  // 3. Ad set — Instagram DM conversations.
+  // NOTE: In Europe/UK, Meta disallows the CONVERSATIONS goal for click-to-WhatsApp
+  // ads, but ALLOWS it for a single Instagram-DM destination. So we use
+  // destination_type INSTAGRAM_DIRECT + CONVERSATIONS.
   console.log('→ Creating ad set…');
   const adset = await graph(`act_${AD_ACCOUNT}/adsets`, {
-    name: 'London 32-55 – BackPain',
+    name: 'London W 32-55 – BackPain (IG)',
     campaign_id: campaign.id,
     status: 'PAUSED',
     billing_event: 'IMPRESSIONS',
     optimization_goal: 'CONVERSATIONS',
-    destination_type: 'WHATSAPP',
+    bid_strategy: 'LOWEST_COST_WITHOUT_CAP', // automatic "highest volume" — no manual bid needed
+    destination_type: 'INSTAGRAM_DIRECT',
     daily_budget: Math.round(DAILY_BUDGET_INR * 100), // INR → paise
     promoted_object: { page_id: PAGE_ID },
     targeting: {
+      // No location_types: Europe removed the living-in/traveling/recently-in
+      // qualifiers; passing them fails publish (#1870194).
       geo_locations: {
-        location_types: ['home'],
         cities: [{ key: london.key, radius: 40, distance_unit: 'kilometer' }],
       },
       age_min: 32,
       age_max: 55,
+      genders: [2], // 1 = men, 2 = women — women only
+      targeting_automation: { advantage_audience: 0 }, // required flag; off = respect strict targeting
     },
   });
   console.log(`  ✓ ad set ${adset.id}  (₹${DAILY_BUDGET_INR}/day)\n`);

@@ -49,3 +49,23 @@ review it in Ads Manager and switch it to Active yourself.
   re-run.
 - Click-to-WhatsApp is the fiddliest creative type; if a creative call fails,
   the error (with Meta's code) is printed so it can be adjusted.
+
+## Live campaign (launched 2026-07-11)
+
+Built via a mix of this script (campaign, ad set, image) + Ads Manager UI (the
+creatives — the Meta app is in Development mode, which blocks creative creation
+via the API with error #1885183).
+
+- **Ad account** `act_1059465472287050` (main, INR). Postpaid VISA *0094 **plus**
+  a prepaid **Funds** balance (~₹80k) that Meta spends FIRST, card only as backup.
+  The API `balance` field only shows postpaid owed amount, NOT the Funds wallet.
+- **Campaign** `120252160505480057` — "London – Pain & Strength – Instagram DM"
+- **Ad set** `120252160552820057` — Instagram DM + Max Conversations, women 32–55,
+  London +40km, no interests (advantage_audience off), ₹2,500/day (ABO, shared
+  across both ads)
+- **Ads:** two hooks — strength+pain+posture combined, and pure-pain
+
+Gotchas: Europe blocks Max Conversations for WhatsApp (use Instagram DM single
+destination); Europe removed location sub-types (omit `location_types`); campaign
+needs `is_adset_budget_sharing_enabled` and the ad set needs an explicit
+`bid_strategy`. Graph API Explorer tokens expire in ~1–2h.
