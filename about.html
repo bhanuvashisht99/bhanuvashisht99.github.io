@@ -32,6 +32,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Bhanu Vashisht | Online Personal Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://youdeservewell.com/about.html">
     <meta name="description" content="Learn about Bhanu Vashisht, an online personal trainer with 8+ years of experience in chronic pain recovery and calisthenics mastery.">
     <meta property="og:title" content="About - Bhanu Vashisht">
@@ -69,25 +72,25 @@
         /* ZEN BIOMECHANICS - Change colors here to update entire site! */
         :root {
             /* PRIMARY COLORS */
-            --color-primary: #2C3E50;
-            --color-primary-dark: #1C2833;
-            --color-primary-light: #34495E;
+            --color-primary: #16181A;
+            --color-primary-dark: #0E0F11;
+            --color-primary-light: #2C3136;
 
             /* ACCENT COLORS */
-            --color-accent: #768D87;
-            --color-accent-light: #A8BFB8;
-            --color-accent-dark: #5A6F6A;
+            --color-accent: #3A3F44;
+            --color-accent-light: #6B7378;
+            --color-accent-dark: #24282B;
 
             /* BACKGROUNDS */
-            --color-bg-dark: #121212;
+            --color-bg-dark: #16181A;
             --color-bg-light: #ECF0F1;
             --color-bg-card: #FFFFFF;
 
             /* TEXT */
-            --color-text-primary: #121212;
-            --color-text-secondary: #566573;
+            --color-text-primary: #16181A;
+            --color-text-secondary: #4C5257;
             --color-text-light: #FFFFFF;
-            --color-text-muted: #95A5A6;
+            --color-text-muted: #8B9095;
 
             /* GRADIENTS */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -431,7 +434,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #A8BFB8 0%, #D5E1DD 50%, #ECF0F1 100%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F7F9FA 0%, #ECF0F1 100%);
             padding: 8rem 2rem 6rem;
             text-align: center;
             position: relative;
@@ -446,7 +449,7 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(120, 124, 128, 0.10) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
             animation: pulse 8s ease-in-out infinite;
         }
@@ -870,6 +873,23 @@
         .fade-in:nth-child(2) { animation-delay: 0.1s; }
         .fade-in:nth-child(3) { animation-delay: 0.2s; }
         .fade-in:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+    <style>
+      h1, h2,
+      .hero h1, .section-title, .final-cta h2 {
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      h3, .footer-section h3 {
+        font-family: 'Inter', -apple-system, sans-serif;
+      }
+      /* landing-page heroes use .btn-white on what is now a light cloud hero -> make it ink */
+      .hero .btn-white {
+        background: var(--color-primary);
+        color: var(--color-text-light);
+        border-color: var(--color-primary);
+      }
     </style>
 </head>
 <body>

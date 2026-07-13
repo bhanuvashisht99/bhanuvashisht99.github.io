@@ -51,7 +51,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Razorpay Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -81,25 +81,25 @@
            ============================================ */
         :root {
             /* Primary Brand Color (Main headers, navigation, primary elements) */
-            --color-primary: #2C3E50;           /* Slate Blue-Gray */
-            --color-primary-dark: #1C2833;      /* Darker slate for depth */
-            --color-primary-light: #34495E;     /* Lighter slate for hover */
+            --color-primary: #16181A;           /* Slate Blue-Gray */
+            --color-primary-dark: #0E0F11;      /* Darker slate for depth */
+            --color-primary-light: #2C3136;     /* Lighter slate for hover */
 
             /* Secondary/Accent Color (CTAs, highlights, accents) */
-            --color-accent: #768D87;            /* Sage/Eucalyptus */
-            --color-accent-light: #A8BFB8;      /* Light sage for hover */
-            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
+            --color-accent: #3A3F44;            /* Sage/Eucalyptus */
+            --color-accent-light: #6B7378;      /* Light sage for hover */
+            --color-accent-dark: #24282B;       /* Dark sage for active */
 
             /* Background Colors */
-            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-dark: #16181A;           /* Ink - for hero sections */
             --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
             --color-bg-card: #FFFFFF;           /* Pure white for cards */
 
             /* Text Colors */
-            --color-text-primary: #121212;      /* Ink - main text */
-            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-primary: #16181A;      /* Ink - main text */
+            --color-text-secondary: #4C5257;    /* Muted slate - secondary text */
             --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
-            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
+            --color-text-muted: #8B9095;        /* Muted gray - subtle text */
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -633,8 +633,8 @@
         }
 
         .btn-primary {
-            background: var(--white);
-            color: var(--purple-primary);
+            background: var(--color-primary);
+            color: var(--color-text-light);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
@@ -841,6 +841,23 @@
                 height: 30px;
             }
         }
+    </style>
+    <style>
+      h1, h2,
+      .hero h1, .section-title, .final-cta h2 {
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      h3, .footer-section h3 {
+        font-family: 'Inter', -apple-system, sans-serif;
+      }
+      /* landing-page heroes use .btn-white on what is now a light cloud hero -> make it ink */
+      .hero .btn-white {
+        background: var(--color-primary);
+        color: var(--color-text-light);
+        border-color: var(--color-primary);
+      }
     </style>
 </head>
 <body>

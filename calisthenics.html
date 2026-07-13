@@ -55,7 +55,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -82,25 +82,25 @@
            ============================================ */
         :root {
             /* Primary Brand Color (Main headers, navigation, primary elements) */
-            --color-primary: #2C3E50;           /* Slate Blue-Gray */
-            --color-primary-dark: #1C2833;      /* Darker slate for depth */
-            --color-primary-light: #34495E;     /* Lighter slate for hover */
+            --color-primary: #16181A;           /* Slate Blue-Gray */
+            --color-primary-dark: #0E0F11;      /* Darker slate for depth */
+            --color-primary-light: #2C3136;     /* Lighter slate for hover */
 
             /* Secondary/Accent Color (CTAs, highlights, accents) */
-            --color-accent: #768D87;            /* Sage/Eucalyptus */
-            --color-accent-light: #A8BFB8;      /* Light sage for hover */
-            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
+            --color-accent: #3A3F44;            /* Sage/Eucalyptus */
+            --color-accent-light: #6B7378;      /* Light sage for hover */
+            --color-accent-dark: #24282B;       /* Dark sage for active */
 
             /* Background Colors */
-            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-dark: #16181A;           /* Ink - for hero sections */
             --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
             --color-bg-card: #FFFFFF;           /* Pure white for cards */
 
             /* Text Colors */
-            --color-text-primary: #121212;      /* Ink - main text */
-            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-primary: #16181A;      /* Ink - main text */
+            --color-text-secondary: #4C5257;    /* Muted slate - secondary text */
             --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
-            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
+            --color-text-muted: #8B9095;        /* Muted gray - subtle text */
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -314,7 +314,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #A8BFB8 0%, #D5E1DD 50%, #ECF0F1 100%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F7F9FA 0%, #ECF0F1 100%);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -328,7 +328,7 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(120, 124, 128, 0.10) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
@@ -830,6 +830,23 @@
       }
     }
     </script>
+    <style>
+      h1, h2,
+      .hero h1, .section-title, .final-cta h2 {
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      h3, .footer-section h3 {
+        font-family: 'Inter', -apple-system, sans-serif;
+      }
+      /* landing-page heroes use .btn-white on what is now a light cloud hero -> make it ink */
+      .hero .btn-white {
+        background: var(--color-primary);
+        color: var(--color-text-light);
+        border-color: var(--color-primary);
+      }
+    </style>
 </head>
 <body>
     <!-- Navigation -->

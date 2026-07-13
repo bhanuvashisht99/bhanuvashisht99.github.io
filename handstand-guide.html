@@ -50,7 +50,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Razorpay Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -79,25 +79,25 @@
            ============================================ */
         :root {
             /* Primary Brand Color */
-            --color-primary: #2C3E50;
-            --color-primary-dark: #1C2833;
-            --color-primary-light: #34495E;
+            --color-primary: #16181A;
+            --color-primary-dark: #0E0F11;
+            --color-primary-light: #2C3136;
 
             /* Secondary/Accent Color */
-            --color-accent: #768D87;
-            --color-accent-light: #A8BFB8;
-            --color-accent-dark: #5A6F6A;
+            --color-accent: #3A3F44;
+            --color-accent-light: #6B7378;
+            --color-accent-dark: #24282B;
 
             /* Background Colors */
-            --color-bg-dark: #121212;
+            --color-bg-dark: #16181A;
             --color-bg-light: #ECF0F1;
             --color-bg-card: #FFFFFF;
 
             /* Text Colors */
-            --color-text-primary: #121212;
-            --color-text-secondary: #566573;
+            --color-text-primary: #16181A;
+            --color-text-secondary: #4C5257;
             --color-text-light: #FFFFFF;
-            --color-text-muted: #95A5A6;
+            --color-text-muted: #8B9095;
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -603,8 +603,8 @@
         }
 
         .btn-primary {
-            background: var(--white);
-            color: var(--purple-primary);
+            background: var(--color-primary);
+            color: var(--color-text-light);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
@@ -811,6 +811,23 @@
                 height: 30px;
             }
         }
+    </style>
+    <style>
+      h1, h2,
+      .hero h1, .section-title, .final-cta h2 {
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      h3, .footer-section h3 {
+        font-family: 'Inter', -apple-system, sans-serif;
+      }
+      /* landing-page heroes use .btn-white on what is now a light cloud hero -> make it ink */
+      .hero .btn-white {
+        background: var(--color-primary);
+        color: var(--color-text-light);
+        border-color: var(--color-primary);
+      }
     </style>
 </head>
 <body>

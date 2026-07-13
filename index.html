@@ -74,7 +74,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -184,26 +184,26 @@
                ============================================ */
 
             /* Primary Brand Color (Main headers, navigation, primary elements) */
-            --color-primary: #2C3E50;           /* Slate Blue-Gray */
-            --color-primary-dark: #1C2833;      /* Darker slate for depth */
-            --color-primary-light: #34495E;     /* Lighter slate for hover */
+            --color-primary: #16181A;           /* Slate Blue-Gray */
+            --color-primary-dark: #0E0F11;      /* Darker slate for depth */
+            --color-primary-light: #2C3136;     /* Lighter slate for hover */
 
             /* Secondary/Accent Color (CTAs, highlights, accents) */
-            --color-accent: #768D87;            /* Sage/Eucalyptus */
-            --color-accent-light: #A8BFB8;      /* Light sage for hover */
-            --color-accent-dark: #5A6F6A;       /* Dark sage for active */
+            --color-accent: #3A3F44;            /* Sage/Eucalyptus */
+            --color-accent-light: #6B7378;      /* Light sage for hover */
+            --color-accent-dark: #24282B;       /* Dark sage for active */
 
             /* Background Colors */
-            --color-bg-dark: #121212;           /* Ink - for hero sections */
+            --color-bg-dark: #16181A;           /* Ink - for hero sections */
             --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
             --color-bg-card: #FFFFFF;           /* Pure white for cards */
-            --color-bg-secondary: #D5DBDB;      /* Subtle gray for variety */
+            --color-bg-secondary: #DDE1E3;      /* Subtle gray for variety */
 
             /* Text Colors */
-            --color-text-primary: #121212;      /* Ink - main text */
-            --color-text-secondary: #566573;    /* Muted slate - secondary text */
+            --color-text-primary: #16181A;      /* Ink - main text */
+            --color-text-secondary: #4C5257;    /* Muted slate - secondary text */
             --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
-            --color-text-muted: #95A5A6;        /* Muted gray - subtle text */
+            --color-text-muted: #8B9095;        /* Muted gray - subtle text */
 
             /* Utility Colors (these rarely need changing) */
             --color-success: #27AE60;           /* Green for success states */
@@ -579,7 +579,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #A8BFB8 0%, #D5E1DD 50%, #ECF0F1 100%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F7F9FA 0%, #ECF0F1 100%);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -593,7 +593,7 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(118, 141, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(120, 124, 128, 0.10) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
@@ -608,7 +608,14 @@
             text-align: center;
             position: relative;
             z-index: 1;
+            width: 100%;
             max-width: 900px;
+            min-width: 0;
+        }
+
+        .hero-content .hero-badge {
+            max-width: 100%;
+            white-space: normal;
         }
 
         .hero-badge {
@@ -652,12 +659,20 @@
             animation: fadeInUp 0.8s ease 0.4s both;
         }
 
+        .hero-media {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
         .hero-video {
-            margin: 2rem auto;
-            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 320px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.45);
+            border: 1px solid var(--color-bg-secondary);
             animation: fadeInUp 0.8s ease 0.6s both;
         }
 
@@ -693,8 +708,8 @@
         }
 
         .btn-primary {
-            background: var(--white);
-            color: var(--purple-primary);
+            background: var(--color-primary);
+            color: var(--color-text-light);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
@@ -1284,6 +1299,31 @@
                 padding: 120px 2rem 80px;
             }
 
+            .hero-content {
+                display: grid;
+                grid-template-columns: 1.05fr 0.82fr;
+                column-gap: clamp(2rem, 4vw, 4.5rem);
+                align-items: center;
+                text-align: left;
+                max-width: 1180px;
+            }
+
+            .hero-copy {
+                min-width: 0;
+            }
+
+            .hero-copy .hero-subtitle {
+                max-width: 46ch;
+            }
+
+            .hero-media {
+                margin-top: 0;
+            }
+
+            .hero-video {
+                max-width: 340px;
+            }
+
             .hero h1 {
                 font-size: 3.5rem;
             }
@@ -1294,7 +1334,7 @@
 
             .hero-ctas {
                 flex-direction: row;
-                justify-content: center;
+                justify-content: flex-start;
                 gap: 1.5rem;
             }
 
@@ -1388,6 +1428,50 @@
             }
         }
     </style>
+    <style>
+      h1, h2,
+      .hero h1, .section-title, .final-cta h2 {
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      h3, .footer-section h3 {
+        font-family: 'Inter', -apple-system, sans-serif;
+      }
+      /* landing-page heroes use .btn-white on what is now a light cloud hero -> make it ink */
+      .hero .btn-white {
+        background: var(--color-primary);
+        color: var(--color-text-light);
+        border-color: var(--color-primary);
+      }
+
+      /* ---- monochrome CTA fixes ---- */
+      .btn-orange, .btn-purple { background: var(--color-primary); color: var(--color-text-light); border: none; }
+      .btn-orange:hover, .btn-purple:hover { background: var(--color-primary-light); color: var(--color-text-light); }
+      section[style*="bg-dark"] .btn-orange, section[style*="bg-dark"] .btn-purple,
+      section[style*="gradient-primary"] .btn-orange, section[style*="gradient-primary"] .btn-purple {
+        background: var(--color-text-light); color: var(--color-primary);
+      }
+
+      /* ---- homepage flow: new connective beats ---- */
+      .proof-strip { background: var(--color-bg-dark); color: #fff; text-align: center; padding: clamp(2.5rem,5vw,4rem) 1.5rem; }
+      .proof-strip .stars { letter-spacing: 4px; opacity: .85; margin-bottom: 1rem; }
+      .proof-strip .q { font-family:'Lora',Georgia,serif; font-size: clamp(1.4rem,3.2vw,2.2rem); line-height:1.35; display:block; max-width: 22ch; margin: 0 auto; }
+      .proof-strip .who { margin-top: 1.25rem; font-size: .8rem; letter-spacing:.12em; text-transform:uppercase; color: var(--color-accent-light); }
+      .quote-card { max-width: 760px; margin: 0 auto; background: var(--color-bg-card); border:1px solid var(--color-accent-light); border-left: 3px solid var(--color-primary); border-radius: 16px; padding: clamp(1.75rem,4vw,2.75rem); }
+      .quote-card .q { font-family:'Lora',Georgia,serif; font-size: clamp(1.2rem,2.4vw,1.6rem); line-height:1.45; color: var(--color-text-primary); display:block; }
+      .quote-card .who { margin-top: 1.25rem; font-weight:600; color: var(--color-text-secondary); }
+      .steps-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; max-width: 980px; margin: 0 auto; }
+      .step { background: var(--color-bg-light); border-radius:16px; padding: 1.75rem; }
+      .step .n { font-family:'Lora',Georgia,serif; font-size: 2.25rem; color: var(--color-accent-light); line-height:1; }
+      .step h3 { margin:.6rem 0 .4rem; font-size:1.15rem; }
+      .step p { font-size:.95rem; color: var(--color-text-secondary); margin:0; }
+      .stat-lead { font-family:'Lora',Georgia,serif; font-weight:700; color:var(--color-primary); line-height:1; font-size: clamp(3rem,7vw,4.5rem); }
+      .skills-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:1.25rem; max-width:820px; margin: 0 auto; }
+      .skills-grid .sv { border-radius:14px; overflow:hidden; box-shadow: 0 16px 40px -20px rgba(0,0,0,.5); border:1px solid var(--color-accent-light); }
+      .skills-grid iframe { width:100%; aspect-ratio:9/16; border:0; display:block; }
+      @media (max-width: 640px){ .skills-grid { grid-template-columns: 1fr; max-width: 320px; } }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1460,69 +1544,43 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">🌍 Online Coaching — India • UAE • UK • US • Europe</div>
-            <h1>You Deserve to Move Without Pain</h1>
-            <p class="hero-subtitle" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;">For people who've tried everything — doctors, physio, rest, exercises — and are still hurting.</p>
-            <p class="hero-subtitle" style="font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--color-text-secondary);">Lower back pain, neck pain, shoulder issues. Let's find what's actually causing it — and fix it for good.</p>
-            <p class="hero-subtitle">You don't have to accept pain as part of getting older. Most clients move pain-free within 6–8 weeks using biomechanics-based coaching — not guesswork, not motivation, not more of the same.</p>
+            <div class="hero-copy">
+                <div class="hero-badge">🌍 Online Coaching — India • UAE • UK • US • Europe</div>
+                <h1>You Deserve to Move Without Pain</h1>
+                <p class="hero-subtitle" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;">For people who've tried everything — doctors, physio, rest, exercises — and are still hurting.</p>
+                <p class="hero-subtitle" style="font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--color-text-secondary);">Lower back pain, neck pain, shoulder issues. Let's find what's actually causing it — and fix it for good.</p>
+                <p class="hero-subtitle">You don't have to accept pain as part of getting older. Most clients move pain-free within 6–8 weeks using biomechanics-based coaching — not guesswork, not motivation, not more of the same.</p>
 
-            <div class="hero-video">
-                <iframe src="https://www.youtube.com/embed/EUdjKZNaUE4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <div class="hero-ctas">
-                <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27ve%20been%20struggling%20with%20chronic%20pain%20and%20have%20tried%20many%20things%20without%20lasting%20relief.%20I%27d%20like%20to%20discuss%20how%20you%20can%20help%20me." class="btn btn-primary">Tell Me About Your Pain →</a>
-                <a href="chronic-pain.html" class="btn btn-secondary">See a Real Recovery Story</a>
-            </div>
-
-            <div class="trust-bar">
-                <div class="trust-item">
-                    <span class="trust-number">50+</span>
-                    <span class="trust-label">People Pain-Free</span>
+                <div class="hero-ctas">
+                    <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27ve%20been%20struggling%20with%20chronic%20pain%20and%20have%20tried%20many%20things%20without%20lasting%20relief.%20I%27d%20like%20to%20discuss%20how%20you%20can%20help%20me." class="btn btn-primary">Tell Me About Your Pain →</a>
+                    <a href="chronic-pain.html" class="btn btn-secondary">See a Real Recovery Story</a>
                 </div>
-                <div class="trust-item">
-                    <span class="trust-number">8+</span>
-                    <span class="trust-label">Years Experience</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-number">6–8</span>
-                    <span class="trust-label">Weeks to Results</span>
+
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <span class="trust-number">50+</span>
+                        <span class="trust-label">People Pain-Free</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">8+</span>
+                        <span class="trust-label">Years Experience</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-number">6–8</span>
+                        <span class="trust-label">Weeks to Results</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Dual Path Section -->
-    <section class="section dual-path" id="paths">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Who This Is For</span>
-                <h2 class="section-title">You're in the Right Place</h2>
-                <p class="section-subtitle">Whether you're fighting chronic pain or want to get strong and move well as you age — this is where that changes.</p>
-            </div>
-            <div class="paths-grid">
-                <!-- Pain Recovery Path -->
-                <div class="path-card pain fade-in">
-                    <span class="path-icon">🩹</span>
-                    <h3>Fix Chronic Pain</h3>
-                    <p>Lower back, neck, shoulders. You've tried rest, physio, generic exercises — and the pain keeps coming back. We fix the root cause, not the symptom.</p>
-                    <a href="chronic-pain.html" class="btn btn-orange">See a Real Recovery Story →</a>
+            <div class="hero-media">
+                <div class="hero-video">
+                    <iframe src="https://www.youtube.com/embed/EUdjKZNaUE4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-
-                <!-- Strength Path -->
-                <div class="path-card strength fade-in">
-                    <span class="path-icon">💪</span>
-                    <h3>Get Stronger & Move Better</h3>
-                    <p>Build real, functional strength and mobility. Move well, feel capable, stay injury-free — for life, not just for the gym.</p>
-                    <a href="calisthenics.html" class="btn btn-purple">See the Approach →</a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Is This For You Section -->
-    <section class="section" style="background: var(--color-bg-dark); color: white;">
+<section class="section" style="background: var(--color-bg-dark); color: white;">
         <div class="container" style="max-width: 800px;">
             <div class="section-header fade-in">
                 <span class="section-tag" style="background: rgba(255,255,255,0.15); color: white;">Still Hurting After Trying Everything?</span>
@@ -1550,7 +1608,7 @@
                     <span style="font-size: 1rem; line-height: 1.6;">You're over 40 and being told that pain is just part of aging — that you have to learn to live with it</span>
                 </div>
             </div>
-            <div class="fade-in" style="text-align: center; padding: 2rem; background: rgba(255,107,53,0.15); border-radius: 16px; border: 1px solid rgba(255,107,53,0.3);">
+            <div class="fade-in" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255,0.15); border-radius: 16px; border: 1px solid rgba(255, 255, 255,0.3);">
                 <p style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">This is exactly who I work with.</p>
                 <p style="font-size: 1rem; color: rgba(255,255,255,0.85); margin: 0;">Pain is not a normal part of getting older. Stiffness, aching, and restricted movement are signals — not a life sentence. And they get better.</p>
             </div>
@@ -1560,62 +1618,32 @@
         </div>
     </section>
 
-    <!-- Digital Product Section -->
-    <section class="section" style="background: var(--gradient-primary); color: white;">
-        <div class="container">
+    <!-- Why It Works -->
+    <section class="section">
+        <div class="container" style="max-width: 860px; text-align: center;">
             <div class="section-header fade-in">
-                <span class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: white;">📖 Digital Guides</span>
-                <h2 class="section-title" style="color: white;">Not Ready for 1-on-1 Yet?</h2>
-                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.98);">Start with a PDF guide built on the same biomechanics principles — and understand your pain before our first session.</p>
+                <span class="section-tag">Why Nothing Else Worked</span>
+                <h2 class="section-title">Your pain usually isn&rsquo;t weak muscles or a bad scan.<br>It&rsquo;s how you move.</h2>
+                <p class="section-subtitle">Most lasting pain is a biomechanical pattern &mdash; tight, dehydrated fascia and movement habits built up over years. Correct the pattern at the root and the pain stops coming back. No guesswork, no managing it forever.</p>
             </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
-                <!-- Lower Back Pain Guide -->
-                <div class="fade-in" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;">
-                    <img src="images/pdf-cover.png" alt="Lower Back Pain Guide" style="width: 120px; height: auto; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); margin-bottom: 1.25rem;">
-                    <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">Lower Back Pain Guide</h3>
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">For people who have tried rest, exercises, and advice — yet lower back pain keeps returning. Learn the biomechanics behind persistent pain.</p>
-
-                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
-                        <div style="font-size: 1.5rem; font-weight: 900;">$25 / €21 / ₹2,299</div>
-                        <div style="font-size: 0.85rem; opacity: 0.9;">Starting price • Lifetime access</div>
-                    </div>
-
-                    <a href="lower-back-pain-guide.html" class="btn btn-primary" style="background: white; color: var(--color-primary); width: 100%;">Get Guide →</a>
-                </div>
-
-                <!-- Handstand Guide -->
-                <div class="fade-in" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;">
-                    <img src="images/handstand-cover.png" alt="Handstand Guide" style="width: 120px; height: auto; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); margin-bottom: 1.25rem;">
-                    <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">How Handstands Actually Work</h3>
-                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">A step-by-step guide to mastering handstands. A simple system anyone can understand. No tricks, no guesswork — just structure.</p>
-
-                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
-                        <div style="font-size: 1.5rem; font-weight: 900;">$25 / €21 / ₹2,299</div>
-                        <div style="font-size: 0.85rem; opacity: 0.9;">Starting price • Lifetime access</div>
-                    </div>
-
-                    <a href="handstand-guide.html" class="btn btn-primary" style="background: white; color: var(--color-primary); width: 100%;">Get Guide →</a>
-                </div>
+            <div class="fade-in" style="margin-top:1.5rem;">
+                <div class="stat-lead">6&ndash;8</div>
+                <div style="font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--color-text-secondary); margin-top:.5rem;">Weeks to move pain-free</div>
             </div>
-
-            <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; opacity: 0.8;" class="fade-in">
-                ✓ Instant digital delivery • No subscription • Built on biomechanics, not motivation
+            <div style="margin-top:2rem;" class="fade-in">
+                <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27d%20like%20to%20understand%20what%27s%20actually%20causing%20my%20pain." class="btn btn-orange">Find Out What&rsquo;s Causing Your Pain &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Testimonials -->
     <section class="section featured-testimonials">
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-tag">Real Recovery</span>
-                <h2 class="section-title">"I had lost all hope — then everything changed."</h2>
+                <h2 class="section-title">&quot;I had lost all hope &mdash; then everything changed.&quot;</h2>
                 <p class="section-subtitle">8 months of chronic back pain. Multiple doctors. No lasting relief. Pain-free in 6 weeks.</p>
             </div>
-
             <div class="testimonials-grid">
-                <!-- Chronic Pain Testimonial — Primary -->
                 <div class="testimonial-feature fade-in">
                     <div class="testimonial-video">
                         <iframe src="https://www.youtube.com/embed/duWjrrhTgL8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1629,11 +1657,87 @@
                             <div class="testimonial-name">Sanjhi Tailor</div>
                             <div class="testimonial-title">Chronic Lower Back Pain — Pain-Free in 6 Weeks</div>
                         </div>
-                        <a href="chronic-pain.html" style="display: inline-block; margin-top: 1rem; color: var(--orange-primary); font-weight: 700; text-decoration: none;">Read Sanjhi's Full Story →</a>
+                        <a href="chronic-pain.html" style="display: inline-block; margin-top: 1rem; color: var(--color-text-light); font-weight: 700; text-decoration: underline; text-underline-offset: 4px;">Read Sanjhi's Full Story →</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Strength Testimonial — Secondary -->
+    <!-- Micro-proof strip -->
+    <section class="section proof-strip">
+        <div class="container">
+            <div class="stars fade-in">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <span class="q fade-in">&ldquo;15 years of neck and back pain &mdash; and I started feeling better within the first few weeks.&rdquo;</span>
+            <div class="who fade-in">Namrata &middot; Chronic Pain Recovery</div>
+        </div>
+    </section>
+
+<section class="section dual-path" id="paths">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Who This Is For</span>
+                <h2 class="section-title">You're in the Right Place</h2>
+                <p class="section-subtitle">Whether you're fighting chronic pain or want to get strong and move well as you age — this is where that changes.</p>
+            </div>
+            <div class="paths-grid">
+                <!-- Pain Recovery Path -->
+                <div class="path-card pain fade-in">
+                    <span class="path-icon">🩹</span>
+                    <h3>Fix Chronic Pain</h3>
+                    <p>Lower back, neck, shoulders. You've tried rest, physio, generic exercises — and the pain keeps coming back. We fix the root cause, not the symptom.</p>
+                    <a href="chronic-pain.html" class="btn btn-orange">See a Real Recovery Story →</a>
+                </div>
+
+                <!-- Strength Path -->
+                <div class="path-card strength fade-in">
+                    <span class="path-icon">💪</span>
+                    <h3>Get Stronger & Move Better</h3>
+                    <p>Build real, functional strength and mobility. Move well, feel capable, stay injury-free — for life, not just for the gym.</p>
+                    <a href="calisthenics.html" class="btn btn-purple">See the Approach →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Short quote -->
+    <section class="section">
+        <div class="container">
+            <div class="quote-card fade-in">
+                <span class="q">&ldquo;In just 8 sessions, I no longer need to use my hands for support while climbing the stairs. I feel genuinely confident in my lower body and my balance again.&rdquo;</span>
+                <div class="who">Namrata&rsquo;s Mother &middot; Mobility &amp; Balance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" style="background: var(--color-bg-card);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">Three steps. No commitment to start.</h2>
+                <p class="section-subtitle">You message me, we figure out what&rsquo;s actually going on, and you get a plan built around your body &mdash; not a template.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step fade-in"><div class="n">1</div><h3>Message me on WhatsApp</h3><p>Tell me what you&rsquo;ve been dealing with. No pressure, no obligation &mdash; just a real conversation.</p></div>
+                <div class="step fade-in"><div class="n">2</div><h3>Movement assessment</h3><p>We find the biomechanical root of the pain &mdash; the pattern nobody looked at before.</p></div>
+                <div class="step fade-in"><div class="n">3</div><h3>Your personalised plan</h3><p>Targeted coaching that covers rehab, strength, mobility and balance &mdash; adjusted as you progress.</p></div>
+            </div>
+            <div style="text-align:center; margin-top:2.5rem;" class="fade-in">
+                <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27d%20like%20to%20get%20started.%20Here%27s%20what%20I%27ve%20been%20dealing%20with%3A" class="btn btn-orange">Start With a Message &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section featured-testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Strength &amp; Movement</span>
+                <h2 class="section-title">From struggling to <span class="testimonial-highlight">loving every session</span></h2>
+                <p class="section-subtitle">Not chronic pain &mdash; but stuck. Here is what changes when training finally fits your body.</p>
+            </div>
+            <div class="testimonials-grid">
                 <div class="testimonial-feature fade-in">
                     <div class="testimonial-video">
                         <iframe src="https://www.youtube.com/embed/ZCHbzeF_XxU" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1644,7 +1748,7 @@
                         <p>"Bhanu's approach is what truly sets him apart. It's not just about counting reps — it's about understanding your body and pushing your real limits."</p>
                         <div class="testimonial-author">
                             <div class="testimonial-name">Prakriti Syngal</div>
-                            <div class="testimonial-title">Strength & Movement Transformation</div>
+                            <div class="testimonial-title">Strength &amp; Movement Transformation</div>
                         </div>
                     </div>
                 </div>
@@ -1652,9 +1756,58 @@
         </div>
     </section>
 
+    <!-- Skills in motion -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">What Becomes Possible</span>
+                <h2 class="section-title">Skills in motion</h2>
+                <p class="section-subtitle">The same biomechanics that end pain also build real, controlled strength &mdash; at any age.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="sv fade-in"><iframe src="https://www.youtube.com/embed/uCd1py_QE7g" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <div class="sv fade-in"><iframe src="https://www.youtube.com/embed/ictQ-Nz6W9w" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <div class="sv fade-in"><iframe src="https://www.youtube.com/embed/iSB2CsjVBFY" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Pricing Preview -->
-    <section class="section pricing-preview" id="pricing">
+<section class="section testimonials-carousel">
+        <div class="container">
+            <h2 class="section-title fade-in" style="color: white; text-align: center; margin-bottom: 2rem;">What Clients Say</h2>
+            <div class="testimonials-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I'd struggled with lower back pain for eight months before working with Bhanu, despite consulting various doctors and physiotherapists. The relief the doctors offered was only temporary. Bhanu personally trained me, and the results in just 1.5 months have been nothing short of miraculous. I had lost all hope and thought I would be living with chronic back pain forever—but thanks to Bhanu's expertise, I've found relief and regained hope. In addition to improving my back pain, I've learned so much about muscles, fitness, and overall well-being from Bhanu. His knowledge of biomechanics and personalized approach made all the difference. Bhanu's coaching isn't just personal training—it's exceptional. His methodology, attention to detail, and the way he addresses root causes rather than just symptoms are unmatched."</p>
+                    <div class="testimonial-name">Sanjhi Tailor</div>
+                    <div class="testimonial-title">Chronic Pain Recovery</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"After trying everything from pilates to typical gym routines, working with Bhanu feels like a breath of fresh air. What used to be a struggle—gaining weight—has turned into something I genuinely enjoy. Bhanu's approach is what truly sets him apart. It's not just about counting reps or sets; it's about pushing limits—physically and mentally. It's rare to find a workout you look forward to every single day, but Bhanu's training has become just that for me."</p>
+                    <div class="testimonial-name">Prakriti Syngal</div>
+                    <div class="testimonial-title">Weight Gain Journey</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"It's been 2 months since I started training with Bhanu and my experience has been beyond amazing. I could learn handstand in matter of just a month. The journey to fitness has been very smooth and there's no looking back. Bhanu is very supportive and makes learning everything super easy and fun."</p>
+                    <div class="testimonial-name">Ananya Syngal</div>
+                    <div class="testimonial-title">Complete Beginner</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I've been working with Bhanu for almost a month now, and it has truly been a transformative experience. Bhanu is nothing short of incredible. The term 'impossible' doesn't exist here because Bhanu breaks down every exercise into the smallest of steps and explains the logic behind each movement. I honestly can't see myself going back to any other trainer. Bhanu has set a standard that's hard to match."</p>
+                    <div class="testimonial-name">Ayushi Syngal</div>
+                    <div class="testimonial-title">Calisthenics Training</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section pricing-preview" id="pricing">
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-tag">Simple, Transparent Pricing</span>
@@ -1751,44 +1904,51 @@
         </div>
     </section>
 
-    <!-- Text Testimonials Carousel -->
-    <section class="section testimonials-carousel">
+<section class="section" style="background: var(--gradient-primary); color: white;">
         <div class="container">
-            <h2 class="section-title fade-in" style="color: white; text-align: center; margin-bottom: 2rem;">What Clients Say</h2>
-            <div class="testimonials-track">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I'd struggled with lower back pain for eight months before working with Bhanu, despite consulting various doctors and physiotherapists. The relief the doctors offered was only temporary. Bhanu personally trained me, and the results in just 1.5 months have been nothing short of miraculous. I had lost all hope and thought I would be living with chronic back pain forever—but thanks to Bhanu's expertise, I've found relief and regained hope. In addition to improving my back pain, I've learned so much about muscles, fitness, and overall well-being from Bhanu. His knowledge of biomechanics and personalized approach made all the difference. Bhanu's coaching isn't just personal training—it's exceptional. His methodology, attention to detail, and the way he addresses root causes rather than just symptoms are unmatched."</p>
-                    <div class="testimonial-name">Sanjhi Tailor</div>
-                    <div class="testimonial-title">Chronic Pain Recovery</div>
+            <div class="section-header fade-in">
+                <span class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: white;">📖 Digital Guides</span>
+                <h2 class="section-title" style="color: white;">Not Ready for 1-on-1 Yet?</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.98);">Start with a PDF guide built on the same biomechanics principles — and understand your pain before our first session.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+                <!-- Lower Back Pain Guide -->
+                <div class="fade-in" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;">
+                    <img src="images/pdf-cover.png" alt="Lower Back Pain Guide" style="width: 120px; height: auto; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); margin-bottom: 1.25rem;">
+                    <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">Lower Back Pain Guide</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">For people who have tried rest, exercises, and advice — yet lower back pain keeps returning. Learn the biomechanics behind persistent pain.</p>
+
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <div style="font-size: 1.5rem; font-weight: 900;">$25 / €21 / ₹2,299</div>
+                        <div style="font-size: 0.85rem; opacity: 0.9;">Starting price • Lifetime access</div>
+                    </div>
+
+                    <a href="lower-back-pain-guide.html" class="btn btn-primary" style="background: white; color: var(--color-primary); width: 100%;">Get Guide →</a>
                 </div>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"After trying everything from pilates to typical gym routines, working with Bhanu feels like a breath of fresh air. What used to be a struggle—gaining weight—has turned into something I genuinely enjoy. Bhanu's approach is what truly sets him apart. It's not just about counting reps or sets; it's about pushing limits—physically and mentally. It's rare to find a workout you look forward to every single day, but Bhanu's training has become just that for me."</p>
-                    <div class="testimonial-name">Prakriti Syngal</div>
-                    <div class="testimonial-title">Weight Gain Journey</div>
-                </div>
+                <!-- Handstand Guide -->
+                <div class="fade-in" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;">
+                    <img src="images/handstand-cover.png" alt="Handstand Guide" style="width: 120px; height: auto; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); margin-bottom: 1.25rem;">
+                    <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;">How Handstands Actually Work</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">A step-by-step guide to mastering handstands. A simple system anyone can understand. No tricks, no guesswork — just structure.</p>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"It's been 2 months since I started training with Bhanu and my experience has been beyond amazing. I could learn handstand in matter of just a month. The journey to fitness has been very smooth and there's no looking back. Bhanu is very supportive and makes learning everything super easy and fun."</p>
-                    <div class="testimonial-name">Ananya Syngal</div>
-                    <div class="testimonial-title">Complete Beginner</div>
-                </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <div style="font-size: 1.5rem; font-weight: 900;">$25 / €21 / ₹2,299</div>
+                        <div style="font-size: 0.85rem; opacity: 0.9;">Starting price • Lifetime access</div>
+                    </div>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I've been working with Bhanu for almost a month now, and it has truly been a transformative experience. Bhanu is nothing short of incredible. The term 'impossible' doesn't exist here because Bhanu breaks down every exercise into the smallest of steps and explains the logic behind each movement. I honestly can't see myself going back to any other trainer. Bhanu has set a standard that's hard to match."</p>
-                    <div class="testimonial-name">Ayushi Syngal</div>
-                    <div class="testimonial-title">Calisthenics Training</div>
+                    <a href="handstand-guide.html" class="btn btn-primary" style="background: white; color: var(--color-primary); width: 100%;">Get Guide →</a>
                 </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; opacity: 0.8;" class="fade-in">
+                ✓ Instant digital delivery • No subscription • Built on biomechanics, not motivation
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="section final-cta">
+<section class="section final-cta">
         <div class="container fade-in">
             <h2>You Don't Have to Keep Living With Pain</h2>
             <p>Tell me what you've been dealing with. No pressure, no obligation — just a real conversation about what might actually help.</p>
