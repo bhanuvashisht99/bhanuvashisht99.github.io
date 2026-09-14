@@ -5,7 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "seed:foods": "node scripts/import-foods.mjs",
+    "seed:recipes": "node scripts/import-recipes.mjs"
   },
   "dependencies": {
     "razorpay": "^2.9.2",
@@ -13,6 +19,9 @@
     "stripe": "^17.0.0"
   },
   "devDependencies": {
-    "@vercel/node": "^3.0.7"
+    "@playwright/test": "^1.48.0",
+    "@vercel/node": "^3.0.7",
+    "@vitest/coverage-v8": "^2.1.4",
+    "vitest": "^2.1.4"
   }
 }

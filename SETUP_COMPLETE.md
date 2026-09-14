@@ -147,11 +147,11 @@ Then visit: http://localhost:8000/auth.html
 
 **Project Details:**
 - URL: `https://clzxkdddwxnfmtmfkafh.supabase.co`
-- Database Password: `REDACTED-ROTATED-PASSWORD`
+- Database Password: rotated 2026-09-11 (was committed in plaintext here — never put secrets in a tracked file). Current password lives only in the local, gitignored `.env` as `SUPABASE_DB_PASSWORD`.
 
 **Important Files:**
-- Environment vars: `/Users/leo/bhanuvashisht99.github.io/.env`
-- Database schema: `/Users/leo/bhanuvashisht99.github.io/database-schema.sql`
+- Environment vars: `.env` (repo root, gitignored)
+- Database schema: `database-schema.sql` + `database/nutrition-v2.sql`
 
 ---
 

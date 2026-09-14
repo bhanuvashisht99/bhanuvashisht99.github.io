@@ -223,34 +223,49 @@ export async function getFood(foodId) {
 /**
  * Search recipes
  * @param {string} query - Search query
- * @param {Object} filters - Optional filters
+ * @param {Object} filters - Optional filters {meal_types, difficulty, cuisine, dietary_tags, exclude_allergens}
  * @returns {Promise<{recipes: Array, error: Object|null}>}
  */
 export async function searchRecipes(query, filters = {}, limit = 50) {
+  // `foods` has no `nutrition` column (it's individual macro/micro columns), and
+  // the recipe card only needs the ingredient list, not each food's full row —
+  // pulling name/category keeps this light.
   let queryBuilder = supabase
     .from('recipes')
     .select(`
       *,
       recipe_ingredients(
-        *,
-        foods(name, category, nutrition)
+        id, amount, unit, order_index,
+        foods(id, name, category)
       )
     `)
     .eq('submission_status', 'approved');
 
   if (query) {
-    queryBuilder = queryBuilder.textSearch('name', query);
+    queryBuilder = queryBuilder.ilike('name', `%${query}%`);
   }
 
   if (filters.meal_types && filters.meal_types.length > 0) {
-    queryBuilder = queryBuilder.contains('meal_types', filters.meal_types);
+    queryBuilder = queryBuilder.overlaps('meal_types', filters.meal_types);
   }
 
   if (filters.difficulty) {
     queryBuilder = queryBuilder.eq('difficulty', filters.difficulty);
   }
 
-  const { data, error } = await queryBuilder.limit(limit);
+  if (filters.cuisine) {
+    queryBuilder = queryBuilder.eq('cuisine', filters.cuisine);
+  }
+
+  if (filters.dietary_tags && filters.dietary_tags.length > 0) {
+    queryBuilder = queryBuilder.contains('dietary_tags', filters.dietary_tags);
+  }
+
+  if (filters.exclude_allergens && filters.exclude_allergens.length > 0) {
+    queryBuilder = queryBuilder.not('allergens', 'ov', `{${filters.exclude_allergens.join(',')}}`);
+  }
+
+  const { data, error } = await queryBuilder.order('name').limit(limit);
 
   return { recipes: data || [], error };
 }
@@ -408,6 +423,444 @@ export function onAuthStateChange(callback) {
   supabase.auth.onAuthStateChange((event, session) => {
     callback(session?.user || null, event);
   });
+}
+
+// ============================================================
+// NUTRITION SYSTEM
+// ============================================================
+// Helpers for the personalised nutrition feature (onboarding, weekly plan,
+// nutrient-gap engine). Requires the database/nutrition-v2.sql migration.
+
+const SEED_FOODS_CACHE_KEY = 'ydw.nutrition.foods.v3'; // v3: 176 foods (was 101)
+const SEED_FOODS_TTL_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Get the current user's nutrition + training profile.
+ * Returns the same row as getProfile() but named for clarity at call sites.
+ * @param {string} userId
+ * @returns {Promise<{profile: Object|null, onboarded: boolean, error: Object|null}>}
+ */
+export async function getNutritionProfile(userId) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .maybeSingle();
+
+  return {
+    profile: data || null,
+    onboarded: Boolean(data && data.nutrition_onboarded_at),
+    // A missing profile row is not an error for our purposes.
+    error: error && error.code !== 'PGRST116' ? error : null,
+  };
+}
+
+/**
+ * Persist the computed onboarding result to the profile.
+ *
+ * Uses upsert on the primary key so it works whether or not a profile row was
+ * created at sign-up (the base signUp() insert can be skipped when e-mail
+ * confirmation is pending and no session exists yet).
+ *
+ * @param {string} userId
+ * @param {Object} data - profile columns to write (snake_case keys)
+ * @param {string} [email] - stored on first insert; profiles.email is NOT NULL
+ * @returns {Promise<{profile: Object|null, error: Object|null}>}
+ */
+export async function saveNutritionProfile(userId, data, email) {
+  const payload = {
+    id: userId,
+    ...(email ? { email } : {}),
+    ...data,
+    nutrition_onboarded_at: data.nutrition_onboarded_at || new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+
+  const { data: row, error } = await supabase
+    .from('profiles')
+    .upsert(payload, { onConflict: 'id' })
+    .select()
+    .single();
+
+  return { profile: row || null, error };
+}
+
+/**
+ * Load the seed food list (public, read-only). Cached in localStorage for a day
+ * so plan edits recompute without a round-trip.
+ * @param {Object} [opts]
+ * @param {boolean} [opts.force] - bypass the cache
+ * @returns {Promise<{foods: Array, error: Object|null, cached: boolean}>}
+ */
+export async function getSeedFoods({ force = false } = {}) {
+  if (!force) {
+    try {
+      const raw = localStorage.getItem(SEED_FOODS_CACHE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && Date.now() - parsed.at < SEED_FOODS_TTL_MS && Array.isArray(parsed.foods)) {
+          return { foods: parsed.foods, error: null, cached: true };
+        }
+      }
+    } catch (_) {
+      // ignore malformed / unavailable storage
+    }
+  }
+
+  const { data, error } = await supabase
+    .from('foods')
+    .select('*')
+    .order('category', { ascending: true })
+    .limit(2000);
+
+  if (!error && Array.isArray(data)) {
+    try {
+      localStorage.setItem(SEED_FOODS_CACHE_KEY, JSON.stringify({ at: Date.now(), foods: data }));
+    } catch (_) {
+      // storage full / disabled — fine, we just re-fetch next time
+    }
+  }
+
+  return { foods: data || [], error, cached: false };
+}
+
+/**
+ * Get the user's per-food likes/dislikes.
+ * @param {string} userId
+ * @returns {Promise<{preferences: Array<{food_id:string, stance:string}>, error: Object|null}>}
+ */
+export async function getFoodPreferences(userId) {
+  const { data, error } = await supabase
+    .from('food_preferences')
+    .select('food_id, stance')
+    .eq('user_id', userId);
+
+  return { preferences: data || [], error };
+}
+
+/**
+ * Upsert a single food preference. Pass stance = null to clear it.
+ * @param {string} userId
+ * @param {string} foodId
+ * @param {'love'|'like'|'dislike'|'never'|null} stance
+ * @returns {Promise<{error: Object|null}>}
+ */
+export async function setFoodPreference(userId, foodId, stance) {
+  if (!stance) {
+    const { error } = await supabase
+      .from('food_preferences')
+      .delete()
+      .eq('user_id', userId)
+      .eq('food_id', foodId);
+    return { error };
+  }
+
+  const { error } = await supabase
+    .from('food_preferences')
+    .upsert(
+      { user_id: userId, food_id: foodId, stance, updated_at: new Date().toISOString() },
+      { onConflict: 'user_id,food_id' },
+    );
+  return { error };
+}
+
+/**
+ * Bulk-replace the user's food preferences (used at the end of onboarding).
+ * @param {string} userId
+ * @param {Array<{foodId:string, stance:string}>} entries
+ * @returns {Promise<{error: Object|null}>}
+ */
+export async function replaceFoodPreferences(userId, entries) {
+  const { error: delError } = await supabase
+    .from('food_preferences')
+    .delete()
+    .eq('user_id', userId);
+  if (delError) return { error: delError };
+
+  const rows = (entries || [])
+    .filter((e) => e.foodId && e.stance)
+    .map((e) => ({ user_id: userId, food_id: e.foodId, stance: e.stance }));
+  if (!rows.length) return { error: null };
+
+  const { error } = await supabase.from('food_preferences').insert(rows);
+  return { error };
+}
+
+/**
+ * The user's active meal plan plus its persisted nutrient gaps.
+ * @param {string} userId
+ * @returns {Promise<{plan: Object|null, gaps: Array, error: Object|null}>}
+ */
+export async function getActiveMealPlan(userId) {
+  const { data: plan, error } = await supabase
+    .from('meal_plans')
+    .select(`
+      *,
+      meal_plan_meals(
+        *,
+        meal_plan_custom_foods(*)
+      )
+    `)
+    .eq('user_id', userId)
+    .eq('status', 'active')
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error || !plan) return { plan: plan || null, gaps: [], error };
+
+  const { data: gaps } = await supabase
+    .from('meal_plan_gaps')
+    .select('*')
+    .eq('meal_plan_id', plan.id);
+
+  return { plan, gaps: gaps || [], error: null };
+}
+
+/**
+ * Save a generated/edited plan. Archives any prior active plan, inserts the new
+ * plan header, its meals, their custom foods, and the nutrient-gap rows.
+ *
+ * @param {string} userId
+ * @param {Object} args
+ * @param {Object} args.targets - computeTargets() output
+ * @param {Object} args.plan - generatePlan() output ({ days: [...] })
+ * @param {Array}  args.gaps - analyseGaps().gaps
+ * @param {string} [args.name]
+ * @param {string} [args.startDate] - ISO date; defaults to today
+ * @returns {Promise<{planId: string|null, error: Object|null}>}
+ */
+export async function saveMealPlan(userId, { targets, plan, gaps = [], name, startDate }) {
+  const start = startDate ? new Date(startDate) : new Date();
+  const end = new Date(start);
+  end.setDate(end.getDate() + 6);
+  const iso = (d) => d.toISOString().split('T')[0];
+
+  // Archive previous active plans.
+  const { error: archiveError } = await supabase
+    .from('meal_plans')
+    .update({ status: 'archived' })
+    .eq('user_id', userId)
+    .eq('status', 'active');
+  if (archiveError) return { planId: null, error: archiveError };
+
+  const { data: header, error: headerError } = await supabase
+    .from('meal_plans')
+    .insert({
+      user_id: userId,
+      name: name || `Week of ${iso(start)}`,
+      start_date: iso(start),
+      end_date: iso(end),
+      status: 'active',
+      target_calories: Math.round(targets.calories),
+      target_protein: targets.protein,
+      target_carbs: targets.carbs,
+      target_fats: targets.fat,
+      generated_by: 'algorithm',
+    })
+    .select()
+    .single();
+  if (headerError) return { planId: null, error: headerError };
+
+  // Insert meals, then their custom foods.
+  const mealRows = [];
+  (plan.days || []).forEach((day, dayIdx) => {
+    const date = new Date(start);
+    date.setDate(date.getDate() + dayIdx);
+    (day.meals || []).forEach((meal) => {
+      mealRows.push({
+        _key: `${dayIdx}:${meal.key}`,
+        meal_plan_id: header.id,
+        date: iso(date),
+        meal_type: normaliseMealType(meal.key),
+        title: meal.title || null,
+        calories: sumField(meal.items, 'calories'),
+        protein: sumField(meal.items, 'protein'),
+        carbs: sumField(meal.items, 'carbs'),
+        fats: sumField(meal.items, 'fat'),
+      });
+    });
+  });
+
+  const { data: insertedMeals, error: mealsError } = await supabase
+    .from('meal_plan_meals')
+    .insert(mealRows.map(({ _key, ...row }) => row))
+    .select();
+  if (mealsError) return { planId: header.id, error: mealsError };
+
+  // Map inserted meals back to their day/meal so we can attach foods.
+  const customFoods = [];
+  insertedMeals.forEach((row, i) => {
+    const src = mealRows[i];
+    const [dayIdx, mealKey] = src._key.split(':');
+    const meal = plan.days[Number(dayIdx)].meals.find((m) => m.key === mealKey);
+    (meal.items || []).forEach((item) => {
+      if (!item.foodId || !(item.grams > 0)) return;
+      customFoods.push({
+        meal_plan_meal_id: row.id,
+        food_id: item.foodId,
+        amount: Math.round(item.grams),
+        unit: item.food?.unit || 'g',
+      });
+    });
+  });
+
+  if (customFoods.length) {
+    const { error: foodsError } = await supabase
+      .from('meal_plan_custom_foods')
+      .insert(customFoods);
+    if (foodsError) return { planId: header.id, error: foodsError };
+  }
+
+  if (gaps.length) {
+    const gapRows = gaps.map((g) => ({
+      meal_plan_id: header.id,
+      nutrient: g.nutrient,
+      severity: g.severity,
+      status: 'open',
+      intake: g.intake,
+      target: g.target,
+      suggested_food_ids: (g.remedyFoods || []).map((f) => f.id).filter(Boolean),
+    }));
+    const { error: gapError } = await supabase.from('meal_plan_gaps').insert(gapRows);
+    if (gapError) return { planId: header.id, error: gapError };
+  }
+
+  return { planId: header.id, error: null };
+}
+
+// ============================================================
+// DAILY FOOD LOG (tracking what was actually eaten)
+// ============================================================
+// Uses food_logs (one row per user per date) + logged_items (rows within it).
+// Both tables already existed in the base schema; nothing new to migrate.
+
+/**
+ * Load one day's log: the summary row (if any) and its logged items, each
+ * carrying the foodId so the caller can join against its cached food list for
+ * name/household-unit display.
+ * @param {string} userId
+ * @param {string} dateStr - 'YYYY-MM-DD'
+ * @returns {Promise<{log: Object|null, items: Array, error: Object|null}>}
+ */
+export async function getFoodLogDay(userId, dateStr) {
+  const { data: log, error } = await supabase
+    .from('food_logs')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('date', dateStr)
+    .maybeSingle();
+
+  if (error || !log) return { log: log || null, items: [], error };
+
+  const { data: items, error: itemsError } = await supabase
+    .from('logged_items')
+    .select('*')
+    .eq('food_log_id', log.id)
+    .order('logged_at', { ascending: true });
+
+  return { log, items: items || [], error: itemsError || null };
+}
+
+/**
+ * Replace a whole day's log in one call: upserts the food_logs summary row,
+ * then replaces its logged_items wholesale (simplest correct semantics for a
+ * page that edits the whole day at once, same pattern as replaceFoodPreferences
+ * and saveMealPlan).
+ *
+ * @param {string} userId
+ * @param {string} dateStr - 'YYYY-MM-DD'
+ * @param {Object} args
+ * @param {Array<{mealType:string, foodId:string, food:Object, grams:number}>} args.items
+ * @param {Object} args.totals - { calories, protein, carbs, fat, fiber, sugar, sodium }
+ * @param {Object} [args.targets] - used to compute calories_diff etc. and adherence
+ * @param {number} [args.waterIntake] - ml
+ * @param {string} [args.notes]
+ * @returns {Promise<{logId: string|null, error: Object|null}>}
+ */
+export async function saveFoodLogDay(userId, dateStr, { items, totals, targets, waterIntake, notes }) {
+  const diff = (key, targetKey) =>
+    targets && targets[targetKey] != null ? Math.round((totals[key] ?? 0) - targets[targetKey]) : null;
+
+  const adherence = targets?.calories
+    ? Math.max(0, Math.min(100, Math.round(100 - (Math.abs(totals.calories - targets.calories) / targets.calories) * 100)))
+    : null;
+
+  const { data: header, error: headerError } = await supabase
+    .from('food_logs')
+    .upsert(
+      {
+        user_id: userId,
+        date: dateStr,
+        total_calories: Math.round(totals.calories || 0),
+        total_protein: totals.protein || 0,
+        total_carbs: totals.carbs || 0,
+        total_fats: totals.fat || 0,
+        total_fiber: totals.fiber || 0,
+        total_sugar: totals.sugar || 0,
+        total_sodium: totals.sodium || 0,
+        calories_diff: diff('calories', 'calories'),
+        protein_diff: diff('protein', 'protein'),
+        carbs_diff: diff('carbs', 'carbs'),
+        fats_diff: diff('fat', 'fat'),
+        adherence_percentage: adherence,
+        water_intake: waterIntake ?? 0,
+        notes: notes || null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id,date' },
+    )
+    .select()
+    .single();
+
+  if (headerError) return { logId: null, error: headerError };
+
+  const { error: delError } = await supabase.from('logged_items').delete().eq('food_log_id', header.id);
+  if (delError) return { logId: header.id, error: delError };
+
+  const rows = (items || [])
+    .filter((it) => it.foodId && it.grams > 0)
+    .map((it) => {
+      const per100 = (k) => (it.food?.[k] ?? 0) * (it.grams / 100);
+      return {
+        food_log_id: header.id,
+        user_id: userId,
+        meal_type: it.mealType,
+        item_type: 'food',
+        food_id: it.foodId,
+        amount: Math.round(it.grams),
+        unit: it.food?.unit || 'g',
+        calories: per100('calories'),
+        protein: per100('protein'),
+        carbs: per100('carbs'),
+        fats: per100('fat'),
+        fiber: per100('fiber'),
+        sugar: per100('sugar'),
+        sodium: per100('sodium'),
+        added_sugar: per100('added_sugar'),
+      };
+    });
+
+  if (rows.length) {
+    const { error: insError } = await supabase.from('logged_items').insert(rows);
+    if (insError) return { logId: header.id, error: insError };
+  }
+
+  return { logId: header.id, error: null };
+}
+
+function normaliseMealType(key) {
+  if (key === 'breakfast' || key === 'lunch' || key === 'dinner') return key;
+  if (key === 'second_dinner') return 'dinner';
+  if (key === 'snack1' || key === 'snack') return 'snack1';
+  return 'snack2';
+}
+
+function sumField(items, field) {
+  return (items || []).reduce((sum, it) => {
+    const per100 = it.food?.[field] ?? 0;
+    return sum + (per100 * (it.grams || 0)) / 100;
+  }, 0);
 }
 
 // ============================================================

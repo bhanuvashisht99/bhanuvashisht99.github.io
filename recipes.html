@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Recipes — YouDeserveWell Nutrition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/nutrition.css" />
+</head>
+<body class="n-body">
+  <header class="n-topbar">
+    <a class="n-brand" href="/nutrition">You<span>Deserve</span>Well · Nutrition</a>
+    <nav class="n-topbar-actions">
+      <a href="/nutrition">Dashboard</a>
+      <a href="/nutrition-plan.html">This week's plan</a>
+    </nav>
+  </header>
+
+  <main class="n-shell">
+    <div class="n-spinner" id="loading"></div>
+
+    <div id="browse-app" hidden>
+      <h1 class="n-h1">Recipes</h1>
+      <p class="n-lead">Named dishes built from foods already in your plan — filtered to what you can actually eat.</p>
+
+      <div class="n-card">
+        <input type="text" id="search" placeholder="Search recipes…" style="width:100%;padding:.65rem .75rem;border:1px solid var(--n-border);border-radius:9px;font:inherit;margin-bottom:.75rem" />
+        <div class="n-chips" id="meal-filter"></div>
+      </div>
+
+      <div class="n-grid cols-auto" id="recipe-grid" style="margin-top:1.25rem"></div>
+      <p class="n-muted" id="empty-state" hidden style="margin-top:1rem">No recipes match your filters and dietary profile yet.</p>
+    </div>
+
+    <!-- Recipe detail -->
+    <div id="detail-app" hidden>
+      <button class="n-btn ghost sm" id="back-to-browse">← All recipes</button>
+      <h1 class="n-h1" id="detail-name" style="margin-top:1rem"></h1>
+      <p class="n-lead" id="detail-desc"></p>
+      <div class="n-grid cols-auto" id="detail-stats" style="margin-top:1rem"></div>
+
+      <h2 class="n-h2">Ingredients <span class="n-muted" id="detail-servings"></span></h2>
+      <div class="n-card" id="detail-ingredients"></div>
+
+      <h2 class="n-h2">Method</h2>
+      <div class="n-card">
+        <ol id="detail-steps" style="margin:0;padding-left:1.2rem;line-height:1.9"></ol>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/nutrition/recipes-page.js"></script>
+</body>
+</html>

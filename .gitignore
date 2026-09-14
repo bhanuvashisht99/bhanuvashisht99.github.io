@@ -20,3 +20,9 @@ pdfs/*.pdf
 # Editor directories
 .vscode/
 .idea/
+
+# Test output
+coverage/
+test-results/
+playwright-report/
+.playwright/

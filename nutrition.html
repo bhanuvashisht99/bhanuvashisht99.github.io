@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Nutrition — YouDeserveWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/nutrition.css" />
+</head>
+<body class="n-body">
+  <header class="n-topbar">
+    <a class="n-brand" href="/nutrition">You<span>Deserve</span>Well · Nutrition</a>
+    <nav class="n-topbar-actions">
+      <a href="/">← Main site</a>
+      <a href="#" id="logout" hidden>Log out</a>
+    </nav>
+  </header>
+
+  <main class="n-shell" id="main">
+    <div class="n-spinner" id="loading"></div>
+
+    <!-- logged out -->
+    <section id="state-guest" hidden>
+      <h1 class="n-h1">Your nutrition, built around how you train</h1>
+      <p class="n-lead">
+        Answer a short set of questions about your body, your goal, your training and
+        any health conditions. We work out your calories and nutrient targets, then
+        build a fully editable 7-day plan from foods you actually like — and tell you
+        the moment something essential is missing.
+      </p>
+      <p style="margin-top: 1.5rem">
+        <a class="n-btn" href="/auth.html">Create an account</a>
+        <a class="n-btn ghost" href="/auth.html">Log in</a>
+      </p>
+      <p class="n-disclaimer">
+        This tool gives general nutrition guidance, not medical advice. If you have a
+        diagnosed condition, review any plan with your doctor or a registered dietitian.
+      </p>
+    </section>
+
+    <!-- logged in, not onboarded -->
+    <section id="state-new" hidden>
+      <h1 class="n-h1">Welcome, <span id="new-name">there</span></h1>
+      <p class="n-lead">You're one short questionnaire away from a personalised weekly plan.</p>
+      <p style="margin-top: 1.5rem">
+        <a class="n-btn" href="/nutrition-onboarding.html">Start the questionnaire</a>
+      </p>
+    </section>
+
+    <!-- onboarded dashboard -->
+    <section id="state-ready" hidden>
+      <h1 class="n-h1">Hi <span id="ready-name">there</span></h1>
+      <p class="n-lead" id="ready-summary"></p>
+
+      <div class="n-grid cols-auto" id="target-tiles" style="margin-top: 1.25rem"></div>
+
+      <h2 class="n-h2">This week's plan</h2>
+      <div class="n-card" id="plan-summary"></div>
+
+      <h2 class="n-h2">Micronutrient coverage</h2>
+      <div class="n-card" id="micro-panel"></div>
+
+      <p style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap">
+        <a class="n-btn" href="/nutrition-plan.html">Open the plan</a>
+        <a class="n-btn accent" href="/nutrition-log.html">Log today</a>
+        <a class="n-btn ghost" href="/recipes.html">Browse recipes</a>
+        <a class="n-btn ghost" href="/nutrition-onboarding.html">Redo questionnaire</a>
+      </p>
+      <p class="n-disclaimer" id="ready-disclaimer"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/nutrition/hub-page.js"></script>
+</body>
+</html>

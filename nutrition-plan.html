@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Weekly plan — YouDeserveWell Nutrition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/nutrition.css" />
+</head>
+<body class="n-body">
+  <header class="n-topbar">
+    <a class="n-brand" href="/nutrition">You<span>Deserve</span>Well · Nutrition</a>
+    <nav class="n-topbar-actions">
+      <a href="/nutrition">Dashboard</a>
+      <a href="/nutrition-onboarding.html">Edit profile</a>
+    </nav>
+  </header>
+
+  <main class="n-shell">
+    <div class="n-spinner" id="loading"></div>
+
+    <div id="plan-app" hidden>
+      <h1 class="n-h1">Your week</h1>
+      <p class="n-lead" id="plan-intro"></p>
+
+      <div class="n-card">
+        <div class="n-grid cols-auto" id="week-totals"></div>
+      </div>
+
+      <div class="n-card" style="margin-top:1rem">
+        <div class="n-row" style="align-items:flex-end">
+          <label class="n-field" style="margin:0">
+            <span class="label">Variety</span>
+            <input type="range" id="variety" min="1" max="9" value="4" />
+          </label>
+          <div class="n-field" style="margin:0;flex:0 0 auto">
+            <span class="label">Show amounts as</span>
+            <div class="n-seg" role="group" aria-label="Amount units">
+              <button type="button" id="mode-household" class="n-seg-btn" aria-pressed="true">Portions</button>
+              <button type="button" id="mode-grams" class="n-seg-btn" aria-pressed="false">Grams</button>
+            </div>
+          </div>
+          <label class="n-field" style="margin:0;flex:0 0 auto">
+            <span class="label"><input type="checkbox" id="all-cuisines" /> Show all cuisines</span>
+          </label>
+          <button class="n-btn ghost" id="regenerate">Regenerate week</button>
+        </div>
+        <p class="n-muted" style="margin:.5rem 0 0">
+          “Portions” shows eggs, fruit, cups, spoons and millilitres. Tap the unit on any row to switch just that item.
+        </p>
+      </div>
+
+      <h2 class="n-h2">What needs attention</h2>
+      <div id="gaps"></div>
+
+      <h2 class="n-h2">The plan</h2>
+      <div class="n-week" id="week"></div>
+
+      <p class="n-disclaimer" id="plan-disclaimer"></p>
+    </div>
+  </main>
+
+  <div class="n-sticky-bar" id="save-bar" hidden>
+    <span id="save-status" class="n-muted"></span>
+    <span style="display:flex;gap:.6rem">
+      <button class="n-btn ghost" id="reset">Discard changes</button>
+      <button class="n-btn accent" id="save">Save as my active plan</button>
+    </span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/nutrition/plan-page.js"></script>
+</body>
+</html>

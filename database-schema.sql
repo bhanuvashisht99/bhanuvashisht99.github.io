@@ -132,10 +132,12 @@ CREATE INDEX foods_dietary_tags_idx ON foods USING GIN(dietary_tags);
 CREATE INDEX foods_allergens_idx ON foods USING GIN(allergens);
 CREATE INDEX foods_source_idx ON foods(source);
 
--- Full-text search support
-CREATE INDEX foods_search_idx ON foods USING GIN(
-  to_tsvector('english', name || ' ' || COALESCE(array_to_string(name_aliases, ' '), ''))
-);
+-- Full-text search support.
+-- NOTE: an expression index over `array_to_string(name_aliases, ...)` is rejected
+-- by PostgreSQL because array_to_string is only STABLE, not IMMUTABLE. The name
+-- tsvector is already covered by foods_name_idx above; index the aliases array
+-- directly so alias lookups (name_aliases @> / && ...) stay fast.
+CREATE INDEX foods_name_aliases_idx ON foods USING GIN(name_aliases);
 
 -- Public read access (everyone can search foods)
 ALTER TABLE foods ENABLE ROW LEVEL SECURITY;

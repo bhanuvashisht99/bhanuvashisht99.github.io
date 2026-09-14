@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Food log — YouDeserveWell Nutrition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/nutrition.css" />
+</head>
+<body class="n-body">
+  <header class="n-topbar">
+    <a class="n-brand" href="/nutrition">You<span>Deserve</span>Well · Nutrition</a>
+    <nav class="n-topbar-actions">
+      <a href="/nutrition">Dashboard</a>
+      <a href="/nutrition-plan.html">This week's plan</a>
+    </nav>
+  </header>
+
+  <main class="n-shell">
+    <div class="n-spinner" id="loading"></div>
+
+    <div id="log-app" hidden>
+      <div class="n-date-nav">
+        <button class="n-btn ghost sm" id="date-prev" aria-label="Previous day">←</button>
+        <div class="n-date-nav-label">
+          <h1 class="n-h1" id="date-label" style="margin:0">Today</h1>
+          <button class="n-btn ghost sm" id="date-today" hidden>Jump to today</button>
+        </div>
+        <button class="n-btn ghost sm" id="date-next" aria-label="Next day">→</button>
+      </div>
+      <p class="n-lead">Log what you actually ate. Amounts default to the same portions as the plan — eggs, cups, spoons — tap to switch to grams.</p>
+
+      <div class="n-card">
+        <div class="n-grid cols-auto" id="day-totals"></div>
+      </div>
+
+      <div class="n-card" style="margin-top:1rem">
+        <div class="n-row" style="align-items:center">
+          <span class="label" style="flex:0 0 auto">Water</span>
+          <div class="n-water" id="water-track"></div>
+          <span class="n-muted" id="water-label" style="flex:0 0 auto"></span>
+        </div>
+      </div>
+
+      <div id="meals"></div>
+
+      <p class="n-disclaimer" id="log-disclaimer">This log is for your own awareness — it doesn't change your plan.</p>
+    </div>
+  </main>
+
+  <div class="n-sticky-bar" id="save-bar" hidden>
+    <span id="save-status" class="n-muted"></span>
+    <button class="n-btn accent" id="save">Save this day</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/nutrition/log-page.js"></script>
+</body>
+</html>
