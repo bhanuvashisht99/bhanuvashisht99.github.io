@@ -4,16 +4,57 @@
     {
       "name": "Paneer & Spinach Curry",
       "description": "A quick North Indian curry — paneer simmered with tomato, onion and spinach.",
-      "cuisine": "indian", "mealTypes": ["lunch", "dinner"], "difficulty": "medium",
-      "prepTime": 15, "cookTime": 20, "servings": 2,
-      "n": [397, 22, 17, 29, 2.5, 6, 95],
-      "tags": ["vegetarian", "gluten_free"], "alg": ["dairy"],
+      "cuisine": "indian",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "medium",
+      "prepTime": 15,
+      "cookTime": 20,
+      "servings": 2,
+      "n": [
+        397,
+        22,
+        17,
+        29,
+        2.5,
+        6,
+        95
+      ],
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "dairy"
+      ],
       "ingredients": [
-        { "food": "Paneer", "amount": 200, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 240, "unit": "g" },
-        { "food": "Onion, raw", "amount": 110, "unit": "g" },
-        { "food": "Ghee", "amount": 15, "unit": "g" },
-        { "food": "Spinach, cooked", "amount": 180, "unit": "g" }
+        {
+          "food": "Paneer",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 240,
+          "unit": "g"
+        },
+        {
+          "food": "Onion, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "food": "Ghee",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "food": "Spinach, cooked",
+          "amount": 180,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Heat ghee in a pan and sauté the onion until golden.",
@@ -25,16 +66,57 @@
     {
       "name": "Masala Omelette with Roti",
       "description": "A spiced onion-tomato omelette with whole wheat roti — a classic Indian breakfast.",
-      "cuisine": "indian", "mealTypes": ["breakfast"], "difficulty": "easy",
-      "prepTime": 5, "cookTime": 10, "servings": 1,
-      "n": [576, 29, 45, 31, 5, 5, 320],
-      "tags": ["vegetarian"], "alg": ["eggs", "gluten", "wheat"],
+      "cuisine": "indian",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 10,
+      "servings": 1,
+      "n": [
+        576,
+        29,
+        45,
+        31,
+        5,
+        5,
+        320
+      ],
+      "tags": [
+        "vegetarian"
+      ],
+      "alg": [
+        "eggs",
+        "gluten",
+        "wheat"
+      ],
       "ingredients": [
-        { "food": "Eggs, whole", "amount": 150, "unit": "g" },
-        { "food": "Onion, raw", "amount": 55, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 60, "unit": "g" },
-        { "food": "Ghee", "amount": 10, "unit": "g" },
-        { "food": "Whole wheat roti / chapati", "amount": 80, "unit": "g" }
+        {
+          "food": "Eggs, whole",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Onion, raw",
+          "amount": 55,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Ghee",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "food": "Whole wheat roti / chapati",
+          "amount": 80,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Whisk the eggs with finely chopped onion and tomato.",
@@ -45,16 +127,57 @@
     {
       "name": "Chana Masala with Basmati Rice",
       "description": "Spiced chickpeas in a tomato-onion gravy over basmati rice.",
-      "cuisine": "indian", "mealTypes": ["lunch", "dinner"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 25, "servings": 2,
-      "n": [517, 19, 88, 10, 12.5, 8, 15],
-      "tags": ["vegan", "vegetarian", "gluten_free", "dairy_free"], "alg": [],
+      "cuisine": "indian",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 25,
+      "servings": 2,
+      "n": [
+        517,
+        19,
+        88,
+        10,
+        12.5,
+        8,
+        15
+      ],
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [],
       "ingredients": [
-        { "food": "Chickpeas, cooked", "amount": 300, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 120, "unit": "g" },
-        { "food": "Onion, raw", "amount": 110, "unit": "g" },
-        { "food": "Mustard oil", "amount": 10, "unit": "g" },
-        { "food": "Basmati rice, cooked", "amount": 320, "unit": "g" }
+        {
+          "food": "Chickpeas, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "food": "Onion, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "food": "Mustard oil",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "food": "Basmati rice, cooked",
+          "amount": 320,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Sauté onion in mustard oil until soft, add tomato and cook to a paste.",
@@ -65,15 +188,50 @@
     {
       "name": "Grilled Chicken & Sweet Potato",
       "description": "A straightforward high-protein plate — grilled chicken, roasted sweet potato, steamed broccoli.",
-      "cuisine": "western", "mealTypes": ["lunch", "dinner"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 25, "servings": 2,
-      "n": [358, 36, 34, 9, 7.3, 8, 90],
-      "tags": ["gluten_free", "dairy_free"], "alg": [],
+      "cuisine": "western",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 25,
+      "servings": 2,
+      "n": [
+        358,
+        36,
+        34,
+        9,
+        7.3,
+        8,
+        90
+      ],
+      "tags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [],
       "ingredients": [
-        { "food": "Chicken breast, grilled", "amount": 200, "unit": "g" },
-        { "food": "Sweet potato, baked", "amount": 260, "unit": "g" },
-        { "food": "Broccoli, steamed", "amount": 180, "unit": "g" },
-        { "food": "Olive oil, extra virgin", "amount": 10, "unit": "g" }
+        {
+          "food": "Chicken breast, grilled",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "food": "Sweet potato, baked",
+          "amount": 260,
+          "unit": "g"
+        },
+        {
+          "food": "Broccoli, steamed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Grill the chicken breast until cooked through.",
@@ -84,16 +242,56 @@
     {
       "name": "Overnight Oats with Berries",
       "description": "Oats soaked in milk and yogurt overnight, topped with berries and honey.",
-      "cuisine": "western", "mealTypes": ["breakfast"], "difficulty": "easy",
-      "prepTime": 5, "cookTime": 0, "servings": 1,
-      "n": [634, 35, 96, 13, 13.3, 30, 130],
-      "tags": ["vegetarian", "gluten_free"], "alg": ["dairy"],
+      "cuisine": "western",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 0,
+      "servings": 1,
+      "n": [
+        634,
+        35,
+        96,
+        13,
+        13.3,
+        30,
+        130
+      ],
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "dairy"
+      ],
       "ingredients": [
-        { "food": "Rolled oats, dry", "amount": 80, "unit": "g" },
-        { "food": "Milk, semi-skimmed", "amount": 250, "unit": "ml" },
-        { "food": "Greek yogurt, plain 2%", "amount": 150, "unit": "g" },
-        { "food": "Berries, mixed", "amount": 150, "unit": "g" },
-        { "food": "Honey", "amount": 7, "unit": "g" }
+        {
+          "food": "Rolled oats, dry",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Milk, semi-skimmed",
+          "amount": 250,
+          "unit": "ml"
+        },
+        {
+          "food": "Greek yogurt, plain 2%",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Berries, mixed",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Honey",
+          "amount": 7,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Stir the oats, milk and yogurt together in a jar.",
@@ -104,17 +302,61 @@
     {
       "name": "Greek Salad with Feta",
       "description": "Cucumber, tomato, bell pepper, olives and feta with olive oil.",
-      "cuisine": "mediterranean", "mealTypes": ["lunch"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 0, "servings": 1,
-      "n": [418, 13, 24, 32, 5, 10, 780],
-      "tags": ["vegetarian", "gluten_free"], "alg": ["dairy"],
+      "cuisine": "mediterranean",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 0,
+      "servings": 1,
+      "n": [
+        418,
+        13,
+        24,
+        32,
+        5,
+        10,
+        780
+      ],
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "dairy"
+      ],
       "ingredients": [
-        { "food": "Cucumber", "amount": 150, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 180, "unit": "g" },
-        { "food": "Feta cheese", "amount": 60, "unit": "g" },
-        { "food": "Olives, mixed", "amount": 30, "unit": "g" },
-        { "food": "Olive oil, extra virgin", "amount": 15, "unit": "g" },
-        { "food": "Bell pepper, raw", "amount": 120, "unit": "g" }
+        {
+          "food": "Cucumber",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Feta cheese",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Olives, mixed",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "food": "Bell pepper, raw",
+          "amount": 120,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Chop the cucumber, tomato and bell pepper into chunks.",
@@ -125,15 +367,52 @@
     {
       "name": "Baked Salmon with Quinoa",
       "description": "Oven-baked salmon over quinoa with roasted asparagus.",
-      "cuisine": "mediterranean", "mealTypes": ["dinner"], "difficulty": "medium",
-      "prepTime": 10, "cookTime": 20, "servings": 1,
-      "n": [724, 48, 46, 37, 8.8, 3, 130],
-      "tags": ["gluten_free", "dairy_free", "pescatarian"], "alg": ["fish"],
+      "cuisine": "mediterranean",
+      "mealTypes": [
+        "dinner"
+      ],
+      "difficulty": "medium",
+      "prepTime": 10,
+      "cookTime": 20,
+      "servings": 1,
+      "n": [
+        724,
+        48,
+        46,
+        37,
+        8.8,
+        3,
+        130
+      ],
+      "tags": [
+        "gluten_free",
+        "dairy_free",
+        "pescatarian"
+      ],
+      "alg": [
+        "fish"
+      ],
       "ingredients": [
-        { "food": "Salmon, baked", "amount": 180, "unit": "g" },
-        { "food": "Quinoa, cooked", "amount": 185, "unit": "g" },
-        { "food": "Asparagus, cooked", "amount": 180, "unit": "g" },
-        { "food": "Olive oil, extra virgin", "amount": 10, "unit": "g" }
+        {
+          "food": "Salmon, baked",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Quinoa, cooked",
+          "amount": 185,
+          "unit": "g"
+        },
+        {
+          "food": "Asparagus, cooked",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Bake the salmon at 200°C for 12-15 minutes.",
@@ -144,16 +423,60 @@
     {
       "name": "Tofu Stir-fry with Rice",
       "description": "Sesame-fried tofu with broccoli and bell pepper over white rice.",
-      "cuisine": "east_asian", "mealTypes": ["lunch", "dinner"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 15, "servings": 2,
-      "n": [482, 28, 59, 16, 3.5, 6, 210],
-      "tags": ["vegan", "vegetarian", "gluten_free", "dairy_free"], "alg": ["soy", "sesame"],
+      "cuisine": "east_asian",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 2,
+      "n": [
+        482,
+        28,
+        59,
+        16,
+        3.5,
+        6,
+        210
+      ],
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "soy",
+        "sesame"
+      ],
       "ingredients": [
-        { "food": "Tofu, firm", "amount": 250, "unit": "g" },
-        { "food": "Broccoli, steamed", "amount": 180, "unit": "g" },
-        { "food": "Bell pepper, raw", "amount": 120, "unit": "g" },
-        { "food": "Sesame oil", "amount": 10, "unit": "g" },
-        { "food": "White rice, cooked", "amount": 320, "unit": "g" }
+        {
+          "food": "Tofu, firm",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "food": "Broccoli, steamed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Bell pepper, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "food": "Sesame oil",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "food": "White rice, cooked",
+          "amount": 320,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Press and cube the tofu, then pan-fry in sesame oil until golden.",
@@ -164,15 +487,52 @@
     {
       "name": "Edamame & Miso Bowl",
       "description": "A simple miso-dressed bowl of edamame, bok choy and jasmine rice.",
-      "cuisine": "east_asian", "mealTypes": ["lunch"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 10, "servings": 1,
-      "n": [445, 27, 66, 10, 8, 6, 780],
-      "tags": ["vegan", "vegetarian", "dairy_free"], "alg": ["soy"],
+      "cuisine": "east_asian",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "n": [
+        445,
+        27,
+        66,
+        10,
+        8,
+        6,
+        780
+      ],
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "dairy_free"
+      ],
+      "alg": [
+        "soy"
+      ],
       "ingredients": [
-        { "food": "Edamame, shelled", "amount": 155, "unit": "g" },
-        { "food": "Miso paste", "amount": 17, "unit": "g" },
-        { "food": "Bok choy, cooked", "amount": 140, "unit": "g" },
-        { "food": "Jasmine rice, cooked", "amount": 160, "unit": "g" }
+        {
+          "food": "Edamame, shelled",
+          "amount": 155,
+          "unit": "g"
+        },
+        {
+          "food": "Miso paste",
+          "amount": 17,
+          "unit": "g"
+        },
+        {
+          "food": "Bok choy, cooked",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "food": "Jasmine rice, cooked",
+          "amount": 160,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Steam the edamame and bok choy.",
@@ -183,16 +543,58 @@
     {
       "name": "Falafel & Hummus Plate",
       "description": "Falafel, hummus, pita and fresh vegetables — a Middle Eastern lunch plate.",
-      "cuisine": "middle_eastern", "mealTypes": ["lunch"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 10, "servings": 1,
-      "n": [563, 22, 76, 21, 10.5, 6, 700],
-      "tags": ["vegan", "vegetarian"], "alg": ["gluten", "wheat", "sesame"],
+      "cuisine": "middle_eastern",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "n": [
+        563,
+        22,
+        76,
+        21,
+        10.5,
+        6,
+        700
+      ],
+      "tags": [
+        "vegan",
+        "vegetarian"
+      ],
+      "alg": [
+        "gluten",
+        "wheat",
+        "sesame"
+      ],
       "ingredients": [
-        { "food": "Falafel, fried", "amount": 85, "unit": "g" },
-        { "food": "Hummus", "amount": 45, "unit": "g" },
-        { "food": "Pita bread", "amount": 60, "unit": "g" },
-        { "food": "Cucumber", "amount": 120, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 120, "unit": "g" }
+        {
+          "food": "Falafel, fried",
+          "amount": 85,
+          "unit": "g"
+        },
+        {
+          "food": "Hummus",
+          "amount": 45,
+          "unit": "g"
+        },
+        {
+          "food": "Pita bread",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Cucumber",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 120,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Warm the falafel and pita.",
@@ -203,15 +605,52 @@
     {
       "name": "Lamb & Bulgur Bowl",
       "description": "Roasted lamb over bulgur wheat with fennel.",
-      "cuisine": "middle_eastern", "mealTypes": ["dinner"], "difficulty": "medium",
-      "prepTime": 10, "cookTime": 25, "servings": 1,
-      "n": [707, 44, 41, 42, 8.2, 3, 90],
-      "tags": ["gluten_free", "dairy_free"], "alg": ["gluten", "wheat"],
+      "cuisine": "middle_eastern",
+      "mealTypes": [
+        "dinner"
+      ],
+      "difficulty": "medium",
+      "prepTime": 10,
+      "cookTime": 25,
+      "servings": 1,
+      "n": [
+        707,
+        44,
+        41,
+        42,
+        8.2,
+        3,
+        90
+      ],
+      "tags": [
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "gluten",
+        "wheat"
+      ],
       "ingredients": [
-        { "food": "Lamb, roasted", "amount": 150, "unit": "g" },
-        { "food": "Bulgur wheat, cooked", "amount": 182, "unit": "g" },
-        { "food": "Fennel, raw", "amount": 87, "unit": "g" },
-        { "food": "Olive oil, extra virgin", "amount": 10, "unit": "g" }
+        {
+          "food": "Lamb, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Bulgur wheat, cooked",
+          "amount": 182,
+          "unit": "g"
+        },
+        {
+          "food": "Fennel, raw",
+          "amount": 87,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Roast the lamb to your preferred doneness and rest before slicing.",
@@ -222,15 +661,51 @@
     {
       "name": "Black Bean & Avocado Bowl",
       "description": "A Latin American bowl of black beans, avocado, tortilla and tomato.",
-      "cuisine": "latin", "mealTypes": ["lunch"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 10, "servings": 2,
-      "n": [381, 18, 61, 9, 18.2, 4, 30],
-      "tags": ["vegan", "vegetarian", "gluten_free", "dairy_free"], "alg": [],
+      "cuisine": "latin",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 2,
+      "n": [
+        381,
+        18,
+        61,
+        9,
+        18.2,
+        4,
+        30
+      ],
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [],
       "ingredients": [
-        { "food": "Black beans, cooked", "amount": 340, "unit": "g" },
-        { "food": "Avocado", "amount": 100, "unit": "g" },
-        { "food": "Corn tortilla", "amount": 60, "unit": "g" },
-        { "food": "Tomato, raw", "amount": 120, "unit": "g" }
+        {
+          "food": "Black beans, cooked",
+          "amount": 340,
+          "unit": "g"
+        },
+        {
+          "food": "Avocado",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Corn tortilla",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 120,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Warm the black beans through.",
@@ -241,20 +716,720 @@
     {
       "name": "Grilled Fish Tacos",
       "description": "White fish tacos with cabbage slaw and avocado.",
-      "cuisine": "latin", "mealTypes": ["lunch", "dinner"], "difficulty": "easy",
-      "prepTime": 10, "cookTime": 10, "servings": 1,
-      "n": [509, 53, 50, 12, 6, 5, 220],
-      "tags": ["gluten_free", "dairy_free", "pescatarian"], "alg": ["fish"],
+      "cuisine": "latin",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "n": [
+        509,
+        53,
+        50,
+        12,
+        6,
+        5,
+        220
+      ],
+      "tags": [
+        "gluten_free",
+        "dairy_free",
+        "pescatarian"
+      ],
+      "alg": [
+        "fish"
+      ],
       "ingredients": [
-        { "food": "White fish (cod/tilapia), cooked", "amount": 200, "unit": "g" },
-        { "food": "Corn tortilla", "amount": 90, "unit": "g" },
-        { "food": "Cabbage, raw", "amount": 90, "unit": "g" },
-        { "food": "Avocado", "amount": 50, "unit": "g" }
+        {
+          "food": "White fish (cod/tilapia), cooked",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "food": "Corn tortilla",
+          "amount": 90,
+          "unit": "g"
+        },
+        {
+          "food": "Cabbage, raw",
+          "amount": 90,
+          "unit": "g"
+        },
+        {
+          "food": "Avocado",
+          "amount": 50,
+          "unit": "g"
+        }
       ],
       "instructions": [
         "Grill or pan-sear the fish and flake it.",
         "Warm the tortillas and shred the cabbage.",
         "Assemble tacos with fish, cabbage and diced avocado."
+      ]
+    },
+    {
+      "name": "Shakshuka with Feta",
+      "description": "Eggs poached in a spiced tomato-pepper sauce, finished with feta and warm pita.",
+      "cuisine": "middle_eastern",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 2,
+      "tags": [
+        "vegetarian"
+      ],
+      "alg": [
+        "eggs",
+        "dairy",
+        "gluten",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "food": "Eggs, whole",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "food": "Bell pepper, raw",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Feta cheese",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "food": "Pita bread",
+          "amount": 60,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Simmer chopped tomato and bell pepper in olive oil until it collapses into a sauce.",
+        "Crack in the eggs and cover until just set.",
+        "Crumble feta over the top and serve with warm pita."
+      ],
+      "n": [
+        414,
+        21.8,
+        27.3,
+        24.1,
+        3.5,
+        7.9,
+        588
+      ]
+    },
+    {
+      "name": "Tofu & Avocado Breakfast Bowl",
+      "description": "Pan-seared tofu with avocado and peppers — a savoury, plant-based start to the day.",
+      "cuisine": "universal",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "soy",
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "food": "Tofu, firm",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Avocado",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Bell pepper, raw",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Onion, raw",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "food": "Sesame oil",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Cube the tofu and pan-fry in sesame oil with onion and pepper until golden.",
+        "Top with sliced avocado and serve."
+      ],
+      "n": [
+        456,
+        28.3,
+        20.2,
+        32.3,
+        10.7,
+        6.5,
+        31
+      ]
+    },
+    {
+      "name": "Savoury Rice Porridge with Egg",
+      "description": "A simple East Asian rice porridge with soft egg and bok choy.",
+      "cuisine": "east_asian",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 15,
+      "servings": 1,
+      "tags": [
+        "vegetarian",
+        "dairy_free"
+      ],
+      "alg": [
+        "eggs",
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "food": "White rice, cooked",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "food": "Eggs, whole",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Bok choy, cooked",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Sesame oil",
+          "amount": 6,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Warm the rice with a little water until porridge-like.",
+        "Stir through a beaten egg until just set, then fold in bok choy.",
+        "Finish with a drizzle of sesame oil."
+      ],
+      "n": [
+        533,
+        21.4,
+        72.5,
+        16.5,
+        2,
+        1.5,
+        179
+      ]
+    },
+    {
+      "name": "Huevos Rancheros Bowl",
+      "description": "Fried eggs over black beans and tortilla with tomato and avocado.",
+      "cuisine": "latin",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "eggs"
+      ],
+      "ingredients": [
+        {
+          "food": "Eggs, whole",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Black beans, cooked",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Corn tortilla",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Avocado",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 80,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Warm the black beans and char the tortilla lightly.",
+        "Fry the eggs and plate over the beans and tortilla.",
+        "Top with diced avocado and tomato."
+      ],
+      "n": [
+        654,
+        38.2,
+        72.6,
+        25.9,
+        21.8,
+        4.2,
+        250
+      ]
+    },
+    {
+      "name": "Labneh & Za'atar Plate",
+      "description": "Creamy labneh with cucumber, tomato, olives and warm pita.",
+      "cuisine": "middle_eastern",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 0,
+      "servings": 1,
+      "tags": [
+        "vegetarian"
+      ],
+      "alg": [
+        "dairy",
+        "gluten",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "food": "Labneh",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Cucumber",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Tomato, raw",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Pita bread",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "food": "Olives, mixed",
+          "amount": 20,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Spread the labneh on a plate and drizzle with olive oil.",
+        "Arrange cucumber, tomato and olives alongside.",
+        "Serve with warm pita."
+      ],
+      "n": [
+        501,
+        15.2,
+        46.9,
+        29.7,
+        3.4,
+        10.4,
+        729
+      ]
+    },
+    {
+      "name": "Vegetable Poha",
+      "description": "Flattened rice tossed with peanuts, peas and onion — a light Indian breakfast.",
+      "cuisine": "indian",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "peanuts"
+      ],
+      "ingredients": [
+        {
+          "food": "Poha (flattened rice), cooked",
+          "amount": 220,
+          "unit": "g"
+        },
+        {
+          "food": "Peanuts, roasted",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "food": "Onion, raw",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "food": "Green peas",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "food": "Mustard oil",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Sauté onion in mustard oil until soft, add peas and cook through.",
+        "Fold in the poha and peanuts and warm through.",
+        "Season to taste and serve."
+      ],
+      "n": [
+        524,
+        13.6,
+        75.9,
+        18.8,
+        7,
+        5.7,
+        18
+      ]
+    },
+    {
+      "name": "Greek Yogurt & Walnut Bowl",
+      "description": "Greek yogurt with honey, walnuts and mixed berries.",
+      "cuisine": "mediterranean",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 0,
+      "servings": 1,
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "dairy",
+        "tree_nuts"
+      ],
+      "ingredients": [
+        {
+          "food": "Greek yogurt, plain 2%",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "food": "Honey",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "food": "Walnuts",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "food": "Berries, mixed",
+          "amount": 100,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Spoon the yogurt into a bowl.",
+        "Top with honey, walnuts and berries."
+      ],
+      "n": [
+        372,
+        24,
+        35.1,
+        17.4,
+        4.9,
+        27.8,
+        70
+      ]
+    },
+    {
+      "name": "Mango Chia Pudding",
+      "description": "Chia seeds soaked in almond milk overnight, topped with mango and dates.",
+      "cuisine": "universal",
+      "mealTypes": [
+        "breakfast"
+      ],
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 0,
+      "servings": 1,
+      "tags": [
+        "vegan",
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "tree_nuts"
+      ],
+      "ingredients": [
+        {
+          "food": "Chia seeds",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "food": "Almond milk, unsweetened",
+          "amount": 200,
+          "unit": "ml"
+        },
+        {
+          "food": "Mango",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Dates, dried",
+          "amount": 20,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Stir the chia seeds into the almond milk and refrigerate overnight.",
+        "Top with diced mango and chopped dates before eating."
+      ],
+      "n": [
+        295,
+        7.5,
+        43.8,
+        12.7,
+        13.9,
+        27.2,
+        132
+      ]
+    },
+    {
+      "name": "Seared Salmon with Greens",
+      "description": "A quick, low-carb plate of seared salmon over asparagus and salad leaves.",
+      "cuisine": "mediterranean",
+      "mealTypes": [
+        "lunch",
+        "dinner"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 12,
+      "servings": 1,
+      "tags": [
+        "gluten_free",
+        "dairy_free",
+        "pescatarian"
+      ],
+      "alg": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "food": "Salmon, baked",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "food": "Asparagus, cooked",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Mixed salad leaves",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 12,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Sear the salmon until cooked through.",
+        "Toss the asparagus and salad leaves with olive oil.",
+        "Plate the salmon over the greens."
+      ],
+      "n": [
+        524,
+        40.4,
+        8,
+        35.8,
+        4,
+        2.5,
+        144
+      ]
+    },
+    {
+      "name": "Paneer & Greens Salad",
+      "description": "A light, low-glycemic Indian salad of paneer, cucumber and peppers.",
+      "cuisine": "indian",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 5,
+      "servings": 1,
+      "tags": [
+        "vegetarian",
+        "gluten_free"
+      ],
+      "alg": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "food": "Paneer",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Mixed salad leaves",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Cucumber",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Bell pepper, raw",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Lightly pan-sear the paneer cubes.",
+        "Toss with salad leaves, cucumber and pepper.",
+        "Dress with olive oil and serve."
+      ],
+      "n": [
+        539,
+        29.6,
+        16.4,
+        42,
+        3.5,
+        11.2,
+        61
+      ]
+    },
+    {
+      "name": "Egg & Avocado Power Salad",
+      "description": "A filling, low-carb Western salad of eggs, avocado and crisp greens.",
+      "cuisine": "western",
+      "mealTypes": [
+        "lunch"
+      ],
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 10,
+      "servings": 1,
+      "tags": [
+        "vegetarian",
+        "gluten_free",
+        "dairy_free"
+      ],
+      "alg": [
+        "eggs"
+      ],
+      "ingredients": [
+        {
+          "food": "Eggs, whole",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "food": "Avocado",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "food": "Mixed salad leaves",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Cucumber",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "food": "Olive oil, extra virgin",
+          "amount": 10,
+          "unit": "g"
+        }
+      ],
+      "instructions": [
+        "Hard-boil the eggs, cool and quarter.",
+        "Toss the salad leaves and cucumber with olive oil.",
+        "Top with the eggs and sliced avocado."
+      ],
+      "n": [
+        489,
+        23.2,
+        15.6,
+        39.5,
+        8.4,
+        3.4,
+        244
       ]
     }
   ]

@@ -674,6 +674,8 @@ export async function saveMealPlan(userId, { targets, plan, gaps = [], name, sta
         date: iso(date),
         meal_type: normaliseMealType(meal.key),
         title: meal.title || null,
+        recipe_id: meal.recipeId || null,
+        recipe_servings: meal.recipeServings ?? null,
         calories: sumField(meal.items, 'calories'),
         protein: sumField(meal.items, 'protein'),
         carbs: sumField(meal.items, 'carbs'),

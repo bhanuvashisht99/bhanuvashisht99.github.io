@@ -179,6 +179,14 @@ body.n-body {
 .n-meal { border-top: 1px solid var(--n-border); padding: 0.6rem 0; }
 .n-meal:first-of-type { border-top: 0; }
 .n-meal .m-head { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--n-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.n-recipe-tag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; text-transform: none; letter-spacing: normal;
+  color: var(--n-accent-dark); background: var(--n-ok-bg);
+  border: 1px solid var(--n-accent-light); border-radius: 999px;
+  padding: 0.12rem 0.55rem; margin: 0.35rem 0 0.15rem;
+}
+.n-recipe-tag::before { content: "🍲"; font-size: 0.8em; }
 .n-item { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0; font-size: 0.9rem; }
 .n-item .i-name { flex: 1; min-width: 0; }
 .n-item input { width: 56px; padding: 0.25rem 0.35rem; font: inherit; border: 1px solid var(--n-border); border-radius: 6px; text-align: right; }

@@ -13,8 +13,12 @@ import { scaleFood, sumNutrition, glycemicLoad } from './food-model.js';
 import { analyseGaps } from './nutrient-gap.js';
 import { remedyFoods } from './food-filter.js';
 import { MICRONUTRIENTS, ESSENTIAL_NUTRIENTS } from './rda.js';
+import { scaleRecipeToTarget, mealTypeForSlot } from './recipe-model.js';
 
 const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+/** Default odds a main meal tries slotting in a whole recipe before the raw-food solver. */
+const DEFAULT_RECIPE_CHANCE = 0.45;
 
 /** mulberry32 — tiny deterministic PRNG. */
 function makeRng(seed) {
@@ -60,6 +64,44 @@ export function mealSkeleton(mealsPerDay = 3, snacks = 1) {
 
 function titleCase(key) {
   return key.replace('_', ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Group normalised recipes by the plan meal-type they can fill. A recipe with
+ * multiple `mealTypes` (e.g. lunch + dinner) appears in each matching bucket.
+ * Stable id-sorted order keeps recipe rotation deterministic, like poolsByRole. */
+function recipesByMealType(recipes) {
+  const byType = { breakfast: [], lunch: [], dinner: [], snack: [] };
+  for (const r of recipes) {
+    for (const t of r.mealTypes ?? []) {
+      if (byType[t]) byType[t].push(r);
+    }
+  }
+  for (const k of Object.keys(byType)) byType[k].sort((a, b) => (a.id > b.id ? 1 : -1));
+  return byType;
+}
+
+/**
+ * Pick a recipe from `pool` that can be scaled to `kcalTarget` without busting
+ * `maxMealGl`. Two passes: first restricted to recipes not yet used this week
+ * (for variety across the 7 days), then open to any valid recipe so a thin
+ * pool still gets used rather than falling back to raw foods every time.
+ */
+function pickRecipe(pool, kcalTarget, maxMealGl, rotor, weekUsedRecipeIds) {
+  if (!pool.length) return null;
+  for (let pass = 0; pass < 2; pass++) {
+    for (let i = 0; i < pool.length; i++) {
+      const recipe = pool[(rotor + i) % pool.length];
+      if (pass === 0 && weekUsedRecipeIds.has(recipe.id)) continue;
+      const scaled = scaleRecipeToTarget(recipe, kcalTarget);
+      if (!scaled) continue;
+      if (Number.isFinite(maxMealGl)) {
+        const gl = scaled.items.reduce((s, it) => s + glycemicLoad(it.food, it.grams), 0);
+        if (gl > maxMealGl) continue;
+      }
+      return { recipe, items: scaled.items, scale: scaled.scale };
+    }
+  }
+  return null;
 }
 
 function poolsByRole(foods) {
@@ -169,7 +211,10 @@ function clamp(n, lo, hi) {
 /**
  * Build one meal's items.
  */
-function buildMeal({ meal, kcalTarget, proteinTarget, fatTarget = 0, pools, rng, dayUsed, maxMealGl }) {
+function buildMeal({
+  meal, kcalTarget, proteinTarget, fatTarget = 0, pools, rng, dayUsed, maxMealGl,
+  recipePool = [], recipeChance = 0, weekUsedRecipeIds = new Set(),
+}) {
   const rotor = Math.floor(rng() * 997);
   const items = [];
   const used = new Set(dayUsed);
@@ -196,6 +241,20 @@ function buildMeal({ meal, kcalTarget, proteinTarget, fatTarget = 0, pools, rng,
       }
     }
     return finalise(items, used, dayUsed);
+  }
+
+  // Try slotting in a whole recipe before falling back to the raw-food solver —
+  // a real dish reads better than a greedy-assembled plate when one actually
+  // fits the calorie budget and (if a condition caps it) the glycemic load.
+  // Skipped outright when dayUsed would collide with one of its ingredients,
+  // so a recipe never quietly duplicates something already on today's plate.
+  if (recipePool.length && rng() < recipeChance) {
+    const picked = pickRecipe(recipePool, kcalTarget, maxMealGl, rotor, weekUsedRecipeIds);
+    if (picked && !picked.items.some((it) => dayUsed.has(it.foodId))) {
+      weekUsedRecipeIds.add(picked.recipe.id);
+      const recipeUsed = new Set(picked.items.map((it) => it.foodId));
+      return finalise(picked.items, recipeUsed, dayUsed, picked.recipe, picked.scale);
+    }
   }
 
   // Main meal: pick the protein first — it anchors the rest of the plate — then
@@ -450,9 +509,9 @@ function enforceMealGl(items, maxMealGl) {
   }
 }
 
-function finalise(items, used, dayUsed) {
+function finalise(items, used, dayUsed, recipe = null, recipeScale = null) {
   for (const id of used) dayUsed.add(id);
-  return items;
+  return { items, recipe, recipeScale };
 }
 
 /**
@@ -461,15 +520,20 @@ function finalise(items, used, dayUsed) {
  * @param {object} args
  * @param {object} args.targets - from targets.computeTargets()
  * @param {object[]} args.foods - normalised + filtered foods the user will eat
- * @param {object} [args.prefs] - { mealsPerDay, snacks, seed, dietPattern, ... }
+ * @param {object[]} [args.recipes] - normalised recipes (recipe-model.js) the user is
+ *   eligible for; main meals may slot one in whole instead of building from raw foods
+ * @param {object} [args.prefs] - { mealsPerDay, snacks, seed, dietPattern, recipeChance, ... }
  * @param {object} [args.previous] - a prior plan; locked days/meals are copied over
  * @returns {{seed:number, days:Array, meta:object}}
  */
-export function generatePlan({ targets, foods, prefs = {}, previous = null }) {
+export function generatePlan({ targets, foods, recipes = [], prefs = {}, previous = null }) {
   const seed = prefs.seed != null ? hashSeed(prefs.seed) : hashSeed(String(Date.now()));
   const rng = makeRng(seed);
   const skeleton = mealSkeleton(prefs.mealsPerDay ?? 3, prefs.snacks ?? 1);
   const pools = poolsByRole(foods);
+  const recipePools = recipesByMealType(recipes);
+  const recipeChance = prefs.recipeChance ?? DEFAULT_RECIPE_CHANCE;
+  const weekUsedRecipeIds = new Set();
   const maxMealGl = targets.mealRules?.maxMealGl ?? Infinity;
 
   const prevByLabel = {};
@@ -484,9 +548,10 @@ export function generatePlan({ targets, foods, prefs = {}, previous = null }) {
       const prevMeal = prevDay?.meals?.find((x) => x.key === m.key);
       if (prevMeal?.locked) {
         for (const it of prevMeal.items ?? []) if (it.foodId) dayUsed.add(it.foodId);
+        if (prevMeal.recipeId) weekUsedRecipeIds.add(prevMeal.recipeId);
         return structuredCloneSafe(prevMeal);
       }
-      const items = buildMeal({
+      const { items, recipe, recipeScale } = buildMeal({
         meal: m,
         kcalTarget: targets.calories * m.weight,
         proteinTarget: targets.protein * m.weight,
@@ -495,8 +560,17 @@ export function generatePlan({ targets, foods, prefs = {}, previous = null }) {
         rng,
         dayUsed,
         maxMealGl,
+        recipePool: recipePools[mealTypeForSlot(m.key)] ?? [],
+        recipeChance,
+        weekUsedRecipeIds,
       });
-      return { key: m.key, title: m.title, kind: m.kind, locked: false, items };
+      return {
+        key: m.key, title: m.title, kind: m.kind, locked: false, items,
+        recipeId: recipe?.id ?? null, recipeName: recipe?.name ?? null,
+        // `recipeScale` is already "how many of the recipe's own servings this
+        // meal contains" (1.0 = exactly one serving) — see scaleRecipeToTarget.
+        recipeServings: recipe ? Number(recipeScale.toFixed(2)) : null,
+      };
     });
 
     return { label, index: dayIdx, locked: false, meals };

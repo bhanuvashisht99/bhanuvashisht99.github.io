@@ -1,6 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { generatePlan, mealSkeleton, affinitySort, pickAffine } from '../plan-generator.js';
 import { normalizeFood, scaleFood, sumNutrition, glycemicLoad } from '../food-model.js';
+import { normalizeRecipe } from '../recipe-model.js';
 import { computeTargets } from '../targets.js';
 import { RAW_FOODS } from './fixtures.js';
 
@@ -166,5 +167,88 @@ describe('generatePlan', () => {
         expect(gl).toBeLessThan(t2dTargets.mealRules.maxMealGl + 12);
       }
     }
+  });
+});
+
+describe('recipe integration', () => {
+  const foodsById = new Map(FOODS.map((f) => [f.id, f]));
+  const chickenRiceRow = {
+    id: 'recipe-chicken-rice',
+    name: 'Chicken & Rice Bowl',
+    cuisine: 'universal',
+    meal_types: ['lunch', 'dinner'],
+    dietary_tags: ['gluten_free', 'dairy_free'],
+    allergens: [],
+    servings: 2,
+    calories: null, // computed from ingredients: ~505.5 kcal/serving
+    recipe_ingredients: [
+      { amount: 300, unit: 'g', foods: { id: 'chicken', name: 'Chicken Breast', category: 'protein' } },
+      { amount: 400, unit: 'g', foods: { id: 'brown-rice', name: 'Brown Rice (cooked)', category: 'grain' } },
+      { amount: 200, unit: 'g', foods: { id: 'broccoli', name: 'Broccoli', category: 'vegetable' } },
+    ],
+  };
+  const recipes = [normalizeRecipe(chickenRiceRow, foodsById)];
+
+  test('a compatible recipe gets slotted into lunch/dinner when recipeChance is 1', () => {
+    const plan = generatePlan({
+      targets, foods: FOODS, recipes, prefs: { seed: 'recipe-on', mealsPerDay: 3, snacks: 0, recipeChance: 1 },
+    });
+    const mains = plan.days.flatMap((d) => d.meals.filter((m) => m.kind === 'main'));
+    const recipeMeals = mains.filter((m) => m.recipeId === 'recipe-chicken-rice');
+    expect(recipeMeals.length).toBeGreaterThan(0);
+    // Breakfast is not in the recipe's meal_types, so it never carries it.
+    for (const day of plan.days) {
+      expect(day.meals[0].recipeId).toBeNull();
+    }
+  });
+
+  test('a recipe meal carries its own ingredients, scaled toward the meal calorie target', () => {
+    const plan = generatePlan({
+      targets, foods: FOODS, recipes, prefs: { seed: 'recipe-scale', mealsPerDay: 3, snacks: 0, recipeChance: 1 },
+    });
+    const recipeMeal = plan.days.flatMap((d) => d.meals).find((m) => m.recipeId === 'recipe-chicken-rice');
+    expect(recipeMeal).toBeDefined();
+    expect(recipeMeal.recipeName).toBe('Chicken & Rice Bowl');
+    expect(recipeMeal.recipeServings).toBeGreaterThan(0);
+    const foodIds = recipeMeal.items.map((it) => it.foodId).sort();
+    expect(foodIds).toEqual(['broccoli', 'brown-rice', 'chicken']);
+    const kcal = recipeMeal.items.reduce((s, it) => s + (it.food.calories * it.grams) / 100, 0);
+    const weight = recipeMeal.key === 'lunch' ? 0.4 : 0.3;
+    expect(kcal).toBeGreaterThan(targets.calories * weight * 0.5);
+    expect(kcal).toBeLessThan(targets.calories * weight * 1.95);
+  });
+
+  test('recipeChance 0 never uses a recipe even when one is eligible', () => {
+    const plan = generatePlan({
+      targets, foods: FOODS, recipes, prefs: { seed: 'recipe-off', mealsPerDay: 3, snacks: 0, recipeChance: 0 },
+    });
+    for (const day of plan.days) {
+      for (const meal of day.meals) expect(meal.recipeId).toBeNull();
+    }
+  });
+
+  test('no recipes passed in behaves exactly like the raw-food-only generator', () => {
+    const plan = generatePlan({ targets, foods: FOODS, prefs: { seed: 'no-recipes', mealsPerDay: 3, snacks: 0 } });
+    for (const day of plan.days) {
+      for (const meal of day.meals) expect(meal.recipeId).toBeNull();
+    }
+  });
+
+  test('a locked meal that came from a recipe keeps its recipeId/recipeName on regenerate', () => {
+    const first = generatePlan({
+      targets, foods: FOODS, recipes, prefs: { seed: 'recipe-lock', mealsPerDay: 3, snacks: 0, recipeChance: 1 },
+    });
+    const lockedDay = { ...first.days[0], locked: false, meals: first.days[0].meals.map((m) => ({ ...m })) };
+    const targetMeal = lockedDay.meals.find((m) => m.recipeId);
+    if (!targetMeal) return; // this seed happened to land no recipe on day 0 — nothing to assert
+    targetMeal.locked = true;
+    const second = generatePlan({
+      targets, foods: FOODS, recipes,
+      prefs: { seed: 'recipe-lock-2', mealsPerDay: 3, snacks: 0, recipeChance: 1 },
+      previous: { days: [lockedDay] },
+    });
+    const carried = second.days[0].meals.find((m) => m.key === targetMeal.key);
+    expect(carried.recipeId).toBe(targetMeal.recipeId);
+    expect(carried.recipeName).toBe(targetMeal.recipeName);
   });
 });

@@ -11,12 +11,14 @@ import {
   getNutritionProfile,
   getFoodPreferences,
   getSeedFoods,
+  searchRecipes,
   saveMealPlan,
 } from '/js/modules/supabase-client.js';
 import { el } from '/js/nutrition/options.js';
 import { computeTargets } from '/js/modules/nutrition/targets.js';
 import { normalizeFood, scaleFood, sumNutrition } from '/js/modules/nutrition/food-model.js';
 import { filterFoods } from '/js/modules/nutrition/food-filter.js';
+import { normalizeRecipe, recipeIsEligible } from '/js/modules/nutrition/recipe-model.js';
 import { generatePlan } from '/js/modules/nutrition/plan-generator.js';
 import { analyseGaps } from '/js/modules/nutrition/nutrient-gap.js';
 import { MICRONUTRIENT_LABELS } from '/js/modules/nutrition/rda.js';
@@ -43,6 +45,7 @@ const store = {
   targets: null,
   allFoods: [], // normalised
   eligibleFoods: [], // filtered to the user
+  recipes: [], // normalised, eligible for the user's diet/allergy/dislike filters
   plan: null,
   acknowledged: new Set(),
   dirty: false,
@@ -57,16 +60,18 @@ async function init() {
   if (!user) { window.location.href = '/auth.html'; return; }
   store.user = user;
 
-  const [{ profile, onboarded }, { preferences }, { foods }] = await Promise.all([
+  const [{ profile, onboarded }, { preferences }, { foods }, { recipes: recipeRows }] = await Promise.all([
     getNutritionProfile(user.id),
     getFoodPreferences(user.id),
     getSeedFoods(),
+    searchRecipes('', {}, 100),
   ]);
 
   if (!onboarded) { window.location.href = '/nutrition-onboarding.html'; return; }
 
   store.profile = profile;
   store.allFoods = (foods || []).map(normalizeFood);
+  store.recipes = normalizeRecipes(recipeRows, store.allFoods);
 
   store.targets = computeTargets({
     calories: profile.daily_calories,
@@ -91,6 +96,22 @@ async function init() {
   render();
 }
 
+/** Map raw `recipes` rows (joined to `recipe_ingredients.foods`) to the
+ * plan-generator's normalised recipe shape, dropping any that end up with no
+ * usable ingredients. */
+function normalizeRecipes(rows, allFoods) {
+  const foodsById = new Map(allFoods.map((f) => [f.id, f]));
+  return (rows || []).map((r) => normalizeRecipe(r, foodsById)).filter(Boolean);
+}
+
+/** Recipes the user can currently eat in full — every ingredient survives
+ * their diet/allergy/dislike filters. Recomputed from the live eligible-foods
+ * list rather than cached, so toggling "all cuisines" stays in sync. */
+function eligibleRecipes() {
+  const eligibleIds = new Set(store.eligibleFoods.map((f) => f.id));
+  return store.recipes.filter((r) => recipeIsEligible(r, eligibleIds));
+}
+
 function buildEligibleFoods(preferences) {
   const never = (preferences || []).filter((p) => p.stance === 'never' || p.stance === 'dislike').map((p) => p.food_id);
   store.loved = new Set((preferences || []).filter((p) => p.stance === 'love' || p.stance === 'like').map((p) => p.food_id));
@@ -109,6 +130,7 @@ function generateFresh() {
   return generatePlan({
     targets: store.targets,
     foods: preferLoved(store.eligibleFoods),
+    recipes: eligibleRecipes(),
     prefs: {
       seed: `${store.user.id}:${Date.now()}:${variety}`,
       mealsPerDay: store.profile.meals_per_day || 3,
@@ -263,11 +285,17 @@ function renderMeal(day, meal, di) {
 
   const adder = buildFoodSearch((food) => {
     meal.items.push({ food, foodId: food.id, grams: food.category === 'oils' || food.category === 'nuts' ? 15 : 80 });
+    meal.recipeId = null;
+    meal.recipeName = null;
     markDirty();
     render();
   });
 
-  return el('div', { class: 'n-meal' }, head, ...items, adder);
+  const recipeTag = meal.recipeName
+    ? el('span', { class: 'n-recipe-tag' }, meal.recipeName)
+    : null;
+
+  return el('div', { class: 'n-meal' }, head, ...(recipeTag ? [recipeTag] : []), ...items, adder);
 }
 
 /**
@@ -291,6 +319,8 @@ function renderItem(day, meal, item) {
   input.addEventListener('change', () => {
     const v = Math.max(0, Number(input.value) || 0);
     item.grams = toGrams(food, v, rowMode);
+    meal.recipeId = null;
+    meal.recipeName = null;
     markDirty();
     render();
   });
@@ -317,6 +347,8 @@ function renderItem(day, meal, item) {
       meal.items = meal.items.filter((x) => x !== item);
       const target = day.meals.find((m) => m === meal);
       if (target) target.items = meal.items;
+      meal.recipeId = null;
+      meal.recipeName = null;
       markDirty();
       render();
     },
@@ -368,6 +400,7 @@ function regenerateDay(di) {
   const fresh = generatePlan({
     targets: store.targets,
     foods: preferLoved(store.eligibleFoods),
+    recipes: eligibleRecipes(),
     prefs: { seed: `${store.user.id}:day${di}:${Date.now()}`, mealsPerDay: store.profile.meals_per_day || 3, snacks: 1 },
   });
   if (!store.plan.days[di].locked) store.plan.days[di] = fresh.days[di];
@@ -381,6 +414,7 @@ function wireControls() {
     store.plan = generatePlan({
       targets: store.targets,
       foods: preferLoved(store.eligibleFoods),
+      recipes: eligibleRecipes(),
       prefs: { seed: `${store.user.id}:${Date.now()}:${$('variety').value}`, mealsPerDay: store.profile.meals_per_day || 3, snacks: 1 },
       previous: prev,
     });
