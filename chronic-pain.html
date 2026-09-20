@@ -387,23 +387,18 @@
             font-size: 1.1rem;
         }
 
-        /* Video Section */
-        .video-section {
-            padding: 3rem 1rem;
-            background: var(--white);
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .video-wrapper {
-            max-width: 600px;
+            max-width: 340px;
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
         }
 
         .video-wrapper iframe {
@@ -411,6 +406,113 @@
             aspect-ratio: 9/16;
             border: none;
             display: block;
+            background: var(--color-primary-light);
+        }
+
+        /* Testimonials Section (tabbed) */
+        .testimonials-section {
+            background: var(--white);
+        }
+
+        .testimonial-tabs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .testimonial-tab {
+            display: block;
+            width: 100%;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+            padding: 1.25rem 1.5rem;
+            background: var(--off-white);
+            border: none;
+            border-left: 4px solid var(--color-text-muted);
+            border-radius: 12px;
+            transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .testimonial-tab:hover {
+            transform: translateY(-2px);
+        }
+
+        .testimonial-tab-name {
+            display: block;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--color-text-primary);
+        }
+
+        .testimonial-tab-condition {
+            color: var(--orange-primary);
+            font-weight: 700;
+        }
+
+        .testimonial-tab-teaser {
+            display: block;
+            margin-top: 0.35rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .testimonial-tab[aria-selected="true"] {
+            background: var(--color-primary);
+            border-left-color: var(--color-accent-light);
+        }
+
+        .testimonial-tab[aria-selected="true"] .testimonial-tab-name,
+        .testimonial-tab[aria-selected="true"] .testimonial-tab-teaser {
+            color: var(--white);
+        }
+
+        .testimonial-tab[aria-selected="true"] .testimonial-tab-condition {
+            color: var(--color-accent-light);
+        }
+
+        .testimonial-panel {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 2.5rem;
+        }
+
+        .testimonial-panel.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial-panel-content {
+            max-width: 800px;
+            margin-top: 1.5rem;
+        }
+
+        .testimonial-badge {
+            display: inline-block;
+            padding: 0.35rem 0.9rem;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.08) 0%, rgba(118, 141, 135, 0.12) 100%);
+            border-radius: 50px;
+            color: var(--orange-primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-panel-content p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--dark-60);
+            margin-bottom: 1.25rem;
+        }
+
+        .testimonial-panel-content strong {
+            color: var(--color-text-primary);
+            font-weight: 700;
         }
 
         /* Section Styles */
@@ -448,28 +550,6 @@
             font-size: 1.05rem;
             color: var(--gray);
             line-height: 1.5;
-        }
-
-        /* Story Section */
-        .story-section {
-            background: var(--off-white);
-        }
-
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .story-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--dark-60);
-            margin-bottom: 1.5rem;
-        }
-
-        .story-content strong {
-            color: var(--color-text-primary);
-            font-weight: 700;
         }
 
         .highlight-box {
@@ -726,6 +806,20 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .testimonial-tabs {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .testimonial-panel.active {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .testimonial-panel-content {
+                flex: 1;
+                margin-top: 0;
+            }
+
             .footer-container {
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -897,45 +991,67 @@
         </div>
     </section>
 
-    <!-- Video Section -->
-    <section class="video-section">
+    <!-- Testimonials Section (tabbed) -->
+    <section class="section testimonials-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Sanjhi's Transformation</span>
-                <h2 class="section-title">Watch Her Complete Recovery</h2>
-                <p class="section-subtitle">See how biomechanics-based coaching transformed chronic pain into freedom of movement.</p>
+                <span class="section-tag">Real Clients, Real Results</span>
+                <h2 class="section-title">Three Problems. Three Recoveries.</h2>
+                <p class="section-subtitle">Same biomechanics-first method, three completely different bodies. Tap a story to watch it.</p>
             </div>
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/duWjrrhTgL8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
 
-    <!-- Story Section -->
-    <section class="section story-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">The Journey</span>
-                <h2 class="section-title">Sanjhi's Story</h2>
+            <div class="testimonial-tabs" role="tablist" aria-label="Client testimonials">
+                <button type="button" class="testimonial-tab" role="tab" aria-selected="true" aria-controls="testimonial-sanjhi" id="tab-sanjhi" data-tab="sanjhi">
+                    <span class="testimonial-tab-name">Sanjhi <span class="testimonial-tab-condition">— Chronic Pain</span></span>
+                    <span class="testimonial-tab-teaser">Pain-free in weeks, not the years she was told to expect.</span>
+                </button>
+                <button type="button" class="testimonial-tab" role="tab" aria-selected="false" aria-controls="testimonial-aman" id="tab-aman" data-tab="aman">
+                    <span class="testimonial-tab-name">Aman <span class="testimonial-tab-condition">— Shoulder Pain</span></span>
+                    <span class="testimonial-tab-teaser">The trigger point was released in about 5 minutes.</span>
+                </button>
+                <button type="button" class="testimonial-tab" role="tab" aria-selected="false" aria-controls="testimonial-sba" id="tab-sba" data-tab="sba">
+                    <span class="testimonial-tab-name">Sba <span class="testimonial-tab-condition">— Knee Pain</span></span>
+                    <span class="testimonial-tab-teaser">Gone in 6 sessions over 10 days — faster than we expected.</span>
+                </button>
             </div>
-            <div class="story-content">
-                <p><strong>The Problem:</strong> Sanjhi suffered for months with debilitating chronic pain. Every movement hurt. Daily activities became struggles. She tried everything—doctors, medications, traditional physical therapy—but nothing addressed the root cause.</p>
 
-                <div class="highlight-box">
-                    <p>"I was told it would take months, maybe years. I couldn't even imagine living like that."</p>
+            <div class="testimonial-panel active" id="testimonial-sanjhi" role="tabpanel" aria-labelledby="tab-sanjhi">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/duWjrrhTgL8" loading="lazy" title="Sanjhi's chronic pain recovery" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-
-                <p><strong>What Wasn't Working:</strong> Traditional approaches focused on symptoms, not causes. Pain medications only masked the problem. Generic exercises didn't account for her unique biomechanics. She was stuck in a cycle of temporary relief followed by setbacks.</p>
-
-                <p><strong>The Solution:</strong> Through online coaching, we conducted a complete biomechanical assessment. We identified the exact dysfunctions causing her pain—tight fascia, poor movement patterns, and structural imbalances.</p>
-
-                <p><strong>The Method:</strong> We used targeted fascia release techniques to address tissue restrictions. We corrected her movement patterns through specific exercises designed for her body. We rebuilt strength in the right areas to support proper mechanics.</p>
-
-                <div class="highlight-box">
-                    <p>Result: Pain-free and moving better than ever. Not in months—in weeks.</p>
+                <div class="testimonial-panel-content">
+                    <span class="testimonial-badge">Chronic Pain — Online Coaching</span>
+                    <p><strong>The problem:</strong> Sanjhi lived with debilitating chronic pain for months. Doctors, medication, traditional physical therapy — nothing touched the root cause.</p>
+                    <div class="highlight-box"><p>"I was told it would take months, maybe years. I couldn't even imagine living like that."</p></div>
+                    <p><strong>The fix:</strong> A full biomechanical assessment — done entirely online — found the real issue: tight fascia, poor movement patterns, structural imbalances. We released the restrictions, corrected the patterns, and rebuilt strength in the right places, with real-time form correction on video and WhatsApp support between sessions.</p>
+                    <div class="highlight-box"><p>Result: pain-free and moving better than ever — in weeks, not months.</p></div>
                 </div>
+            </div>
 
-                <p><strong>Why It Worked:</strong> We didn't just treat symptoms. We fixed the root cause. Every session was tailored to Sanjhi's biomechanics, not a generic protocol. Real-time form correction via video ensured perfect execution. Between sessions, WhatsApp support kept her on track.</p>
+            <div class="testimonial-panel" id="testimonial-aman" role="tabpanel" aria-labelledby="tab-aman">
+                <div class="video-wrapper">
+                    <iframe data-src="https://www.youtube.com/embed/Jnc2_ftKoXs" loading="lazy" title="Aman's shoulder pain recovery" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimonial-panel-content">
+                    <span class="testimonial-badge">Shoulder Pain — Los Angeles</span>
+                    <p><strong>The problem:</strong> Aman, an older client in LA, had lived with shoulder irritation that made everyday things — reaching, lifting, sleeping on that side — genuinely painful.</p>
+                    <div class="highlight-box"><p>5 minutes. That's all it took to find and release the exact muscle that was triggering the irritation.</p></div>
+                    <p><strong>The fix:</strong> Once the trigger point was released, we went straight into targeted rotator cuff work to rebuild the shoulder's stability — so the relief actually held instead of creeping back.</p>
+                    <p><strong>The result:</strong> Same-session relief, and a shoulder that's stayed strong since — the same assessment-first, fix-the-cause approach every client gets.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-panel" id="testimonial-sba" role="tabpanel" aria-labelledby="tab-sba">
+                <div class="video-wrapper">
+                    <iframe data-src="https://www.youtube.com/embed/ysIlXfM1pmI" loading="lazy" title="Sba's knee pain recovery" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimonial-panel-content">
+                    <span class="testimonial-badge">Knee Pain &amp; Inflammation</span>
+                    <p><strong>The problem:</strong> Sba came in with real knee pain and inflammation — the kind that doesn't move well and punishes the wrong exercise instantly.</p>
+                    <p><strong>The fix:</strong> This one needed everything at once — hands-on release work, targeted stretching, and progressive strengthening, rebuilding the knee's support system from scratch rather than just calming it down.</p>
+                    <div class="highlight-box"><p>"Bhanu told me it would take a month. He was wrong — it took 10 days."</p></div>
+                    <p><strong>The result:</strong> 6 sessions. 10 days. Faster than even the original estimate, because the plan attacked the actual cause, not just the pain.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1178,6 +1294,21 @@
                 nav.classList.remove('scrolled');
             }
         }, { passive: true });
+
+        // Testimonial tabs — switch panel, lazy-load its video on first view
+        document.querySelectorAll('.testimonial-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('aria-controls');
+                document.querySelectorAll('.testimonial-tab').forEach((t) => t.setAttribute('aria-selected', t === tab));
+                document.querySelectorAll('.testimonial-panel').forEach((panel) => panel.classList.toggle('active', panel.id === targetId));
+
+                const iframe = document.querySelector(`#${targetId} iframe`);
+                if (iframe && iframe.dataset.src) {
+                    iframe.src = iframe.dataset.src;
+                    delete iframe.dataset.src;
+                }
+            });
+        });
     </script>
 </body>
 </html>
