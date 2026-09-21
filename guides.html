@@ -31,18 +31,18 @@
     <!-- End Meta Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Bhanu Vashisht | Online Personal Training</title>
+    <title>PDF Guides - Lower Back Pain & Handstand | Bhanu Vashisht</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="canonical" href="https://youdeservewell.com/about.html">
-    <meta name="description" content="Learn about Bhanu Vashisht, an online personal trainer with over a decade in fitness, coaching chronic pain recovery and calisthenics mastery.">
-    <meta property="og:title" content="About - Bhanu Vashisht">
-    <meta property="og:description" content="Over a decade in fitness, now coaching chronic pain recovery and calisthenics mastery. Train from anywhere in the world.">
+    <link rel="canonical" href="https://youdeservewell.com/guides.html">
+    <meta name="description" content="Two biomechanics-based PDF guides: Take Control of Your Lower Back Pain, and How Handstands Actually Work. Instant digital access, from $25.">
+    <meta property="og:title" content="PDF Guides - Bhanu Vashisht">
+    <meta property="og:description" content="Biomechanics-based PDF guides for lower back pain recovery and handstand mastery. Instant digital access.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About - Bhanu Vashisht">
-    <meta name="twitter:description" content="Over a decade in fitness, coaching chronic pain recovery and calisthenics mastery.">
+    <meta name="twitter:title" content="PDF Guides - Bhanu Vashisht">
+    <meta name="twitter:description" content="Biomechanics-based PDF guides for lower back pain recovery and handstand mastery.">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -699,6 +699,104 @@
             line-height: 1.6;
         }
 
+        /* Guides Grid */
+        .guides-section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .guides-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .guide-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-bg-secondary, #E3DFD9);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--color-bg-card);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px -24px rgba(26, 23, 20, 0.3);
+        }
+
+        .guide-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .guide-card-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .guide-card-body h3 {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: var(--color-text-primary);
+        }
+
+        .guide-card-body p {
+            color: var(--color-text-secondary);
+            font-size: 0.94rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .guide-card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .guide-card-price {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--color-text-primary);
+        }
+
+        .guide-card-price span {
+            font-weight: 500;
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+        }
+
+        .guide-card-btn {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--white);
+            padding: 0.65rem 1.3rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .guide-card-btn:hover {
+            transform: translateY(-2px);
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 4rem 2rem;
@@ -994,124 +1092,39 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">About Me</div>
-            <h1>Transforming Lives Through<br>Movement & Science</h1>
-            <p>Over a decade in fitness, now dedicated to helping people overcome chronic pain and master advanced movement skills</p>
+            <div class="hero-badge">Digital Guides</div>
+            <h1>Start With the Guide That Fits Where You Are</h1>
+            <p>Two PDF guides built on the same biomechanics-based approach as 1-on-1 coaching &mdash; instant digital access, no subscription.</p>
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section class="story-section">
-        <h2 class="section-title">My Journey</h2>
-        <p class="section-subtitle">From passion to profession</p>
+    <!-- Guides Grid -->
+    <section class="guides-section">
+        <h2 class="section-title">Choose Your Guide</h2>
+        <p class="section-subtitle">Instant digital delivery &middot; No subscription &middot; Built on biomechanics, not motivation</p>
 
-        <div class="story-content">
-            <p>I'm <strong>Bhanu Vashisht</strong>, an online personal trainer and biomechanics coach. My work is focused on one thing: helping people move without pain. I've spent over a decade immersed in fitness — training, studying movement, and refining what actually works — before channeling that into coaching people 1-on-1. I've worked with clients who had been failed by the conventional system — told their scans were normal, told to "manage it," told this was just part of aging. They weren't wrong to be frustrated. They were just seeing the wrong approach.</p>
-
-            <p>The turning point for me was watching clients get dismissed by professionals who treated symptoms in isolation. Chronic pain — lower back, neck, shoulders — is almost always a movement and fascial problem. When you find the actual cause and address it with the right biomechanics, people get better. Not eventually. In weeks.</p>
-
-            <p>My approach combines <span class="highlight">biomechanical assessment</span>, <span class="highlight">fascia release</span>, <span class="highlight">corrective movement</span>, and <span class="highlight">progressive strength</span> — all tailored to your specific body, not a generic protocol. I work 1-on-1 via live video sessions, so every session is real coaching, not a workout plan you follow alone.</p>
-
-            <p>I work with clients worldwide — India, UAE, US, Europe — because good coaching shouldn't be limited by geography. If you're committed, I'm with you every step.</p>
-        </div>
-    </section>
-
-    <!-- Expertise Section -->
-    <section class="expertise-section">
-        <div class="expertise-container">
-            <h2 class="section-title">Areas of Expertise</h2>
-            <p class="section-subtitle">Specialized training that delivers results</p>
-
-            <div class="expertise-grid">
-                <div class="expertise-card fade-in">
-                    <div class="expertise-icon">🩹</div>
-                    <h3>Chronic Pain Recovery</h3>
-                    <p>Lower back pain, neck pain, shoulder issues — fixed at the root cause. Biomechanical assessment, fascia release, and corrective movement for people who've tried everything else.</p>
-                </div>
-
-                <div class="expertise-card fade-in">
-                    <div class="expertise-icon">🔄</div>
-                    <h3>Movement & Mobility for Longevity</h3>
-                    <p>Move well for life, not just for a season. Progressive mobility and flexibility work that keeps your body functional and pain-free as you age.</p>
-                </div>
-
-                <div class="expertise-card fade-in">
-                    <div class="expertise-icon">💪</div>
-                    <h3>Functional Strength</h3>
-                    <p>Build real, usable strength through bodyweight and progressive training. Programmes tailored to your body, goals, and where you're starting from.</p>
-                </div>
-
-                <div class="expertise-card fade-in">
-                    <div class="expertise-icon">🤸</div>
-                    <h3>Advanced Movement Skills</h3>
-                    <p>For those who want to go further — <strong>handstands, front lever, back lever, planche, L-sit, muscle-up,</strong> and more. Every skill is built progressively on a solid foundation of strength and movement quality.</p>
+        <div class="guides-grid">
+            <div class="guide-card">
+                <img src="images/pdf-cover.jpg" alt="Lower Back Pain Guide" width="540" height="814" loading="lazy">
+                <div class="guide-card-body">
+                    <h3>Take Control of Your Lower Back Pain</h3>
+                    <p>For people who've tried rest, exercises, and advice &mdash; yet lower back pain keeps returning. A science-based system to fix it at the root.</p>
+                    <div class="guide-card-footer">
+                        <span class="guide-card-price">$25<span> from</span></span>
+                        <a href="lower-back-pain-guide.html" class="guide-card-btn">View Guide &rarr;</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-
-    <!-- Training Approach -->
-    <section class="approach-section">
-        <h2 class="section-title">My Training Approach</h2>
-        <p class="section-subtitle">Science-based, results-driven methodology</p>
-
-        <div class="approach-grid">
-            <div class="approach-card fade-in">
-                <div class="approach-number">1</div>
-                <h3>Assessment</h3>
-                <p>Comprehensive evaluation of your movement patterns, limitations, and goals to create a personalized baseline.</p>
-            </div>
-
-            <div class="approach-card fade-in">
-                <div class="approach-number">2</div>
-                <h3>Custom Programming</h3>
-                <p>Tailored training plans designed specifically for your body, goals, and schedule with weekly adjustments.</p>
-            </div>
-
-            <div class="approach-card fade-in">
-                <div class="approach-number">3</div>
-                <h3>Live Coaching</h3>
-                <p>Real-time video sessions with immediate form feedback and technique refinement for optimal results.</p>
-            </div>
-
-            <div class="approach-card fade-in">
-                <div class="approach-number">4</div>
-                <h3>Progress Tracking</h3>
-                <p>Detailed monitoring of metrics, videos, and achievements to ensure consistent forward momentum.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Core Values -->
-    <section class="values-section">
-        <div class="values-container">
-            <h2 class="section-title">Core Values</h2>
-            <p class="section-subtitle">What drives my coaching philosophy</p>
-
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">🎯</div>
-                    <h3>Results-Focused</h3>
-                    <p>Every session is designed to move you closer to your goals with measurable progress.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🔬</div>
-                    <h3>Science-Based</h3>
-                    <p>Training protocols rooted in biomechanics, physiology, and proven methodologies.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">💎</div>
-                    <h3>Premium Quality</h3>
-                    <p>Small client roster ensures every individual gets the attention they deserve.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🌍</div>
-                    <h3>Globally Accessible</h3>
-                    <p>Train from anywhere in the world with the same level of personalized coaching.</p>
+            <div class="guide-card">
+                <img src="images/handstand-cover.jpg" alt="Handstand Guide" width="1000" height="1250" loading="lazy">
+                <div class="guide-card-body">
+                    <h3>How Handstands Actually Work</h3>
+                    <p>A simple system anyone can understand. No tricks, no guesswork &mdash; just structure. Learn the biomechanics behind a perfect handstand.</p>
+                    <div class="guide-card-footer">
+                        <span class="guide-card-price">$25<span> from</span></span>
+                        <a href="handstand-guide.html" class="guide-card-btn">View Guide &rarr;</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1119,9 +1132,9 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2 class="cta-title">Ready to Transform Your Life?</h2>
-        <p class="cta-text">Join 50+ individuals who have transformed their lives through expert coaching</p>
-        <a href="https://wa.me/918448222454?text=Hi%20Bhanu%20Vashisht%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20training%20programs.%20Can%20we%20discuss%3F" class="cta-btn" target="_blank">Book Your First Session</a>
+        <h2 class="cta-title">Want 1-on-1 Coaching Instead?</h2>
+        <p class="cta-text">These guides are built on the same approach I use with private clients &mdash; if you'd rather skip straight to personalized coaching, let's talk.</p>
+        <a href="https://wa.me/918448222454?text=Hi%20Bhanu%2C%20I%27d%20like%20to%20learn%20more%20about%201-on-1%20coaching." class="cta-btn" target="_blank">Message Me on WhatsApp</a>
     </section>
 
     <!-- Footer -->
