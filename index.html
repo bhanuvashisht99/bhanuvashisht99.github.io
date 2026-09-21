@@ -193,11 +193,12 @@
             --color-primary-light: #36312B;
 
             /* Secondary/Accent Color (CTAs, highlights, accents)
-               Brass — from the Ink & Brass direction. Used sparingly:
-               underlines, highlighted text, thin accents. Never a button fill. */
-            --color-accent: #B4854A;
-            --color-accent-light: #E3C48A;
-            --color-accent-dark: #7B5A32;
+               No separate hue — black/white/warm-gray only, per direction.
+               Same H30 family as ink, just a lighter/darker step for
+               emphasis (underlines, highlighted text, thin accents). */
+            --color-accent: #6F675D;
+            --color-accent-light: #A59F97;
+            --color-accent-dark: #3F3931;
 
             /* Background Colors */
             --color-bg-dark: #1A1714;           /* Warm ink - for hero sections */
@@ -448,7 +449,7 @@
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(180, 133, 74, 0.3);
+            box-shadow: 0 6px 20px rgba(111, 103, 93, 0.3);
         }
 
         .mobile-menu-toggle {
@@ -626,17 +627,24 @@
         }
 
         .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: rgba(26, 23, 20, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(26, 23, 20, 0.2);
-            border-radius: 50px;
-            color: var(--color-primary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--color-text-secondary);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
             animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 24px;
+            height: 1.5px;
+            flex: none;
+            background: var(--color-primary);
         }
 
         @keyframes fadeInDown {
@@ -834,7 +842,7 @@
         .section-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(26, 23, 20, 0.1) 0%, rgba(180, 133, 74, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(26, 23, 20, 0.1) 0%, rgba(111, 103, 93, 0.3) 100%);
             border-radius: 50px;
             color: var(--purple-primary);
             font-weight: 700;
@@ -943,23 +951,23 @@
         .btn-orange {
             background: var(--gradient-cta);
             color: var(--white);
-            box-shadow: 0 4px 16px rgba(180, 133, 74, 0.3);
+            box-shadow: 0 4px 16px rgba(111, 103, 93, 0.3);
         }
 
         .btn-orange:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(180, 133, 74, 0.3);
+            box-shadow: 0 6px 20px rgba(111, 103, 93, 0.3);
         }
 
         .btn-purple {
             background: var(--color-bg-dark);
             color: var(--white);
-            box-shadow: 0 4px 16px rgba(180, 133, 74, 0.3);
+            box-shadow: 0 4px 16px rgba(111, 103, 93, 0.3);
         }
 
         .btn-purple:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(180, 133, 74, 0.4);
+            box-shadow: 0 6px 20px rgba(111, 103, 93, 0.4);
         }
 
         /* Featured Testimonials */
@@ -1067,7 +1075,7 @@
         }
 
         .pricing-card {
-            background: linear-gradient(135deg, rgba(180, 133, 74, 0.05) 0%, rgba(180, 133, 74, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(111, 103, 93, 0.05) 0%, rgba(111, 103, 93, 0.3) 100%);
             border-radius: 24px;
             padding: 2rem;
             border: 2px solid rgba(26, 23, 20, 0.15);
@@ -1093,7 +1101,7 @@
         }
 
         .pricing-recommend {
-            background: rgba(180, 133, 74, 0.3);
+            background: rgba(111, 103, 93, 0.3);
             padding: 1rem;
             border-radius: 12px;
             margin: 1.5rem 0;
@@ -1613,7 +1621,7 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-copy">
-                <div class="hero-badge">🌍 Online Coaching — India • UAE • UK • US • Europe</div>
+                <div class="hero-badge">Online Coaching · India · UAE · UK · US · Europe</div>
                 <h1>You Deserve to Move <span class="hero-underline">Without Pain</span></h1>
                 <p class="hero-subtitle" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;">For people who've tried everything — doctors, physio, rest, exercises — and are still hurting.</p>
                 <p class="hero-subtitle" style="font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--color-text-secondary);">Lower back pain, neck pain, shoulder issues. Let's find what's actually causing it — and fix it for good.</p>
@@ -1919,7 +1927,7 @@
                 <div class="pricing-card fade-in">
 
                     <!-- Consultation / Coaching Toggle -->
-                    <div style="display: flex; background: rgba(180,133,74,0.08); border-radius: 50px; padding: 4px; margin-bottom: 1.75rem;">
+                    <div style="display: flex; background: rgba(111,103,93,0.08); border-radius: 50px; padding: 4px; margin-bottom: 1.75rem;">
                         <button id="consultToggleBtn" style="flex: 1; padding: 0.65rem 1rem; background: var(--gradient-primary); border: none; border-radius: 50px; color: white; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">Consultation</button>
                         <button id="coachingToggleBtn" style="flex: 1; padding: 0.65rem 1rem; background: transparent; border: none; border-radius: 50px; color: var(--dark-60); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;">Coaching</button>
                     </div>
