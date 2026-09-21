@@ -479,13 +479,43 @@
         }
 
         /* Story Section */
-        .story-section {
-            background: var(--white);
-        }
-
         .story-content {
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        /* Video + story side by side instead of stacked, so the section
+           actually uses the width available on wider screens */
+        .prakriti-feature {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            align-items: flex-start;
+            margin-top: 2rem;
+        }
+
+        .prakriti-video-col {
+            width: 100%;
+        }
+
+        @media (min-width: 900px) {
+            .prakriti-feature {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 3.5rem;
+            }
+
+            .prakriti-video-col {
+                flex: 0 0 380px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .story-content {
+                flex: 1;
+                max-width: none;
+                margin: 0;
+            }
         }
 
         .story-content p {
@@ -907,37 +937,31 @@
                 <h2 class="section-title">Watch Her Journey</h2>
                 <p class="section-subtitle">Started seeing real results within the first month of training.</p>
             </div>
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/ZCHbzeF_XxU" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Story Section -->
-    <section class="section story-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">The Journey</span>
-                <h2 class="section-title">Prakriti's Story</h2>
-            </div>
-            <div class="story-content">
-                <p><strong>The Beginning:</strong> Prakriti had never trained seriously before. Like most people, she thought advanced calisthenics skills were only for "naturally gifted" athletes. Handstands? Muscle-ups? Those seemed impossible.</p>
-
-                <div class="highlight-box">
-                    <p>"I never imagined I could do a handstand. Now it feels natural."</p>
+            <div class="prakriti-feature">
+                <div class="prakriti-video-col">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ZCHbzeF_XxU" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
+                <div class="story-content">
+                    <p><strong>The Beginning:</strong> Prakriti had never trained seriously before. Like most people, she thought advanced calisthenics skills were only for "naturally gifted" athletes. Handstands? Muscle-ups? Those seemed impossible.</p>
 
-                <p><strong>The Challenge:</strong> Starting from zero means everything is new—proper form, body awareness, progressive overload. Most people waste months or years trying random YouTube tutorials, developing bad habits, or getting injured.</p>
+                    <div class="highlight-box">
+                        <p>"I never imagined I could do a handstand. Now it feels natural."</p>
+                    </div>
 
-                <p><strong>The Method:</strong> We started with a complete biomechanical assessment. I identified exactly what her body needed to build strength efficiently and safely. Every exercise was chosen specifically for her structure and goals.</p>
+                    <p><strong>The Challenge:</strong> Starting from zero means everything is new—proper form, body awareness, progressive overload. Most people waste months or years trying random YouTube tutorials, developing bad habits, or getting injured.</p>
 
-                <p><strong>The Training:</strong> Live 1-on-1 video sessions meant real-time form correction. No guessing if she was doing it right. No developing bad habits. Just perfect technique from day one, building the right foundation for advanced skills.</p>
+                    <p><strong>The Method:</strong> We started with a complete biomechanical assessment. I identified exactly what her body needed to build strength efficiently and safely. Every exercise was chosen specifically for her structure and goals.</p>
 
-                <div class="highlight-box">
-                    <p>Result: Started seeing meaningful changes in body composition and skill development within the first month.</p>
+                    <p><strong>The Training:</strong> Live 1-on-1 video sessions meant real-time form correction. No guessing if she was doing it right. No developing bad habits. Just perfect technique from day one, building the right foundation for advanced skills.</p>
+
+                    <div class="highlight-box">
+                        <p>Result: Started seeing meaningful changes in body composition and skill development within the first month.</p>
+                    </div>
+
+                    <p><strong>Why It Worked:</strong> Biomechanics-based progressions meant she built strength in the right sequence. Creative, varied workouts kept training fun and engaging. Real-time coaching prevented injuries and accelerated progress. Online training meant no commute, no schedule conflicts—just results.</p>
                 </div>
-
-                <p><strong>Why It Worked:</strong> Biomechanics-based progressions meant she built strength in the right sequence. Creative, varied workouts kept training fun and engaging. Real-time coaching prevented injuries and accelerated progress. Online training meant no commute, no schedule conflicts—just results.</p>
             </div>
         </div>
     </section>
