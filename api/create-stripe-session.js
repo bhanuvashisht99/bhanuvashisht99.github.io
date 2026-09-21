@@ -1,11 +1,12 @@
 import Stripe from 'stripe';
+import { resolveAmountInSmallestUnit } from './_price-catalog.js';
+
+const ALLOWED_ORIGIN = process.env.BASE_URL || 'https://youdeservewell.com';
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Credentials': true,
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-  'Access-Control-Allow-Headers':
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+  'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+  'Access-Control-Allow-Methods': 'POST,OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
 };
 
 const PRODUCT_NAMES = {
@@ -35,15 +36,21 @@ export default async function handler(req, res) {
 
   try {
     const {
-      amount,
       currency = 'USD',
       customerEmail,
       productOption,
       product = 'lower-back-pain-guide',
     } = req.body;
 
-    if (!amount || !customerEmail) {
-      return res.status(400).json({ error: 'Amount and customer email are required' });
+    if (!customerEmail || !productOption) {
+      return res.status(400).json({ error: 'Customer email and product option are required' });
+    }
+
+    // Price is looked up server-side from the product catalog — the client
+    // only selects *which* product/option/currency, it never sets the price.
+    const amount = resolveAmountInSmallestUnit(product, productOption, currency);
+    if (amount === null) {
+      return res.status(400).json({ error: 'Unknown product, option, or currency' });
     }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);

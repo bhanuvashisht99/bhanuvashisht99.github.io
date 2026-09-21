@@ -1,14 +1,12 @@
 import Razorpay from 'razorpay';
+import { resolveAmountInSmallestUnit } from './_price-catalog.js';
+
+const ALLOWED_ORIGIN = process.env.BASE_URL || 'https://youdeservewell.com';
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
@@ -20,12 +18,28 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { amount, currency = 'INR', customerEmail } = req.body;
+    const {
+      currency = 'INR',
+      customerEmail,
+      productOption,
+      product = 'lower-back-pain-guide',
+    } = req.body;
 
     // Validate input
-    if (!amount || !customerEmail) {
+    if (!customerEmail || !productOption) {
       return res.status(400).json({
-        error: 'Amount and customer email are required'
+        error: 'Customer email and product option are required'
+      });
+    }
+
+    // Price is looked up server-side from the product catalog — the client
+    // only selects *which* product/option/currency, it never sets the price.
+    // This prevents a tampered request from creating an order for an
+    // arbitrary (e.g. near-zero) amount.
+    const amount = resolveAmountInSmallestUnit(product, productOption, currency);
+    if (amount === null) {
+      return res.status(400).json({
+        error: 'Unknown product, option, or currency'
       });
     }
 
@@ -37,11 +51,12 @@ export default async function handler(req, res) {
 
     // Create order
     const options = {
-      amount: amount, // amount in paise
+      amount: amount, // amount in paise, derived from the server-side catalog
       currency: currency,
       receipt: `order_${Date.now()}`,
       notes: {
-        product: 'lower-back-pain-guide',
+        product,
+        product_option: productOption,
         customer_email: customerEmail
       }
     };

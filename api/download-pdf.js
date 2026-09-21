@@ -1,8 +1,7 @@
 // PDF Download Handler - Redirects to Google Drive
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Enable CORS (scoped to our own origin)
+  res.setHeader('Access-Control-Allow-Origin', process.env.BASE_URL || 'https://youdeservewell.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
 
   if (req.method === 'OPTIONS') {

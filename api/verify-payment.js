@@ -2,14 +2,12 @@ import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  // Enable CORS (scoped to our own origin — this endpoint verifies real
+  // payments and emails a download link, it should not be callable from
+  // arbitrary third-party pages)
+  res.setHeader('Access-Control-Allow-Origin', process.env.BASE_URL || 'https://youdeservewell.com');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
