@@ -82,25 +82,25 @@
            ============================================ */
         :root {
             /* Primary Brand Color (Main headers, navigation, primary elements) */
-            --color-primary: #16181A;           /* Slate Blue-Gray */
-            --color-primary-dark: #0E0F11;      /* Darker slate for depth */
-            --color-primary-light: #2C3136;     /* Lighter slate for hover */
+            --color-primary: #1A1714;           /* Slate Blue-Gray */
+            --color-primary-dark: #120F0D;      /* Darker slate for depth */
+            --color-primary-light: #36312B;     /* Lighter slate for hover */
 
             /* Secondary/Accent Color (CTAs, highlights, accents) */
-            --color-accent: #3A3F44;            /* Sage/Eucalyptus */
-            --color-accent-light: #6B7378;      /* Light sage for hover */
-            --color-accent-dark: #24282B;       /* Dark sage for active */
+            --color-accent: #6F675D;            /* Sage/Eucalyptus */
+            --color-accent-light: #A59F97;      /* Light sage for hover */
+            --color-accent-dark: #3F3931;       /* Dark sage for active */
 
             /* Background Colors */
-            --color-bg-dark: #16181A;           /* Ink - for hero sections */
-            --color-bg-light: #ECF0F1;          /* Cloud - for content sections */
+            --color-bg-dark: #1A1714;           /* Ink - for hero sections */
+            --color-bg-light: #F1EEE9;          /* Cloud - for content sections */
             --color-bg-card: #FFFFFF;           /* Pure white for cards */
 
             /* Text Colors */
-            --color-text-primary: #16181A;      /* Ink - main text */
-            --color-text-secondary: #4C5257;    /* Muted slate - secondary text */
+            --color-text-primary: #1A1714;      /* Ink - main text */
+            --color-text-secondary: #5D544C;    /* Muted slate - secondary text */
             --color-text-light: #FFFFFF;        /* White - text on dark backgrounds */
-            --color-text-muted: #8B9095;        /* Muted gray - subtle text */
+            --color-text-muted: #978F87;        /* Muted gray - subtle text */
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -153,7 +153,7 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+            border-bottom: 1px solid rgba(26, 23, 20, 0.1);
             transition: var(--transition-base);
         }
 
@@ -225,12 +225,12 @@
             font-weight: 700;
             text-decoration: none;
             transition: var(--transition-base);
-            box-shadow: 0 4px 16px rgba(118, 141, 135, 0.35);
+            box-shadow: 0 4px 16px rgba(111, 103, 93, 0.35);
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(118, 141, 135, 0.45);
+            box-shadow: 0 6px 20px rgba(111, 103, 93, 0.45);
         }
 
         .mobile-menu-toggle {
@@ -314,7 +314,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F7F9FA 0%, #ECF0F1 100%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F9F6F1 0%, #F1EEE9 100%);
             position: relative;
             overflow: hidden;
             padding: 100px 1rem 60px;
@@ -329,7 +329,7 @@
             bottom: 0;
             background:
                 radial-gradient(circle at 20% 50%, rgba(120, 124, 128, 0.10) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(26, 23, 20, 0.1) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -378,7 +378,7 @@
         .section-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.08) 0%, rgba(118, 141, 135, 0.12) 100%);
+            background: linear-gradient(135deg, rgba(26, 23, 20, 0.08) 0%, rgba(111, 103, 93, 0.12) 100%);
             border-radius: 50px;
             color: var(--purple-primary);
             font-weight: 700;
@@ -488,7 +488,7 @@
             background: var(--off-white);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(44, 62, 80, 0.1);
+            border: 1px solid rgba(26, 23, 20, 0.1);
             transition: var(--transition-base);
         }
 

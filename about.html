@@ -72,25 +72,25 @@
         /* ZEN BIOMECHANICS - Change colors here to update entire site! */
         :root {
             /* PRIMARY COLORS */
-            --color-primary: #16181A;
-            --color-primary-dark: #0E0F11;
-            --color-primary-light: #2C3136;
+            --color-primary: #1A1714;
+            --color-primary-dark: #120F0D;
+            --color-primary-light: #36312B;
 
             /* ACCENT COLORS */
-            --color-accent: #3A3F44;
-            --color-accent-light: #6B7378;
-            --color-accent-dark: #24282B;
+            --color-accent: #6F675D;
+            --color-accent-light: #A59F97;
+            --color-accent-dark: #3F3931;
 
             /* BACKGROUNDS */
-            --color-bg-dark: #16181A;
-            --color-bg-light: #ECF0F1;
+            --color-bg-dark: #1A1714;
+            --color-bg-light: #F1EEE9;
             --color-bg-card: #FFFFFF;
 
             /* TEXT */
-            --color-text-primary: #16181A;
-            --color-text-secondary: #4C5257;
+            --color-text-primary: #1A1714;
+            --color-text-secondary: #5D544C;
             --color-text-light: #FFFFFF;
-            --color-text-muted: #8B9095;
+            --color-text-muted: #978F87;
 
             /* GRADIENTS */
             --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -99,6 +99,7 @@
             /* LEGACY (backwards compatibility) */
             --purple-primary: var(--color-primary);
             --orange-primary: var(--color-accent);
+            --orange-bright: var(--color-accent-light);
             --bg-dark: var(--color-bg-dark);
             --text-light: var(--color-text-light);
             --text-gray: var(--color-text-muted);
@@ -122,7 +123,7 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+            border-bottom: 1px solid rgba(26, 23, 20, 0.1);
             transition: 0.3s ease;
         }
 
@@ -285,7 +286,7 @@
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(118, 141, 135, 0.35);
+            box-shadow: 0 8px 24px rgba(111, 103, 93, 0.35);
         }
 
         .mobile-menu-toggle {
@@ -434,7 +435,7 @@
 
         /* Hero Section */
         .hero {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F7F9FA 0%, #ECF0F1 100%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(180deg, #F9F6F1 0%, #F1EEE9 100%);
             padding: 8rem 2rem 6rem;
             text-align: center;
             position: relative;
@@ -450,7 +451,7 @@
             bottom: 0;
             background:
                 radial-gradient(circle at 20% 50%, rgba(120, 124, 128, 0.10) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(26, 23, 20, 0.1) 0%, transparent 50%);
             animation: pulse 8s ease-in-out infinite;
         }
 
@@ -467,15 +468,23 @@
         }
 
         .hero-badge {
-            display: inline-block;
-            background: rgba(44, 62, 80, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--color-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--color-text-secondary);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 24px;
+            height: 1.5px;
+            flex: none;
+            background: var(--color-primary);
         }
 
         .hero h1 {
@@ -541,7 +550,7 @@
         /* Expertise Section */
         .expertise-section {
             padding: 4rem 2rem;
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(111, 103, 93, 0.05);
         }
 
         .expertise-container {
@@ -651,7 +660,7 @@
         /* Values Section */
         .values-section {
             padding: 4rem 2rem;
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(111, 103, 93, 0.05);
         }
 
         .values-container {
@@ -724,7 +733,7 @@
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(118, 141, 135, 0.45);
+            box-shadow: 0 10px 30px rgba(111, 103, 93, 0.45);
         }
 
         /* Footer (shared markup/styling — kept in sync with the other pages' footer) */
