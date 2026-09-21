@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18300237200"></script>
     <script>
@@ -29,8 +32,6 @@
     src="https://www.facebook.com/tr?id=2510419372779876&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
     <title>Online Personal Trainer | Transform From Anywhere - Bhanu Vashisht</title>
@@ -646,6 +647,13 @@
             animation: fadeInUp 0.8s ease 0.2s both;
         }
 
+        .hero-underline {
+            background-image: linear-gradient(#9C4A34, #9C4A34);
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+            background-position: 0 92%;
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -671,9 +679,15 @@
             max-width: 320px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 30px 60px -22px rgba(0, 0, 0, 0.4), 0 10px 24px -14px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--color-bg-secondary);
             animation: fadeInUp 0.8s ease 0.6s both;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hero-video:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 38px 70px -20px rgba(0, 0, 0, 0.45), 0 12px 28px -12px rgba(0, 0, 0, 0.3);
         }
 
         .hero-video iframe {
@@ -730,13 +744,45 @@
             color: var(--white);
         }
 
+        /* Hero-scoped: drop the secondary CTA from a competing pill to a
+           plain underline-on-hover link, so there's one clear primary move */
+        .hero .btn-secondary {
+            background: none;
+            border: none;
+            backdrop-filter: none;
+            width: auto;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .hero .btn-secondary:hover {
+            background: none;
+            color: var(--color-primary);
+        }
+
+        .hero .btn-secondary::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 100%;
+            bottom: -1px;
+            height: 2px;
+            background: var(--color-primary);
+            transition: right 0.22s ease;
+        }
+
+        .hero .btn-secondary:hover::after {
+            right: 0;
+        }
+
         .trust-bar {
             margin-top: 3rem;
-            padding: 1.5rem;
-            background: rgba(44, 62, 80, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(44, 62, 80, 0.2);
+            padding: 1.25rem 0 0;
+            background: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            border: none;
+            border-top: 1px solid rgba(44, 62, 80, 0.18);
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -748,15 +794,17 @@
         }
 
         .trust-number {
-            font-size: 2rem;
-            font-weight: 900;
+            font-family: 'Lora', Georgia, serif;
+            font-variant-numeric: tabular-nums;
+            font-size: 2.1rem;
+            font-weight: 600;
             color: var(--color-text-primary);
             display: block;
             line-height: 1;
         }
 
         .trust-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--color-text-secondary);
             font-weight: 600;
             margin-top: 0.5rem;
@@ -1344,8 +1392,20 @@
 
             .trust-bar {
                 flex-direction: row;
-                justify-content: space-around;
-                gap: 2rem;
+                justify-content: flex-start;
+                gap: 0;
+            }
+
+            .trust-item {
+                padding-right: 2rem;
+                margin-right: 2rem;
+                border-right: 1px solid rgba(44, 62, 80, 0.16);
+            }
+
+            .trust-item:last-child {
+                padding-right: 0;
+                margin-right: 0;
+                border-right: none;
             }
 
             .section {
@@ -1548,7 +1608,7 @@
         <div class="hero-content">
             <div class="hero-copy">
                 <div class="hero-badge">🌍 Online Coaching — India • UAE • UK • US • Europe</div>
-                <h1>You Deserve to Move Without Pain</h1>
+                <h1>You Deserve to Move <span class="hero-underline">Without Pain</span></h1>
                 <p class="hero-subtitle" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem;">For people who've tried everything — doctors, physio, rest, exercises — and are still hurting.</p>
                 <p class="hero-subtitle" style="font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--color-text-secondary);">Lower back pain, neck pain, shoulder issues. Let's find what's actually causing it — and fix it for good.</p>
                 <p class="hero-subtitle">You don't have to accept pain as part of getting older. Most clients move pain-free within 6–8 weeks using biomechanics-based coaching — not guesswork, not motivation, not more of the same.</p>
