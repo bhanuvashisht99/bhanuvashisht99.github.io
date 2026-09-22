@@ -726,32 +726,60 @@
 
         .faq-item {
             background: var(--white);
-            padding: 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(26, 23, 20, 0.06);
             transition: var(--transition-base);
         }
 
-        .faq-item:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        .faq-item[open] {
+            box-shadow: 0 12px 32px rgba(26, 23, 20, 0.1);
         }
 
         .faq-question {
+            list-style: none;
+            cursor: pointer;
+            display: block;
+            padding: 1.5rem 3.25rem 1.5rem 1.5rem;
             font-weight: 700;
             color: var(--color-text-primary);
             font-size: 1.1rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .faq-question::-webkit-details-marker { display: none; }
+
+        .faq-question:hover { color: var(--color-accent-dark); }
+
+        .faq-question::after {
+            content: '';
+            position: absolute;
+            right: 1.5rem;
+            top: 1.75rem;
+            width: 12px;
+            height: 12px;
+            border-right: 2.5px solid var(--color-accent-dark);
+            border-bottom: 2.5px solid var(--color-accent-dark);
+            transform: rotate(45deg);
+            transition: transform var(--transition-base);
+        }
+
+        .faq-item[open] .faq-question::after {
+            transform: rotate(-135deg);
+            top: 2rem;
+        }
+
+        .faq-question:focus-visible {
+            outline: 3px solid var(--color-accent-light);
+            outline-offset: -3px;
         }
 
         .faq-answer {
             color: var(--gray);
-            margin-top: 1rem;
+            padding: 0 1.5rem 1.5rem;
             line-height: 1.6;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
         }
 
         /* Final CTA */
@@ -1056,30 +1084,30 @@
         <div class="content-container">
             <h2 class="section-title">Frequently Asked Questions</h2>
 
-            <div class="faq-item">
-                <div class="faq-question">Do I need to be strong to start?</div>
+            <details class="faq-item">
+                <summary class="faq-question">Do I need to be strong to start?</summary>
                 <div class="faq-answer">Basic push-up strength is helpful, but this guide focuses on technique and positioning first. Many people fail at handstands due to poor alignment, not lack of strength. The progressive system builds strength as you progress.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">How long until I can hold a freestanding handstand?</div>
+            <details class="faq-item">
+                <summary class="faq-question">How long until I can hold a freestanding handstand?</summary>
                 <div class="faq-answer">This varies greatly based on your starting point and practice consistency. The guide gives you a structured path - follow the progressions and don't skip steps. Focus on quality practice over rushing to freestanding.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">Do I need any equipment?</div>
+            <details class="faq-item">
+                <summary class="faq-question">Do I need any equipment?</summary>
                 <div class="faq-answer">Just a wall and floor space. Yoga blocks can be helpful but aren't required. The focus is on understanding mechanics and consistent practice.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">How do I access the PDF after purchase?</div>
+            <details class="faq-item">
+                <summary class="faq-question">How do I access the PDF after purchase?</summary>
                 <div class="faq-answer">Immediately after payment confirmation, you'll receive an email with a secure download link to access your PDF guide.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">What if I need more personalized help?</div>
+            <details class="faq-item">
+                <summary class="faq-question">What if I need more personalized help?</summary>
                 <div class="faq-answer">This guide provides the framework, but if you want 1-on-1 coaching to review your form and address your specific issues, choose the PDF + sessions package or book a consultation.</div>
-            </div>
+            </details>
         </div>
     </section>
 
@@ -1120,13 +1148,6 @@
                 mobileGuidesContent.classList.toggle('active');
             });
         }
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
 
         // Pricing Options and Currency
         let selectedCurrency = 'USD';

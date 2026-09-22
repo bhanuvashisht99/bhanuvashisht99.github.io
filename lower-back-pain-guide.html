@@ -756,32 +756,60 @@
 
         .faq-item {
             background: var(--white);
-            padding: 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(26, 23, 20, 0.06);
             transition: var(--transition-base);
         }
 
-        .faq-item:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        .faq-item[open] {
+            box-shadow: 0 12px 32px rgba(26, 23, 20, 0.1);
         }
 
         .faq-question {
+            list-style: none;
+            cursor: pointer;
+            display: block;
+            padding: 1.5rem 3.25rem 1.5rem 1.5rem;
             font-weight: 700;
             color: var(--color-text-primary);
             font-size: 1.1rem;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .faq-question::-webkit-details-marker { display: none; }
+
+        .faq-question:hover { color: var(--color-accent-dark); }
+
+        .faq-question::after {
+            content: '';
+            position: absolute;
+            right: 1.5rem;
+            top: 1.75rem;
+            width: 12px;
+            height: 12px;
+            border-right: 2.5px solid var(--color-accent-dark);
+            border-bottom: 2.5px solid var(--color-accent-dark);
+            transform: rotate(45deg);
+            transition: transform var(--transition-base);
+        }
+
+        .faq-item[open] .faq-question::after {
+            transform: rotate(-135deg);
+            top: 2rem;
+        }
+
+        .faq-question:focus-visible {
+            outline: 3px solid var(--color-accent-light);
+            outline-offset: -3px;
         }
 
         .faq-answer {
             color: var(--gray);
-            margin-top: 1rem;
+            padding: 0 1.5rem 1.5rem;
             line-height: 1.6;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
         }
 
         /* Final CTA */
@@ -1086,30 +1114,30 @@
         <div class="content-container">
             <h2 class="section-title">Frequently Asked Questions</h2>
 
-            <div class="faq-item">
-                <div class="faq-question">❓ Is this just another generic exercise PDF?</div>
+            <details class="faq-item">
+                <summary class="faq-question">❓ Is this just another generic exercise PDF?</summary>
                 <div class="faq-answer">No. This guide explains the biomechanics of why lower back pain persists and provides a progressive framework to rebuild capacity. It's based on years of coaching experience with chronic pain clients.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">❓ Will this work for my specific condition?</div>
+            <details class="faq-item">
+                <summary class="faq-question">❓ Will this work for my specific condition?</summary>
                 <div class="faq-answer">If you've tried rest, exercises, and treatments but pain keeps returning - and scans show nothing wrong - this guide addresses the root cause: how your body distributes load and manages movement.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">❓ Do I need any equipment?</div>
+            <details class="faq-item">
+                <summary class="faq-question">❓ Do I need any equipment?</summary>
                 <div class="faq-answer">The guide focuses on principles and progressions. Many exercises require minimal or no equipment. The emphasis is on understanding your body and rebuilding capacity progressively.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">❓ How do I access the PDF after purchase?</div>
+            <details class="faq-item">
+                <summary class="faq-question">❓ How do I access the PDF after purchase?</summary>
                 <div class="faq-answer">Immediately after payment confirmation, you'll receive an email with a secure download link to access your PDF guide.</div>
-            </div>
+            </details>
 
-            <div class="faq-item">
-                <div class="faq-question">❓ What if I need more personalized help?</div>
+            <details class="faq-item">
+                <summary class="faq-question">❓ What if I need more personalized help?</summary>
                 <div class="faq-answer">This guide provides the framework, but if you want 1-on-1 coaching to address your specific situation, you can book a personal training session for $85/€75, or choose our PDF + sessions package for better value.</div>
-            </div>
+            </details>
         </div>
     </section>
 
@@ -1150,13 +1178,6 @@
                 mobileGuidesContent.classList.toggle('active');
             });
         }
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
 
         // Pricing Options and Currency
         let selectedCurrency = 'USD';
