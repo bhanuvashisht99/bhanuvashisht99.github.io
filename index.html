@@ -627,9 +627,7 @@
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.65rem;
+            display: inline-block;
             color: var(--color-text-secondary);
             font-weight: 700;
             font-size: 0.78rem;
@@ -639,11 +637,16 @@
             animation: fadeInDown 0.8s ease;
         }
 
+        /* inline-block (not flex) so the dash stays attached to the start
+           of "Online Coaching" when the badge wraps to two lines on
+           narrow screens, instead of centering against the whole block. */
         .hero-badge::before {
             content: '';
+            display: inline-block;
             width: 24px;
             height: 1.5px;
-            flex: none;
+            margin-right: 0.65rem;
+            vertical-align: middle;
             background: var(--color-primary);
         }
 
