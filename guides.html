@@ -699,78 +699,89 @@
             line-height: 1.6;
         }
 
-        /* Guides Grid */
+        /* Guides Shelf — each cover keeps its real proportions; a shared
+           "shelf" surface (bottom-aligned covers + a ground line) is what
+           makes two different book sizes read as intentional, not broken. */
         .guides-section {
             padding: 3.5rem 2rem;
             max-width: 950px;
             margin: 0 auto;
         }
 
-        .guides-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.75rem;
+        .guides-shelf {
             margin-top: 2.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .guides-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .guide-card {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--color-bg-secondary, #E3DFD9);
-            border-radius: 20px;
-            overflow: hidden;
             background: var(--color-bg-card);
+            border: 1px solid var(--color-bg-secondary, #E3DFD9);
+            border-radius: 24px;
+            padding: 2.5rem 2rem 2rem;
+        }
+
+        .shelf-covers {
+            display: flex;
+            align-items: flex-end;
+            gap: 2.5rem;
+        }
+
+        .shelf-cover {
+            flex: 1;
+            min-width: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 16px 28px -14px rgba(26, 23, 20, 0.35);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .guide-card:hover {
+        .shelf-cover:hover {
             transform: translateY(-4px);
-            box-shadow: 0 24px 48px -24px rgba(26, 23, 20, 0.3);
+            box-shadow: 0 22px 36px -14px rgba(26, 23, 20, 0.4);
         }
 
-        .guide-card img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 5;
-            object-fit: contain;
-            object-position: center;
-            background: var(--color-primary);
-            display: block;
+        .shelf-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-bg-secondary, #E3DFD9) 15%, var(--color-bg-secondary, #E3DFD9) 85%, transparent);
+            margin: 1rem 0 1.75rem;
         }
 
-        .guide-card-body {
-            padding: 1.5rem;
+        .shelf-infos {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .shelf-info {
+            flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            flex: 1;
         }
 
-        .guide-card-body h3 {
+        .shelf-info h3 {
             font-family: 'Lora', Georgia, serif;
             font-size: 1.4rem;
             margin-bottom: 0.6rem;
             color: var(--color-text-primary);
         }
 
-        .guide-card-body p {
+        .shelf-info p {
             color: var(--color-text-secondary);
             font-size: 0.94rem;
             line-height: 1.6;
             margin-bottom: 1.25rem;
         }
 
-        .guide-card-footer {
+        .shelf-footer {
             margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .shelf-covers, .shelf-infos { flex-direction: column; }
+            .shelf-covers { align-items: center; }
+            .shelf-cover { max-width: 220px; }
         }
 
         .guide-card-price {
@@ -1107,25 +1118,25 @@
         <h2 class="section-title">Choose Your Guide</h2>
         <p class="section-subtitle">Instant digital delivery &middot; No subscription &middot; Built on biomechanics, not motivation</p>
 
-        <div class="guides-grid">
-            <div class="guide-card">
-                <img src="images/pdf-cover.jpg" alt="Lower Back Pain Guide" width="540" height="814" loading="lazy">
-                <div class="guide-card-body">
+        <div class="guides-shelf">
+            <div class="shelf-covers">
+                <img class="shelf-cover" src="images/pdf-cover.jpg" alt="Lower Back Pain Guide" width="540" height="814" loading="lazy">
+                <img class="shelf-cover" src="images/handstand-cover.jpg" alt="Handstand Guide" width="1000" height="1250" loading="lazy">
+            </div>
+            <div class="shelf-line"></div>
+            <div class="shelf-infos">
+                <div class="shelf-info">
                     <h3>Take Control of Your Lower Back Pain</h3>
                     <p>For people who've tried rest, exercises, and advice &mdash; yet lower back pain keeps returning. A science-based system to fix it at the root.</p>
-                    <div class="guide-card-footer">
+                    <div class="shelf-footer">
                         <span class="guide-card-price">$25<span> from</span></span>
                         <a href="lower-back-pain-guide.html" class="guide-card-btn">View Guide &rarr;</a>
                     </div>
                 </div>
-            </div>
-
-            <div class="guide-card">
-                <img src="images/handstand-cover.jpg" alt="Handstand Guide" width="1000" height="1250" loading="lazy">
-                <div class="guide-card-body">
+                <div class="shelf-info">
                     <h3>How Handstands Actually Work</h3>
                     <p>A simple system anyone can understand. No tricks, no guesswork &mdash; just structure. Learn the biomechanics behind a perfect handstand.</p>
-                    <div class="guide-card-footer">
+                    <div class="shelf-footer">
                         <span class="guide-card-price">$25<span> from</span></span>
                         <a href="handstand-guide.html" class="guide-card-btn">View Guide &rarr;</a>
                     </div>
