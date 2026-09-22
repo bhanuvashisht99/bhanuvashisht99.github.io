@@ -507,6 +507,41 @@
             z-index: 1;
         }
 
+        /* Guide Switch — lets a visitor who landed on one guide's checkout
+           jump straight to the other's, without a separate listing page. */
+        .guide-switch-row {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .guide-switch {
+            display: inline-flex;
+            gap: 0.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.3rem;
+            border-radius: 999px;
+        }
+
+        .guide-switch-tab {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            padding: 0.6rem 1.35rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .guide-switch-tab:hover {
+            color: white;
+        }
+
+        .guide-switch-tab.active {
+            background: white;
+            color: var(--color-primary);
+        }
+
         .product-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -847,7 +882,7 @@
             <ul class="nav-menu">
                 <li><a href="/#paths">Services</a></li>
                 <li class="nav-dropdown">
-                    <a href="guides.html">PDF Guides</a>
+                    <a href="lower-back-pain-guide.html">PDF Guides</a>
                     <div class="dropdown-content">
                         <div class="dropdown-grid">
                             <a href="/lower-back-pain-guide.html" class="dropdown-item">
@@ -910,6 +945,12 @@
     <!-- Product Hero -->
     <section class="product-hero">
         <div class="product-container">
+            <div class="guide-switch-row">
+                <div class="guide-switch" role="tablist" aria-label="Choose a guide">
+                    <a href="lower-back-pain-guide.html" class="guide-switch-tab" role="tab" aria-selected="false">Lower Back Pain</a>
+                    <a href="handstand-guide.html" class="guide-switch-tab active" aria-current="page" role="tab" aria-selected="true">Handstands</a>
+                </div>
+            </div>
             <div class="product-grid">
                 <div class="product-image">
                     <img width="1000" height="1250" src="images/handstand-cover.jpg" alt="How Handstands Actually Work PDF Cover" class="pdf-cover">
